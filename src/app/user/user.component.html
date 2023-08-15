@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vote App</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="row mt-3 text-center">
+            <div class="col"></div>
+            <div class="col-10 col-sm-6">
+                <h1>Bienvenido</h1>
+                <br><p class="p">Eres: {{dni}}</p>
+                <p class="p">Y tu contraseña es: {{password}}</p>
+                <h5>Seleccione una lista para votar:</h5>
+
+                <div class="row d-flex justify-content-center mb-3">
+                    <div class="col">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios1"
+                                value="option1"
+                            />
+                            <div class="card" style="width: 18rem">
+                                <img src="..." class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre lista</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the
+                                        card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    <a href="#" class="btn btn-secondary"
+                                        >Mas info.</a
+                                    >
+                                    <label
+                                        class="form-check-label btn btn-primary"
+                                        for="exampleRadios1"
+                                    >
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios2"
+                                value="option1"
+                            />
+                            <div class="card" style="width: 18rem">
+                                <img src="..." class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre lista</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the
+                                        card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    <a href="#" class="btn btn-secondary"
+                                        >Mas info.</a
+                                    >
+                                    <label
+                                        class="form-check-label btn btn-primary"
+                                        for="exampleRadios2"
+                                    >
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios3"
+                                value="option1"
+                            />
+                            <div class="card" style="width: 18rem">
+                                <img src="..." class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre lista</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the
+                                        card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    <a href="#" class="btn btn-secondary"
+                                        >Mas info.</a
+                                    >
+                                    <label
+                                        class="form-check-label btn btn-primary"
+                                        for="exampleRadios3"
+                                    >
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="exampleRadios"
+                                id="exampleRadios4"
+                                value="option1"
+                            />
+                            <div class="card" style="width: 18rem">
+                                <img src="..." class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre lista</h5>
+                                    <p class="card-text">
+                                        Some quick example text to build on the
+                                        card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    <a href="#" class="btn btn-secondary"
+                                        >Mas info.</a
+                                    >
+                                    <label
+                                        class="form-check-label btn btn-primary"
+                                        for="exampleRadios4"
+                                    >
+                                        Seleccionar
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning" role="alert">
+                    Estas seguro de que queres votar a la lista LISTA
+                </div>
+
+                <button type="button" class="btn btn-success btn-lg mb-3">
+                    Registrar voto
+                </button>
+                <button type="button" class="btn btn-secondary btn-lg mb-3">
+                    Volver
+                </button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
