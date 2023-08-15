@@ -4,8 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  getNombre(): string {
+    throw new Error('Method not implemented.');
+  }
   private dni: string = '';
   private password: string = '';
+  getUsuario: any;
   setDNI(dni: string): void {
     this.dni = dni;
   }
