@@ -8,6 +8,8 @@ import { LoginComponent } from './login_usuario/login.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ListasComponent } from './listas/listas.component';
+import { InfoListasComponent } from './info-listas/info-listas.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { RouterModule } from '@angular/router';
     AdminComponent,
     LoginComponent,
     UserComponent,
+    ListasComponent,
+    InfoListasComponent,
     
     
   ],

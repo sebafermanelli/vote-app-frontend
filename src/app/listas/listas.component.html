@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor="let miembro of miembros; let i = index">
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    [id]="'exampleRadios' + (i + 1)"
+                    value="option1"
+                />
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">Presidente: {{ miembro.presidente }}</h5>
+                        <p class="card-text">Vicepresidente: {{ miembro.vicepresidente }}</p>
+                        secretarios: <br><br>
+                        <p>{{miembro.secretario1}}</p>
+                        <p>{{miembro.secretario2}}</p>
+                        <p>{{miembro.secretario3}}</p>
+                        
+                        <button (click)="moreInfo(miembro.id)" class="btn btn-secondary">Mas info.</button>
+                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)">
+                            Seleccionar
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

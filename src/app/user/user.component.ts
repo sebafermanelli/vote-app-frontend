@@ -2,6 +2,7 @@ import { Component,Input,OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { AuthService } from '../app.component';
+import { ListasComponent } from '../listas/listas.component';
 
 
 
@@ -18,6 +19,8 @@ export class UserComponent implements OnInit{
   constructor(private route:Router,
               private dataService: DataService,
               private authService: AuthService){}
+
+
   ngOnInit(): void {
     // Obtener DNI y contraseña desde el servicio
     if (this.authService.estaAutenticado()) {
@@ -28,4 +31,9 @@ export class UserComponent implements OnInit{
     this.route.navigate(['login']);
   }
 
-}}
+}
+
+}
+
+
+
