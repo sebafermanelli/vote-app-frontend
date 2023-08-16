@@ -2,9 +2,6 @@ import { Component,Input,OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { AuthService } from '../app.component';
-import { ListasComponent } from '../listas/listas.component';
-
-
 
 @Component({
   selector: 'app-user',
@@ -15,11 +12,13 @@ import { ListasComponent } from '../listas/listas.component';
 export class UserComponent implements OnInit{
   dni: string = '';
   nombre: string = '';
+  showAlert: boolean = false;
+  selectedIndex: number;
 
   constructor(private route:Router,
               private dataService: DataService,
-              private authService: AuthService){}
-
+              private authService: AuthService,
+              ){}
 
   ngOnInit(): void {
     // Obtener DNI y contraseña desde el servicio
@@ -28,11 +27,19 @@ export class UserComponent implements OnInit{
       this.dni = usuario.DNI;
       this.nombre = usuario.nombre;
   }else{
-    this.route.navigate(['login']);
+    this.route.navigate(['']);}
   }
 
-}
 
+  aceptar(){
+    if(confirm(' ¿Estas Seguro de votar lo seleccionado? ') == true){
+    this.showAlert=true;
+    setTimeout(() => {
+      this.showAlert = false;
+      this.route.navigate(['']);
+    }, 2000);  }
+} 
+cancelar(){ this.route.navigate(['']);}
 }
 
 

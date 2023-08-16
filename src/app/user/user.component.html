@@ -20,18 +20,22 @@
                 <br><p class="p">{{nombre}}</p>
                 <p class="p">DNI: {{dni}}</p>
                 <h5>Seleccione una lista para votar:</h5>
-<app-listas></app-listas>
+            <app-listas></app-listas>
 
-                <div class="alert alert-warning" role="alert">
-                    Estas seguro de que queres votar a la lista LISTA
+            <div id="liveAlertPlaceholder" *ngIf="showAlert">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <div>Voto Registrado</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-
-                <button type="button" class="btn btn-success btn-lg mb-3">
-                    Registrar voto
-                </button>
-                <button type="button" class="btn btn-secondary btn-lg mb-3">
-                    Volver
-                </button>
+            </div>
+            <button type="button" class="btn btn-success btn-lg mb-3" 
+                    (click)="aceptar()" style="margin-right:15px;">
+                Registrar voto
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg mb-3" 
+                    style="margin-right: 15px;" (click)="cancelar()">
+                Volver
+            </button>
             </div>
             <div class="col"></div>
         </div>

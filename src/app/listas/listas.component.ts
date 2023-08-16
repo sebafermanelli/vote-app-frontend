@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { InfoListasComponent } from '../info-listas/info-listas.component';
+import { UserComponent } from '../user/user.component';
 
-class Miembro {
+
+export class Miembro {
   presidente: string;
   vicepresidente: string;
   secretario1: string;
   secretario2: string;
   secretario3: string;
   id: number;
+  cantidad:number;
 }
 
 @Component({
@@ -18,6 +21,8 @@ class Miembro {
 })
 export class ListasComponent implements OnInit {
 
+  @Output() miembroSeleccionado = new EventEmitter<number>();
+
   miembros: Miembro[] = [
     {
     presidente:'Cinel Santiago',
@@ -26,6 +31,7 @@ export class ListasComponent implements OnInit {
     secretario2:'raul',
     secretario3:'amilcar',
     id:1,
+    cantidad:0,
     },
     {
       presidente:'Karlen Esteban',
@@ -34,6 +40,7 @@ export class ListasComponent implements OnInit {
       secretario2:'raul',
       secretario3:'amilcar',
       id:2,
+      cantidad:0,
     },
     {
       presidente:'Andrada Gaston',
@@ -42,6 +49,7 @@ export class ListasComponent implements OnInit {
       secretario2:'raul',
       secretario3:'amilcar',
       id:3,
+      cantidad:0,
     },
     {
       presidente:'Fermanelli Sebastian',
@@ -50,16 +58,19 @@ export class ListasComponent implements OnInit {
       secretario2:'raul',
       secretario3:'amilcar',
       id:4,
+      cantidad:0,
     }
   ]
+  UserComponent: any;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router,) {}
 
   ngOnInit(): void {}
 
   moreInfo(id_lista:number) {
-    console.log('HOLAAAAAAAAAAAs')
     this.route.navigate(['info_listas',id_lista])
     
   }
+
+
 }

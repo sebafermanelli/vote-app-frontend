@@ -9,9 +9,9 @@
                     [id]="'exampleRadios' + (i + 1)"
                     value="option1"
                 />
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem;" >
                     <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
+                    <div class="card-body" id="miembro.id">
                         <h5 class="card-title">Presidente: {{ miembro.presidente }}</h5>
                         <p class="card-text">Vicepresidente: {{ miembro.vicepresidente }}</p>
                         secretarios: <br><br>
@@ -20,10 +20,11 @@
                         <p>{{miembro.secretario3}}</p>
                         
                         <button (click)="moreInfo(miembro.id)" class="btn btn-secondary">Mas info.</button>
-                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)">
+                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)"
+                        (click)="miembroSeleccionado.emit(i)">
                             Seleccionar
                         </label>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
