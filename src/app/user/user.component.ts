@@ -1,7 +1,7 @@
-import { Component,Input,OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service'; // Importa desde el archivo correcto
+import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
-import { AuthService } from '../app.component';
 
 @Component({
   selector: 'app-user',
