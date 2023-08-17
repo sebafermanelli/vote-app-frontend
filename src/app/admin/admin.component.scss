@@ -1,0 +1,23 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    background-color: #333;
+}
+
+.navbar .form-select {
+    background-color: #555;
+    color: #fff;
+    border: none;
+}
+
+.btn-outline-custom {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-custom:hover {
+    background-color: #dc3545;
+    color: #fff;
+}

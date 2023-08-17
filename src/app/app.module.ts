@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ListasComponent } from './listas/listas.component';
 import { InfoListasComponent } from './info-listas/info-listas.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InfoListasComponent } from './info-listas/info-listas.component';
     UserComponent,
     ListasComponent,
     InfoListasComponent,
+    LoginAdminComponent,
     
     
   ],

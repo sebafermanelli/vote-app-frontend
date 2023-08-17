@@ -1,55 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vote App</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote App</title>
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-            crossorigin="anonymous"
-        />
-    </head>
-    <body>
-        <div class="row mt-3 text-center">
-            <div class="col"></div>
-            <div class="col-10 col-sm-6">
-                <h1>Administrador</h1>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+        crossorigin="anonymous"
+    />
+   
+</head>
+<body>
+    <div class="row mt-3 text-center">
+        <div class="col"></div>
+        <div class="col-10 col-sm-6">
+            <h1 class="mb-4">Administrador</h1>
 
-                <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
-                    <div class="container-fluid">
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                          <li class="nav-item border-end">
-                            <a class="nav-link active" aria-current="page" href="#">Gestion de votacion</a>
-                          </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Listados
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Alumnos</a></li>
-                              <li><a class="dropdown-item" href="#">Listas</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                          </li>
-                        </ul>
+            <nav class="navbar navbar-expand-lg rounded">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <select class="form-select mx-3">
+                            <option selected>Gestor de Votaciones</option>
+                            <option value="1">Carga Alumnos</option>
+                            <option value="2">Carga Listas</option>
+                            <option value="3">Iniciar Votaciones</option>
+                            <option value="4">Finalizar Votaciones</option>
+                            <option value="5">Recuento de Votos</option>
+                        </select>
                         <div class="d-flex">
-                            <button class="btn btn-outline-danger">Salir</button>
+                            <button class="btn btn-outline-custom" (click)="salir()">Salir</button>
                         </div>
-                      </div>
                     </div>
-                  </nav>
-            </div>
-            <div class="col"></div>
+                </div>
+            </nav>
         </div>
+        <div class="col"></div>
+    </div>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
 </html>
