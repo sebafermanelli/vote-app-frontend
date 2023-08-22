@@ -14,9 +14,9 @@ export class LoginAdminComponent {
   constructor(private route: Router, private authService: AuthService) {}
 
   alAdmin(): void {
-    let user = this.cuadroUser;
-    let password = this.cuadroPassword;
-  
+    let user = this.cuadroUser.trim();  
+    let password = this.cuadroPassword.trim();  
+    
     console.log('Usuario:', user);
     console.log('Contraseña:', password);
   
@@ -26,6 +26,7 @@ export class LoginAdminComponent {
       alert('Mal ingresado');
     }
   }
+
   exit(){
     this.route.navigate(['']);
   }

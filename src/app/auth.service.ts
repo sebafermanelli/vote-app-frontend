@@ -25,13 +25,14 @@ export class AuthService {
   loginAdmin(user: string, password: string): boolean {
     console.log('User:', user);
     console.log('Password:', password);
+    this.isAuthenticated=false;
     if (this.admin.user === user && this.admin.password === password) {
       this.isAuthenticated = true;
     }
     return this.isAuthenticated;
   }
 
-  getUsuario() {
+  getUsuario() { 
     return this.usuario;
   }
 
