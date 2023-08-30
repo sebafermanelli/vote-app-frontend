@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vote App</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-        crossorigin="anonymous"
-    />
-  
-</head>
+
 <h1 class="tit">Ingreso Administrador</h1>
 <body>
     
@@ -29,17 +16,16 @@
                 <input type="password" class="form-control" 
                 id="exampleInputPassword1" placeholder="Password" [(ngModel)]="cuadroPassword" name="password">
             </div>
-            <div class="form-group form-check" style="margin-top: 10px;">
+            <div class="form-group form-check" >
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Guardar</label>
             </div>
-            <div style="margin-top:15px ;">
+            <div class="button-group">
             <button type="submit" class="btn btn-primary">Ingresar</button>
-            <button type="submit" class="btn btn-secundary border border-blue" (click)="exit()" style="margin-left:115px;">Salir</button>
+            <button type="submit" class="btn btn-secundary border border-blue" (click)="exit()">Salir</button>
         </div>
         </form>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  
 </body>
-</html>
