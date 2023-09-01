@@ -1,29 +1,26 @@
 <body>
     <div class="row mt-3 text-center">
-        <div class="col"></div>
-        <div class="col-10 col-sm-6">
+        <div>
             <h1 class="mb-4">Administrador</h1>
-
-            <nav class="navbar navbar-expand-lg rounded">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <select class="form-select mx-3">
-                            <option selected>Gestor de Votaciones</option>
-                            <option value="1">Carga Alumnos</option>
-                            <option value="2">Carga Listas</option>
-                            <option value="3">Iniciar Votaciones</option>
-                            <option value="4">Finalizar Votaciones</option>
-                            <option value="5">Recuento de Votos</option>
-                        </select>
-                        <div class="d-flex">
-                            <button class="btn btn-outline-custom" (click)="salir()">Salir</button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </nav>
+            <div >
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Menu admin
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><button class="dropdown-item" type="button">Dar de Alta Alumnos</button></li>
+                      <li><button class="dropdown-item" type="button">Dar de Alta Listas</button></li>
+                      <li><button class="dropdown-item" type="button">Iniciar Votación</button></li>
+                      <li><button class="dropdown-item" type="button">Finalizar Votación</button></li>
+                      <li><button class="dropdown-item" type="button">Recuento de Votos</button></li>
+                    </ul>
+                    <button class="btn btn-outline-custom" (click)="salir()">Salir</button>
+                  </div>
+               
+           
+        </div>
             <div class="button-container">
-            <button type="button" class="btn btn-success btn-lg mb-3"  >
+            <button type="button-aceptar" class="btn btn-success btn-lg mb-3"  >
                 Aceptar
             </button>
         </div>

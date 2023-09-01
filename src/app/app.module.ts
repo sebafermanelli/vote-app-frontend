@@ -10,8 +10,12 @@ import { RouterModule } from '@angular/router';
 import { ListasComponent } from './listas/listas.component';
 import { InfoListasComponent } from './info-listas/info-listas.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { setTheme } from 'ngx-bootstrap/utils';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     AdminComponent,
@@ -20,14 +24,15 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     ListasComponent,
     InfoListasComponent,
     LoginAdminComponent,
-    
-    
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     RouterModule,
+    TooltipModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 
-<body>
+<body class="body">
     <div class="position-absolute top-0 end-0 p-3">
         <button class="btn btn-primary" (click)="enterAdmin()">Ingreso Admin</button>
     </div>
@@ -10,6 +10,7 @@
             <form (ngSubmit)="alUser()">
                 <div>
                     <label for="floatingDNI"></label>
+                    <div class="login">
                     <input
                         type="text"
                         name="dni"
@@ -18,10 +19,14 @@
                         placeholder="DNI"
                         [(ngModel)]="cuadroDNI"
                     />
-                </div>
+                </div></div>
                 <div class="button-container">
                 <button type="submit" class="btn btn-primary btn-lg mb-3" >Iniciar sesión</button>
             </div>
+            <div *ngIf="showAlert" class="alert">
+            <alert type="danger">
+                <strong>Usuario no registrado</strong> 
+              </alert></div>
             </form>
         </div>
         <div class="col"></div>

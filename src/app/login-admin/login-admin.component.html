@@ -24,6 +24,11 @@
             <button type="submit" class="btn btn-primary">Ingresar</button>
             <button type="submit" class="btn btn-secundary border border-blue" (click)="exit()">Salir</button>
         </div>
+        <div *ngIf="showAlert" class="alertUsu">
+        <alert type="danger">
+            <strong>Usuario o Contraseña incorrectas</strong> 
+          </alert>
+        </div>
         </form>
     </div>
     

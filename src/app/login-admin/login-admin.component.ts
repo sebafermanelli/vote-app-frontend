@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 export class LoginAdminComponent {
   cuadroUser = '';
   cuadroPassword = '';
+  showAlert:boolean=false;
 
   constructor(private route: Router, private authService: AuthService) {}
 
@@ -23,7 +24,7 @@ export class LoginAdminComponent {
     if (this.authService.loginAdmin(user, password)) {
       this.route.navigate(['admin']);
     } else {
-      alert('Mal ingresado');
+      this.showAlert=true;
     }
   }
 

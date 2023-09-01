@@ -7,6 +7,7 @@ import { ListasComponent } from './listas/listas.component';
 import { InfoListasComponent } from './info-listas/info-listas.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 
+
 const routes: Routes = [
   { path: '', component: LoginComponent }, // Ruta para el componente LoginComponent
   { path: 'user', component: UserComponent }, // Ruta para el componente UserComponent
