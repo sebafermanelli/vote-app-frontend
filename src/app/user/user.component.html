@@ -7,29 +7,31 @@
             <br><p class="p">{{nombre}}</p>
             <p class="p">DNI: {{dni}}</p>
             <h5>Seleccione una lista para votar:</h5>
-        <app-listas></app-listas>
+        
 
       
-        
+        <form action="openModal(template)" class="form-inline needs-validation" id="form" method="post"
+            novalidate>
+            <app-listas></app-listas>
         <div class="button-container">
-        <button type="button" class="btn btn-success btn-lg mb-3"  (click)="openModal(template)"  > 
+        <button  type="submit" class="btn btn-success btn-lg mb-3"   (click)="openModal(template)" > 
             Registrar voto
         </button>
-        
-        <ng-template #template>
            
-            <div class="modal-body text-center">
-              <p>¿Esta seguro de lo que seleccionó?</p>
-              <button type="button" class="btn btn-default"  (click)="confirm()">Si</button>
-              <button type="button" class="btn btn-primary"  (click)="decline()">No</button>
-            </div>
-          </ng-template>
 
         <button type="button" class="btn btn-secondary btn-lg mb-3" 
                  (click)="cancelar()">
             Volver
         </button>
     </div>
+</form>
+<ng-template #template>
+    <div class="modal-body text-center">
+    <p>¿Esta seguro de lo que seleccionó?</p>
+    <button type="button" class="btn btn-default"  (click)="confirm()">Si</button>
+    <button type="button" class="btn btn-primary"  (click)="decline()">No</button>
+    </div>
+</ng-template>
         </div>
         <div class="col"></div>
     </div>
