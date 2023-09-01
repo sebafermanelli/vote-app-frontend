@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListasComponent } from '../listas/listas.component';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-listas',

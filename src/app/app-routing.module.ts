@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login_usuario/login.component';
+import { LoginComponent } from './login-usuario/login.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { ListasComponent } from './listas/listas.component';
@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'info_listas/:id',component:InfoListasComponent}, // Ruta para el componente InfoListasComponent
   { path: 'login-admin',component:LoginAdminComponent}, // Ruta para el componente LoginAdminComponent
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

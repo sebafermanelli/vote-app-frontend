@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoginAdminComponent } from '../login-admin/login-admin.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +9,5 @@ import { Router } from '@angular/router';
 export class AdminComponent {
  
   constructor(private route:Router){}
-
-
-
   salir(){this.route.navigate(['login-admin'])}
 }

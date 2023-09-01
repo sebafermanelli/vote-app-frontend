@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InfoListasComponent } from './info-listas.component';
 
 describe('InfoListasComponent', () => {

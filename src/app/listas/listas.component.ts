@@ -1,8 +1,5 @@
 import { Component, OnInit,EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { InfoListasComponent } from '../info-listas/info-listas.component';
-import { UserComponent } from '../user/user.component';
-
 
 export class Miembro {
   presidente: string;
@@ -19,7 +16,7 @@ export class Miembro {
   templateUrl: './listas.component.html',
   styleUrls: ['./listas.component.scss']
 })
-export class ListasComponent implements OnInit {
+export class ListasComponent  {
 
   @Output() miembroSeleccionado = new EventEmitter<number>();
 
@@ -65,12 +62,8 @@ export class ListasComponent implements OnInit {
 
   constructor(private route: Router,) {}
 
-  ngOnInit(): void {}
-
   moreInfo(id_lista:number) {
     this.route.navigate(['info_listas',id_lista])
     
   }
-
-
 }

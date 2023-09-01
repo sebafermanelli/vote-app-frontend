@@ -14,7 +14,6 @@ export class LoginComponent {
 
   alUser(): void {
     let DNI = this.cuadroDNI;
-
     if (this.authService.login(DNI)) {
       this.route.navigate(['user']);
     } else {

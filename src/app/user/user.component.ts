@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'; // Importa desde el archivo correcto
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 
@@ -21,7 +21,6 @@ export class UserComponent implements OnInit{
               ){}
 
   ngOnInit(): void {
-    // Obtener DNI y contraseña desde el servicio
     if (this.authService.estaAutenticado()) {
       const usuario = this.authService.getUsuario();
       this.dni = usuario.DNI;
@@ -29,7 +28,6 @@ export class UserComponent implements OnInit{
   }else{
     this.route.navigate(['']);}
   }
-
 
   aceptar(){
     if(confirm(' ¿Estas Seguro de votar lo seleccionado? ') == true){
