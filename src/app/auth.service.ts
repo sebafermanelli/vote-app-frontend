@@ -7,7 +7,8 @@ export class AuthService {
   private usuario = {
     nombre: 'Santiago',
     edad: 21,
-    DNI: '43717503'
+    DNI: '12345678',
+    mail:'santicinel@gmail.com'
   };
 
   private admin = {

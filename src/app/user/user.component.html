@@ -9,17 +9,22 @@
             <h5>Seleccione una lista para votar:</h5>
         <app-listas></app-listas>
 
-        <div id="liveAlertPlaceholder" *ngIf="showAlert">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <div>Voto Registrado</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
+      
+        
         <div class="button-container">
-        <button type="button" class="btn btn-success btn-lg mb-3" 
-                (click)="aceptar()" >
+        <button type="button" class="btn btn-success btn-lg mb-3"  (click)="openModal(template)"  > 
             Registrar voto
         </button>
+        
+        <ng-template #template>
+           
+            <div class="modal-body text-center">
+              <p>¿Esta seguro de lo que seleccionó?</p>
+              <button type="button" class="btn btn-default"  (click)="confirm()">Si</button>
+              <button type="button" class="btn btn-primary"  (click)="decline()">No</button>
+            </div>
+          </ng-template>
+
         <button type="button" class="btn btn-secondary btn-lg mb-3" 
                  (click)="cancelar()">
             Volver

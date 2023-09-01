@@ -13,6 +13,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 @NgModule({
   
@@ -24,6 +26,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ListasComponent,
     InfoListasComponent,
     LoginAdminComponent,
+    MessageModalComponent,
   ],
 
   imports: [
@@ -32,9 +35,10 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     FormsModule,
     RouterModule,
     TooltipModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

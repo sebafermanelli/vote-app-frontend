@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ListasComponent } from './listas/listas.component';
 import { InfoListasComponent } from './info-listas/info-listas.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'listas', component:ListasComponent}, // Ruta para el componente ListasComponent
   { path: 'info_listas/:id',component:InfoListasComponent}, // Ruta para el componente InfoListasComponent
   { path: 'login-admin',component:LoginAdminComponent}, // Ruta para el componente LoginAdminComponent
+  { path: 'message',component:MessageModalComponent}, // Ruta para el componente MessageComponent
 ];
 
 @NgModule({
