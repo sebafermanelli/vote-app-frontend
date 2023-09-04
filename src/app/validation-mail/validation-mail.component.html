@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Ingrese su número de validación</h2>
+        <h3>Le ha llegado a su mail</h3>
+        <form (ngSubmit)="submitForm()" #validationForm="ngForm">
+          <div class="form-group">
+            <label for="validationNumber">Número de Validación:</label>
+            <input type="text" class="form-control" id="validationNumber" name="validationNumber" [(ngModel)]="validationNumber" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <div *ngIf="showAlert">
+            <alert type="danger">
+                <strong>Código Incorrecto!</strong> Ingrese nuevamente el código enviado a su mail
+              </alert> </div>
+      </div>
+    </div>
+  </div>

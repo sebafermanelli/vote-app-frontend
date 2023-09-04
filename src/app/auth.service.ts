@@ -8,7 +8,8 @@ export class AuthService {
     nombre: 'Santiago',
     edad: 21,
     DNI: '12345678',
-    mail:'santicinel@gmail.com'
+    mail:'santicinel@gmail.com',
+    validation:12345,
   };
 
   private admin = {

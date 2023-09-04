@@ -15,6 +15,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { ValidationMailComponent } from './validation-mail/validation-mail.component';
 
 @NgModule({
   
@@ -27,6 +28,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     InfoListasComponent,
     LoginAdminComponent,
     MessageModalComponent,
+    ValidationMailComponent,
   ],
 
   imports: [
