@@ -16,6 +16,10 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ValidationMailComponent } from './validation-mail/validation-mail.component';
+import { LoadListComponent } from './load-list/load-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   
@@ -29,6 +33,7 @@ import { ValidationMailComponent } from './validation-mail/validation-mail.compo
     LoginAdminComponent,
     MessageModalComponent,
     ValidationMailComponent,
+    LoadListComponent,
   ],
 
   imports: [
@@ -38,8 +43,13 @@ import { ValidationMailComponent } from './validation-mail/validation-mail.compo
     RouterModule,
     TooltipModule.forRoot(),
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
+    
   ],
+  exports:[RouterModule],
   providers: [BsModalService],
   bootstrap: [AppComponent]
 })

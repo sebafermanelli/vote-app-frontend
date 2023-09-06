@@ -1,0 +1,67 @@
+<div class="centered">
+    <div class="collapsed">
+      <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Cargar Lista
+      </button>
+      <hr>
+      <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+        <div class="well well-lg card card-block card-header">
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">P</span>
+                <input type="text" class="form-control" placeholder="Nombre de Presidente" aria-label="Nombre de Presidente" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">V</span>
+                <input type="text" class="form-control" placeholder="Nombre de Vicepresidente" aria-label="Nombre de Vicepresidente" aria-describedby="basic-addon1">
+              </div>
+
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de usuario del Secetario 1" aria-label="Nombre de usuario del destinatario" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">S</span>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de usuario del Secetario 2" aria-label="Nombre de usuario del Secetario 2" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">S</span>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de usuario del Secetario 3" aria-label="Nombre de usuario del Secetario 3" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">S</span>
+              </div>
+              
+              <label for="basic-url" class="form-label">Tu URL</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">https://example.com</span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              </div>
+
+              
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de Lista" aria-label="Nombre de Lista">
+                <span class="input-group-text">L</span>
+              </div>
+              
+              <div class="input-group">
+                <span class="input-group-text">Propuestas</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea> 
+            </div>
+        
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>
+        <br><br>
+        
+        <ng-template #template>
+        <div class="modal-body text-center">
+            <p>¿Estás Seguro?</p>
+            <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+            <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+        </div>
+        </ng-template>
+        <div *ngIf="showModal">
+            <alert type="success">
+                <strong>{{message}}</strong> 
+            </alert>
+        </div>
+    </div>
+  </div>
