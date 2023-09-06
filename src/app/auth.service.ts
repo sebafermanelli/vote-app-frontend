@@ -9,7 +9,7 @@ export class AuthService {
     edad: 21,
     DNI: '12345678',
     mail:'santicinel@gmail.com',
-    validation:12345,
+    validation:123456,
   };
 
   private admin = {
@@ -40,5 +40,8 @@ export class AuthService {
 
   estaAutenticado() {
     return this.isAuthenticated;
+  }
+  getCorreoUsuario(): string {
+    return this.usuario.mail;
   }
 }

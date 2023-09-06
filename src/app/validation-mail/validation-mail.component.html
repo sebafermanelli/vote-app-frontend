@@ -1,19 +1,48 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h2>Ingrese su número de validación</h2>
-        <h3>Le ha llegado a su mail</h3>
-        <form (ngSubmit)="submitForm()" #validationForm="ngForm">
-          <div class="form-group">
-            <label for="validationNumber">Número de Validación:</label>
-            <input type="text" class="form-control" id="validationNumber" name="validationNumber" [(ngModel)]="validationNumber" required>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Ingrese su número de validación</h2>
+      <h3>Le ha llegado a su correo electrónico</h3>
+      <h5>{{ correoUsuarioOculto }}</h5>
+      <form (ngSubmit)="submitForm()" #validationForm="ngForm">
+        <div class="form-group">
+          <label for="validationNumber">Número de Validación:</label>
+          <div class="row">
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber1" name="validationNumber1" [(ngModel)]="validationNumber1" required maxlength="1">
+            </div>
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber2" name="validationNumber2" [(ngModel)]="validationNumber2" required maxlength="1">
+            </div>
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber3" name="validationNumber3" [(ngModel)]="validationNumber3" required maxlength="1">
+            </div>
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber4" name="validationNumber4" [(ngModel)]="validationNumber4" required maxlength="1">
+            </div>
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber5" name="validationNumber5" [(ngModel)]="validationNumber5" required maxlength="1">
+            </div>
+            <div class="col-2">
+              <input type="text" class="form-control" id="validationNumber6" name="validationNumber6" [(ngModel)]="validationNumber6" required maxlength="1">
+            </div>
           </div>
+        </div>
+        <div class="send-button">
           <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-        <div *ngIf="showAlert">
-            <alert type="danger">
-                <strong>Código Incorrecto!</strong> Ingrese nuevamente el código enviado a su mail
-              </alert> </div>
-      </div>
+        </div>
+      </form>
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Código incorrecto,</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         Revise nuevamente el código enviado a su mail
+        </div>
+      </ng-template>
     </div>
   </div>
+</div>
