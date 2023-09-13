@@ -7,9 +7,10 @@
                     type="radio"
                     name="exampleRadios"
                     [id]="'exampleRadios' + (i + 1)"
-                    value="option1"
+                    value="option1" required
                 />
                 <div class="card" >
+                
                     <img src="..." class="card-img-top" alt="..." />
                     <div class="card-body" id="miembro.id">
                         <h5 class="card-title">Presidente: {{ miembro.presidente }}</h5>
@@ -26,6 +27,7 @@
                         </label>
                     </div> 
                 </div>
+                <div class="invalid-feedback">Tiene que seleccionar una lista</div>
             </div>
         </div>
     </div>

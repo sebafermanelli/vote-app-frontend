@@ -1,35 +1,31 @@
 <body>
     <div class="row mt-3 text-center">
-        <div class="col"></div>
-        <div class="col-10 col-sm-6">
-            <h1 class="mb-4">Administrador</h1>
+      <div>
+        <h1 class="mb-4">Administrador</h1>
+        <div class="btn-group" dropdown>
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">OPCIONES</button>
 
-            <nav class="navbar navbar-expand-lg rounded">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <select class="form-select mx-3">
-                            <option selected>Gestor de Votaciones</option>
-                            <option value="1">Carga Alumnos</option>
-                            <option value="2">Carga Listas</option>
-                            <option value="3">Iniciar Votaciones</option>
-                            <option value="4">Finalizar Votaciones</option>
-                            <option value="5">Recuento de Votos</option>
-                        </select>
-                        <div class="d-flex">
-                            <button class="btn btn-outline-custom" (click)="salir()">Salir</button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </nav>
-            <div class="button-container">
-            <button type="button" class="btn btn-success btn-lg mb-3"  >
-                Aceptar
-            </button>
+              <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+              <div class="offcanvas-header">
+               <h5 class="offcanvas-title" id="offcanvasScrollingLabel">MENÚ ADMINISTRADOR</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              
+              <div class="offcanvas-body">
+                <div>
+                  <ul id="dropdown-basic" class="list-group">
+                    <li class="list-group-item"><a class="dropdown-item" (click)="loadlist()">Alta Lista</a></li>
+                    <li class="list-group-item"><a class="dropdown-item" href="#">Alta Alumnos</a></li>
+                    <li class="list-group-item"><a class="dropdown-item" href="#">Comenzar Votación</a></li>
+                    <li class="list-group-item"><a class="dropdown-item" href="#">Finalizar Votación</a></li>
+                    <li class="list-group-item"><a class="dropdown-item" href="#">Recuento de Votos</a></li>
+                    <li class="list-group-item bg-danger"><a class="dropdown-item" (click)="salir()">Salir</a></li>
+                </ul>
         </div>
+              </div>
+            </div>
+
         </div>
-        <div class="col"></div>
+      </div>
     </div>
-
-  
-</body>
+  </body>

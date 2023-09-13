@@ -66,4 +66,9 @@ export class ListasComponent  {
     this.route.navigate(['info_listas',id_lista])
     
   }
+  deleteLista(index:number){
+    if (confirm('¿Estás seguro de que deseas eliminar esta lista?')) {
+      this.miembros.splice(index, 1);
+    }
+  }
 }

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MessageModalComponent } from '../message-modal/message-modal.component';
 
 @Component({
   selector: 'app-user',
@@ -10,14 +12,21 @@ import { DataService } from '../shared/data.service';
 })
 
 export class UserComponent implements OnInit{
+  modalRef?: BsModalRef;
+  message?: string;
   dni: string = '';
   nombre: string = '';
   showAlert: boolean = false;
   selectedIndex: number;
+  showModal: boolean = false;
+  messageModalRef?: BsModalRef;
+
+  
 
   constructor(private route:Router,
               private dataService: DataService,
               private authService: AuthService,
+              private modalService: BsModalService,
               ){}
 
   ngOnInit(): void {
@@ -29,15 +38,37 @@ export class UserComponent implements OnInit{
     this.route.navigate(['']);}
   }
 
-  aceptar(){
-    if(confirm(' ¿Estas Seguro de votar lo seleccionado? ') == true){
+
+ openModal(template: TemplateRef<any>) {
+  this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  
+  confirm(): void {
+    
+    this.modalRef?.hide();
     this.showAlert=true;
+    this.openMessageModal(); 
+    this.route.navigate(['message']),
     setTimeout(() => {
-      this.showAlert = false;
+      this.messageModalRef?.hide();
       this.route.navigate(['']);
     }, 2000);  }
-} 
-cancelar(){ this.route.navigate(['']);}
+  
+ 
+  decline(): void {
+  
+    this.modalRef?.hide();
+  }
+
+cancelar(){ this.route.navigate(['']);} 
+
+
+openMessageModal() {
+  const initialState = {
+    message: this.message
+  };
+}
 }
 
 

@@ -1,3 +1,21 @@
 .button-container{
     margin-top: 30px;
+    height: 30px;
+}
+.login{
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    height: 50px; 
+    margin-left: 145px;
+}
+.body{
+    margin-top: 120px;
+}
+.alert{
+    margin-top: 50px;
 }
