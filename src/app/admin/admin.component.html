@@ -1,31 +1,37 @@
 <body>
-    <div class="row mt-3 text-center">
+  <div class="row mt-3 text-center">
       <div>
-        <h1 class="mb-4">Administrador</h1>
-        <div class="btn-group" dropdown>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">OPCIONES</button>
+          <h1 class="mb-4">Administrador</h1>
+          <div class="btn-group" dropdown>
+              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">OPCIONES</button>
 
               <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-              <div class="offcanvas-header">
-               <h5 class="offcanvas-title" id="offcanvasScrollingLabel">MENÚ ADMINISTRADOR</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              
-              <div class="offcanvas-body">
-                <div>
-                  <ul id="dropdown-basic" class="list-group">
-                    <li class="list-group-item"><a class="dropdown-item" (click)="loadlist()">Alta Lista</a></li>
-                    <li class="list-group-item"><a class="dropdown-item" href="#">Alta Alumnos</a></li>
-                    <li class="list-group-item"><a class="dropdown-item" href="#">Comenzar Votación</a></li>
-                    <li class="list-group-item"><a class="dropdown-item" href="#">Finalizar Votación</a></li>
-                    <li class="list-group-item"><a class="dropdown-item" href="#">Recuento de Votos</a></li>
-                    <li class="list-group-item bg-danger"><a class="dropdown-item" (click)="salir()">Salir</a></li>
-                </ul>
-        </div>
-              </div>
-            </div>
+                  <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">MENÚ ADMINISTRADOR</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
 
-        </div>
+                  <div class="offcanvas-body">
+                      <div>
+                          <ul id="dropdown-basic" class="list-group">
+                              <li class="list-group-item"><a class="dropdown-item" (click)="loadlist()">Alta Lista</a></li>
+                              <li class="list-group-item"><a class="dropdown-item" href="#">Alta Alumnos</a></li>
+                              <li class="list-group-item"><a class="dropdown-item" href="#">Comenzar Votación</a></li>
+                              <li class="list-group-item"><a class="dropdown-item" href="#">Finalizar Votación</a></li>
+                              <li class="list-group-item"><a class="dropdown-item" href="#">Recuento de Votos</a></li>
+                              
+                          </ul>
+                      </div>
+                      <div class="position-absolute bottom-0 end-0 p-3"> 
+                          <div class="user-name">Admin: <span id="admin-username">{{ admin.user }}
+                          </span></div>
+                      </div>
+                      
+                  </div>
+              </div>
+              <div class="exit-button">
+              <button type="button" class=" btn bg-danger" (click)="salir()">Salir</button>
+          </div></div>
       </div>
-    </div>
-  </body>
+  </div>
+</body>

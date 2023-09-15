@@ -3,10 +3,12 @@
     font-weight:inherit;
 }
 .button-container{
-    margin-right: 200px;
-    margin-left: 200px;
+    text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+        .exit-button{
+            margin-left: 15px;
+        }
 }
 .modal-body {
     padding: 20px; 

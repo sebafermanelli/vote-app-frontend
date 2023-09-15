@@ -1,22 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadListComponent } from '../load-list/load-list.component';
-
-
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
+  admin: any; // Declarar la propiedad admin
 
-  constructor(private route: Router) {}
+  constructor(private router: Router, private authService: AuthService) {
+    // Obtener la información del administrador desde el servicio AuthService
+    this.admin = this.authService.getAdmin();
+  }
+
+  ngOnInit() {}
 
   salir() {
-    this.route.navigate(['login-admin']);
+    this.router.navigate(['login-admin']);
   }
-  loadlist(){
-    this.route.navigate(['load-list']);
+
+  loadlist() {
+    this.router.navigate(['load-list']);
   }
+
+  
 }

@@ -13,17 +13,16 @@
         <form action="openModal(template)" class="form-inline needs-validation" id="form" method="post"
             novalidate>
             <app-listas></app-listas>
-        <div class="button-container">
-        <button  type="submit" class="btn btn-success btn-lg mb-3"   (click)="openModal(template)" > 
+        <div class="button-container text-center">
+        <button  type="button" class="btn btn-success "   (click)="openModal(template)" > 
             Registrar voto
         </button>
-           
-
-        <button type="button" class="btn btn-secondary btn-lg mb-3" 
+        <div class="exit-button">
+        <button type="button" class="btn btn-secondary " 
                  (click)="cancelar()">
             Volver
         </button>
-    </div>
+    </div></div>
 </form>
 <ng-template #template>
     <div class="modal-body text-center">
