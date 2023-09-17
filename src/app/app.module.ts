@@ -20,6 +20,7 @@ import { LoadListComponent } from './load-list/load-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 
 @NgModule({
   
@@ -34,6 +35,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     MessageModalComponent,
     ValidationMailComponent,
     LoadListComponent,
+    ManageVotingComponent,
   ],
 
   imports: [

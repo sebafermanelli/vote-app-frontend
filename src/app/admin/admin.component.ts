@@ -24,6 +24,8 @@ export class AdminComponent implements OnInit {
   loadlist() {
     this.router.navigate(['load-list']);
   }
-
+  manageList(){
+    this.router.navigate(['manage-voting'])
+  }
   
 }

@@ -9,6 +9,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ValidationMailComponent } from './validation-mail/validation-mail.component';
 import { LoadListComponent } from './load-list/load-list.component';
+import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'message',component:MessageModalComponent}, // Ruta para el componente MessageComponent
   { path: 'validation',component:ValidationMailComponent}, //Ruta para el componente ValidationmailComponent
   { path: 'load-list',component:LoadListComponent}, //Ruta para el componente LoadListComponent
+  { path: 'manage-voting', component:ManageVotingComponent}, //Ruta para el componente ManageVotingComponent
 ];
 
 @NgModule({

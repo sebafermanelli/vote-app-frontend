@@ -1,4 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -7,12 +8,12 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./load-list.component.scss']
 })
 export class LoadListComponent {
-  isCollapsed = false;
+  isCollapsed = true;
   modalRef?: BsModalRef;
   message?: string;
   showModal = false; 
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService,private route: Router) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
@@ -27,5 +28,8 @@ export class LoadListComponent {
   decline(): void {
     this.showModal=false;
     this.modalRef?.hide();
+  }
+  exit(){
+    this.route.navigate(['admin'])
   }
 }
