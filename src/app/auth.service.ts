@@ -12,11 +12,6 @@ export class AuthService {
     validation:123456, 
   };
 
-  private votacion = {
-    desc:'Vot 1',
-    id: '123',
-    listas:[],
-  };
 
   private admin = {
     user: 'pepe',
