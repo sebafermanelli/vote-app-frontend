@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
@@ -8,16 +7,17 @@ import { setTheme } from 'ngx-bootstrap/utils';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'App';
-  usuario: any;
+  user: any;
 
   constructor(private authService: AuthService) {
-    this.usuario = authService.getUsuario(),
+    this.user = authService.getUsuario(),
     setTheme('bs5'); 
   }
 
-  estaAutenticado() {
-    return this.authService.estaAutenticado();
+  authenticated() {
+    return this.authService.getAuthtenticated();
   }
 }

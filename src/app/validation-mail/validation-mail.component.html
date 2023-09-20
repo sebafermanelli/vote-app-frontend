@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <h2>Ingrese su número de validación</h2>
       <h3>Le ha llegado a su correo electrónico</h3>
-      <h5>{{ correoUsuarioOculto }}</h5>
+      <h5>{{ hiddenMail }}</h5>
       <form (ngSubmit)="submitForm()" #validationForm="ngForm">
         <div class="form-group">
           <label for="validationNumber">Número de Validación:</label>
@@ -29,9 +29,13 @@
           </div>
         </div>
         <div class="send-button">
-          <button type="submit" class="btn btn-primary">Enviar</button>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
         </div>
       </form>
+      <br><br>
+      <div class="send-code d-flex justify-content-end">
+      <button class="btn btn-secondary">Reenviar Código</button>
+    </div>
       <ng-template #template>
         <div class="modal-header">
           <h4 class="modal-title pull-left">Código incorrecto,</h4>

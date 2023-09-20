@@ -6,6 +6,9 @@ import { AdminComponent } from '../admin/admin.component';
 export class vote{
   id:number;
   desc:string;
+  startActive:boolean;
+  finishActive:boolean;
+  resultActive:boolean;
 }
 
 
@@ -20,23 +23,41 @@ export class ManageVotingComponent {
     {
       id:1,
       desc:'Presidente centro estudiante',
+      startActive:true,
+      finishActive:false,
+      resultActive:false,
     },
     {
       id:2,
       desc:'Representante interescolar',
+      startActive:true,
+      finishActive:false,
+      resultActive:false,
     },
     {
       id:3,
       desc:'Delegados',
+      startActive:true,
+      finishActive:false,
+      resultActive:false,
     }
   ]
   constructor(private route: Router,) {}
 
   
 
-  start(){}
-  finish(){}
-  count(){}
+  start(vote:any){
+    vote.startActive=false;
+    vote.finishActive=true;
+  }
+  finish(vote:any){
+    vote.startActive=false;
+    vote.finishActive=false;
+    vote.resultActive=true;
+  }
+  count(vote:any){}
+
+
   deleteVote(i: number) {
     if (i >= 0 && i < this.voting.length) {
       this.voting.splice(i, 1); 

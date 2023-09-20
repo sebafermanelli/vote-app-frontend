@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private usuario = {
-    nombre: 'Santiago',
-    edad: 21,
+    name: 'Santiago',
+    age: 21,
     DNI: '12345678',
     mail:'santicinel@gmail.com',
     validation:123456, 
@@ -39,10 +39,10 @@ export class AuthService {
     return this.usuario;
   }
 
-  estaAutenticado() {
+  getAuthtenticated() {
     return this.isAuthenticated;
   }
-  getCorreoUsuario(): string {
+  getMailUser(): string {
     return this.usuario.mail;
   }
   getAdmin() {

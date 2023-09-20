@@ -9,15 +9,15 @@ import { setTheme } from 'ngx-bootstrap/utils';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  cuadroDNI = '';
+  frameDNI = '';
   showAlert: boolean=false;
 
   constructor(private route: Router, private authService: AuthService) {
     setTheme('bs5'); 
   }
 
-  alUser(): void {
-    let DNI = this.cuadroDNI;
+  forUser(): void {
+    let DNI = this.frameDNI;
     if (this.authService.login(DNI)) {
       this.route.navigate(['validation']);
     } else {

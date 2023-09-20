@@ -1,14 +1,14 @@
 import { Component, OnInit,EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
-export class Miembro {
-  presidente: string;
-  vicepresidente: string;
-  secretario1: string;
-  secretario2: string;
-  secretario3: string;
+export class Member {
+  president: string;
+  vicepresident: string;
+  secretary1: string;
+  secretary2: string;
+  secretary3: string;
   id: number;
-  cantidad:number;
+  count:number;
 }
 
 @Component({
@@ -18,44 +18,44 @@ export class Miembro {
 })
 export class ListasComponent  {
 
-  @Output() miembroSeleccionado = new EventEmitter<number>();
+  @Output() memberSeleccionado = new EventEmitter<number>();
 
-  miembros: Miembro[] = [
+  members: Member[] = [
     {
-    presidente:'Cinel Santiago',
-    vicepresidente:'Pepe',
-    secretario1:'carlos',
-    secretario2:'raul',
-    secretario3:'amilcar',
+    president:'Cinel Santiago',
+    vicepresident:'Pepe',
+    secretary1:'carlos',
+    secretary2:'raul',
+    secretary3:'amilcar',
     id:1,
-    cantidad:0,
+    count:0,
     },
     {
-      presidente:'Karlen Esteban',
-      vicepresidente:'Pepe',
-      secretario1:'carlos',
-      secretario2:'raul',
-      secretario3:'amilcar',
+      president:'Karlen Esteban',
+      vicepresident:'Pepe',
+      secretary1:'carlos',
+      secretary2:'raul',
+      secretary3:'amilcar',
       id:2,
-      cantidad:0,
+      count:0,
     },
     {
-      presidente:'Andrada Gaston',
-      vicepresidente:'Pepe',
-      secretario1:'carlos',
-      secretario2:'raul',
-      secretario3:'amilcar',
+      president:'Andrada Gaston',
+      vicepresident:'Pepe',
+      secretary1:'carlos',
+      secretary2:'raul',
+      secretary3:'amilcar',
       id:3,
-      cantidad:0,
+      count:0,
     },
     {
-      presidente:'Fermanelli Sebastian',
-      vicepresidente:'Pepe',
-      secretario1:'carlos',
-      secretario2:'raul',
-      secretario3:'amilcar',
+      president:'Fermanelli Sebastian',
+      vicepresident:'Pepe',
+      secretary1:'carlos',
+      secretary2:'raul',
+      secretary3:'amilcar',
       id:4,
-      cantidad:0,
+      count:0,
     }
   ]
   UserComponent: any;
@@ -68,7 +68,7 @@ export class ListasComponent  {
   }
   deleteLista(index:number){
     if (confirm('¿Estás seguro de que deseas eliminar esta lista?')) {
-      this.miembros.splice(index, 1);
+      this.members.splice(index, 1);
     }
   }
 }

@@ -8,10 +8,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  admin: any; // Declarar la propiedad admin
+  admin: any; 
 
   constructor(private router: Router, private authService: AuthService) {
-    // Obtener la información del administrador desde el servicio AuthService
     this.admin = this.authService.getAdmin();
   }
 

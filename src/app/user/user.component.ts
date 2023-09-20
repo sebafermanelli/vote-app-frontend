@@ -15,7 +15,7 @@ export class UserComponent implements OnInit{
   modalRef?: BsModalRef;
   message?: string;
   dni: string = '';
-  nombre: string = '';
+  name: string = '';
   showAlert: boolean = false;
   selectedIndex: number;
   showModal: boolean = false;
@@ -30,10 +30,10 @@ export class UserComponent implements OnInit{
               ){}
 
   ngOnInit(): void {
-    if (this.authService.estaAutenticado()) {
+    if (this.authService.getAuthtenticated()) {
       const usuario = this.authService.getUsuario();
       this.dni = usuario.DNI;
-      this.nombre = usuario.nombre;
+      this.name = usuario.name;
   }else{
     this.route.navigate(['']);}
   }
@@ -61,7 +61,7 @@ export class UserComponent implements OnInit{
     this.modalRef?.hide();
   }
 
-cancelar(){ this.route.navigate(['']);} 
+cancel(){ this.route.navigate(['']);} 
 
 
 openMessageModal() {

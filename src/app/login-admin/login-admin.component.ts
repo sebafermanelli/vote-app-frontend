@@ -8,18 +8,16 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login-admin.component.scss']
 })
 export class LoginAdminComponent {
-  cuadroUser = '';
-  cuadroPassword = '';
+  frameUser = '';
+  framePassword = '';
   showAlert:boolean=false;
 
   constructor(private route: Router, private authService: AuthService) {}
 
   alAdmin(): void {
-    let user = this.cuadroUser.trim();  
-    let password = this.cuadroPassword.trim();  
+    let user = this.frameUser.trim();  
+    let password = this.framePassword.trim();  
     
-    console.log('Usuario:', user);
-    console.log('Contraseña:', password);
   
     if (this.authService.loginAdmin(user, password)) {
       this.route.navigate(['admin']);

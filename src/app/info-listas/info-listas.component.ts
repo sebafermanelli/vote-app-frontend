@@ -7,14 +7,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./info-listas.component.scss']
 })
 export class InfoListasComponent implements OnInit{
-  idLista:number|null=null;
+  idList:number|null=null;
   constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam !== null) {
-        this.idLista = +idParam;
+        this.idList = +idParam;
       }
     });
     }

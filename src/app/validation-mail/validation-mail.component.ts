@@ -11,8 +11,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ValidationMailComponent {
   modalRef: BsModalRef | undefined = undefined;
- validationNumber: string = '';
- correoUsuario: string;
+  validationNumber: string = '';
+  userMail: string;
   validationNumber1: string = '';
   validationNumber2: string = '';
   validationNumber3: string = '';
@@ -24,7 +24,7 @@ export class ValidationMailComponent {
 
   @ViewChild('template',) template: TemplateRef<any>;
   constructor(private route: Router, private authService: AuthService,private modalService: BsModalService){
-    this.correoUsuario = this.authService.getCorreoUsuario();
+    this.userMail = this.authService.getMailUser();
   }
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -45,18 +45,18 @@ export class ValidationMailComponent {
     }
   }
 
-    get correoUsuarioOculto(): string {
-      const partes = this.correoUsuario.split('@');
+    get hiddenMail(): string {
+      const partes = this.userMail.split('@');
       if (partes.length === 2) {
-        const nombreUsuario = partes[0];
-        const dominio = partes[1];
-        const primeraLetra = nombreUsuario.charAt(0);
-        const ultimaLetra = nombreUsuario.charAt(nombreUsuario.length - 1);
-        const longitudOcultar = nombreUsuario.length - 2; 
-        const caracteresOcultos = '*'.repeat(longitudOcultar);
-        return primeraLetra + caracteresOcultos + ultimaLetra + '@' + dominio;
+        const nameUser = partes[0];
+        const domain = partes[1];
+        const firstLeter = nameUser.charAt(0);
+        const lastLeter = nameUser.charAt(nameUser.length - 1);
+        const lengthHide = nameUser.length - 2; 
+        const hiddenCharacters = '*'.repeat(lengthHide);
+        return firstLeter + hiddenCharacters + lastLeter + '@' + domain;
       }
-      return this.correoUsuario; 
+      return this.userMail; 
     }
   }
 
