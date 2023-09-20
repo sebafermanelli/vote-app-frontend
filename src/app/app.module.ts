@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ManageVotingComponent } from './manage-voting/manage-voting.component';
+import { LoadStudentComponent } from './load-student/load-student.component';
 
 @NgModule({
   
@@ -36,6 +37,7 @@ import { ManageVotingComponent } from './manage-voting/manage-voting.component';
     ValidationMailComponent,
     LoadListComponent,
     ManageVotingComponent,
+    LoadStudentComponent,
   ],
 
   imports: [

@@ -26,5 +26,8 @@ export class AdminComponent implements OnInit {
   manageList(){
     this.router.navigate(['manage-voting'])
   }
+  loadStudent(){
+    this.router.navigate(['load-student'])
+  }
   
 }
