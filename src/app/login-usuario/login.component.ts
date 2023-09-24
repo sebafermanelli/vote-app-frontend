@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { setTheme } from 'ngx-bootstrap/utils';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login' ,
@@ -9,20 +10,27 @@ import { setTheme } from 'ngx-bootstrap/utils';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  frameDNI = '';
+  userForm:FormGroup
   showAlert: boolean=false;
 
-  constructor(private route: Router, private authService: AuthService) {
+  constructor(private route: Router, private authService: AuthService, private fb:FormBuilder) {
     setTheme('bs5'); 
+    this.userForm=this.fb.group({
+      DNI:['',Validators.required]
+    })
   }
 
   forUser(): void {
-    let DNI = this.frameDNI;
-    if (this.authService.login(DNI)) {
+    if(this.userForm.valid && this.userForm.get('DNI')){
+      const dni = this.userForm.get('DNI')?.value;
+       if (this.authService.login(dni)) {
       this.route.navigate(['validation']);
     } else {
       this.showAlert = true;
     }
+
+    }
+   
   }
   enterAdmin(){
     this.route.navigate(['login-admin'])

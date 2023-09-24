@@ -7,17 +7,18 @@
         <div class="col"></div>
         <div class="col-10 col-sm-6 col-md-5 col-lg-4">
             <h1>Vote App</h1>
-            <form (ngSubmit)="forUser()">
+            <form [formGroup]="userForm" (ngSubmit)="forUser()">
                 <div>
                     <label for="floatingDNI"></label>
                     <div class="login">
-                    <input
+                    <input 
+                    [class.is-invalid]="userForm.get('DNI')?.touched && userForm.get('DNI')?.errors?.['required']"
                         type="text"
                         name="dni"
                         class="form-control"
                         id="floatingInput"
                         placeholder="DNI"
-                        [(ngModel)]="frameDNI"
+                        formControlName="DNI"
                     />
                 </div></div>
                 <div class="button-container">
