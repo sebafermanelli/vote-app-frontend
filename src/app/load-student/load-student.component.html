@@ -3,35 +3,45 @@
       <div class="col-md-6 mx-auto text-center">
         <h1 class="tit">Carga Alumnos</h1>
         <br>
+        <form [formGroup]="loadStudent">
         <div class="border p-3">
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">N</span>
-              <input type="text" class="form-control" placeholder="Nombre" aria-label="Name" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentName')?.touched && loadStudent.get('studentName')?.errors?.['required']"
+              type="text" class="form-control" placeholder="Nombre" aria-label="Name" aria-describedby="basic-addon1"
+              formControlName="studentName">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">A</span>
-              <input type="text" class="form-control" placeholder="Apellido" aria-label="Lastname" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentLastname')?.touched && loadStudent.get('studentLastname')?.errors?.['required']" type="text" class="form-control" placeholder="Apellido" aria-label="Lastname" aria-describedby="basic-addon1"
+              formControlName="studentLastname">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">D</span>
-              <input type="text" class="form-control" placeholder="Direccion" aria-label="Address" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentAdress')?.touched && loadStudent.get('studentAdress')?.errors?.['required']"
+              type="text" class="form-control" placeholder="Direccion" aria-label="Address" aria-describedby="basic-addon1"
+              formControlName="studentAdress">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">@</span>
-              <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentEmail')?.touched && loadStudent.get('studentEmail')?.errors?.['required']" 
+              type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"
+              formControlName="studentEmail">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">C</span>
-              <input type="text" class="form-control" placeholder="Número Celular" aria-label="PhoneNumber" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentPhone')?.touched && loadStudent.get('studentPhone')?.errors?.['required']"
+               type="text" class="form-control" placeholder="Número Celular" aria-label="PhoneNumber" aria-describedby="basic-addon1"
+              formControlName="studentPhone">
             </div>
           </div>
           <div class="mb-3">
@@ -55,6 +65,7 @@
           </div>
           <button class="btn btn-primary">Cargar</button>
         </div>
+       </form>
       </div>
     </div>
   </div>
