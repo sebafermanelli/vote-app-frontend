@@ -45,7 +45,5 @@ export class LoadListComponent {
     this.showModal=false;
     this.modalRef?.hide();
   }
-  exit(){
-    this.route.navigate(['admin'])
-  }
+
 }
