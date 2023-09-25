@@ -41,6 +41,7 @@ export class LoadListComponent {
     this.modalRef?.hide();
   }
  
+  
   decline(): void {
     this.showModal=false;
     this.modalRef?.hide();

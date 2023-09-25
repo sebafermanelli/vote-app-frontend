@@ -34,13 +34,12 @@
                 formControlName="sec3Name">
                 <span class="input-group-text" id="basic-addon2">S</span>
               </div>
-              
-              <label for="basic-url" class="form-label">Tu URL</label>
+              <div class="mb-3">
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">https://example.com</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
-                formControlName="url">
-              </div>
+                <label class="input-group-text" for="inputGroupFile02">Foto Lista</label>
+                <input type="file" class="form-control" id="inputGroupFile02"
+              formControlName="file">
+              </div></div>
 
               
               <div class="input-group mb-3">
@@ -58,12 +57,12 @@
         </div>
         <br>
         <button type="button" class="btn btn-primary" (click)="openModal(template)">Cargar</button>
-        <br><br>
+        
         
         <ng-template #template>
         <div class="modal-body text-center">
             <p>¿Estás Seguro?</p>
-            <button type="submit" class="btn btn-default">Yes</button>
+            <button type="submit" class="btn btn-default" (click)="load()">Yes</button>
             <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
         </div>
         </ng-template>
