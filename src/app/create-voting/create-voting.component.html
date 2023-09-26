@@ -33,7 +33,7 @@
                           <option value="6">6</option>
                           <option value="7">7</option>
                           <option value="8">8</option>
-                          <option value="9">9</option>
+                          <option value="9">9</option> 
                           <option value="10">10</option>
                         </select>
                       </div>
@@ -42,7 +42,7 @@
                   <button class="btn btn-primary" (click)="openModal(template)" [disabled]="!areCamposCompletos()">Aceptar</button>
                 </div>
               </form> 
-              <ng-template #template>
+              <ng-template #template> 
                 <div class="modal-body text-center">
                   <p>¿Estás Seguro?</p>
                   <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
