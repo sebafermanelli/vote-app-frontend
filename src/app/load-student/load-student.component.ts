@@ -48,4 +48,7 @@ decline(): void {
 studentOk(){
   this.router.navigate(['admin'])
 }
+exit(){
+  this.router.navigate(['admin'])
+}
 }

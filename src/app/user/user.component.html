@@ -1,39 +1,36 @@
-
-<body>
-    <div class="row mt-3 text-center">
-        <div class="col"></div>
-        <div class="col-10 col-sm-6">
-            <h1>Bienvenido</h1>
-            <br><p class="p">{{name}}</p>
-            <p class="p">DNI: {{dni}}</p>
-            <h5>Seleccione una lista para votar:</h5>
+<div class="row mt-3 text-center">
+    <div class="col"></div>
+    <div class="col-10 col-sm-6">
+        <h1>Bienvenido</h1>
+        <br><p class="p">{{name}}</p>
+        <p class="p">DNI: {{dni}}</p>
+        <h5>Seleccione una lista para votar:</h5>
         
+        <form action="openModal(template)" class="form-inline needs-validation" id="form" method="post" novalidate>
+         
+                <div class="row">
+                    <app-listas></app-listas>
+                </div>
+           
+            <div class="button-container text-center">
+                <button type="button" class="btn btn-success " (click)="openModal(template)"> 
+                    Registrar voto
+                </button>
+                <div class="exit-button">
+                    <button type="button" class="btn btn-secondary " (click)="cancel()">
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </form>
 
-      
-        <form action="openModal(template)" class="form-inline needs-validation" id="form" method="post"
-            novalidate>
-            <app-listas></app-listas>
-        <div class="button-container text-center">
-        <button  type="button" class="btn btn-success "   (click)="openModal(template)" > 
-            Registrar voto
-        </button>
-        <div class="exit-button">
-        <button type="button" class="btn btn-secondary " 
-                 (click)="cancel()">
-            Volver
-        </button>
-    </div></div>
-</form>
-<ng-template #template>
-    <div class="modal-body text-center">
-    <p>¿Esta seguro de lo que seleccionó?</p>
-    <button type="button" class="btn btn-default"  (click)="confirm()">Si</button>
-    <button type="button" class="btn btn-primary"  (click)="decline()">No</button>
+        <ng-template #template>
+            <div class="modal-body text-center">
+                <p>¿Está seguro de lo que seleccionó?</p>
+                <button type="button" class="btn btn-default" (click)="confirm()">Si</button>
+                <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+            </div>
+        </ng-template>
     </div>
-</ng-template>
-        </div>
-        <div class="col"></div>
-    </div>
-
-</body>
-
+    <div class="col"></div>
+</div>
