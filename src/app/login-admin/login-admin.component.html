@@ -4,18 +4,22 @@
 <body>
     
     <div class="login-container">
-        <form (ngSubmit)="alAdmin()">
+        <form [formGroup]="adminForm"  (ngSubmit)="alAdmin()">
             <div class="form-group">
                 <label for="exampleInputUser1">Usuario</label>
-                <input type="text" class="form-control" id="exampleInputUser1" 
-                aria-describedby="userHelp" placeholder="User Enter" [(ngModel)]="frameUser" name="user">
+                <input [class.is-invalid]="adminForm.get('userName')?.touched && adminForm.get('userName')?.errors?.['required']" type="text" class="form-control" id="exampleInputUser1" 
+                aria-describedby="userHelp" placeholder="Usuario" formControlName="userName">
                 <small id="UserHelp" class="form-text text-muted"></small>
             </div>
+            
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" 
-                id="exampleInputPassword1" placeholder="Password" [(ngModel)]="framePassword" name="password">
+                <input 
+                [class.is-invalid]="adminForm.get('userPassword')?.touched && adminForm.get('userPassword')?.errors?.['required']" 
+                type="password" class="form-control" 
+                id="exampleInputPassword1" placeholder="Contraseña" formControlName="userPassword">
             </div>
+       
             <div class="form-group form-check" >
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Guardar</label>

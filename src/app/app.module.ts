@@ -22,6 +22,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 import { LoadStudentComponent } from './load-student/load-student.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateVotingComponent } from './create-voting/create-voting.component';
 
 @NgModule({
   
@@ -38,6 +40,7 @@ import { LoadStudentComponent } from './load-student/load-student.component';
     LoadListComponent,
     ManageVotingComponent,
     LoadStudentComponent,
+    CreateVotingComponent,
   ],
 
   imports: [
@@ -51,6 +54,7 @@ import { LoadStudentComponent } from './load-student/load-student.component';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
+    ReactiveFormsModule,
     
   ],
   exports:[RouterModule],

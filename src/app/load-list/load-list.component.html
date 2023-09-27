@@ -1,6 +1,3 @@
-<div class="exit text-right">
-  <button class="btn btn-secondary" (click)="exit()">Volver</button>
-</div>
 <div class="centered">
     <div class="collapsed">
       <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
@@ -9,55 +6,63 @@
       <hr>
       <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
         <div class="well well-lg card card-block card-header">
-            
-            <div class="input-group mb-3">
+            <form [formGroup]="loadList" (ngSubmit)="load()">
+              <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">P</span>
-                <input type="text" class="form-control" placeholder="President Name" aria-label="President name" aria-describedby="basic-addon1">
+                <input [class.is-invalid]="loadList.get('presidentName')?.touched && loadList.get('presidentName')?.errors?.['required']" 
+                type="text" class="form-control" placeholder="President Name" aria-label="President name" aria-describedby="basic-addon1"
+                formControlName="presidentName">
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">V</span>
-                <input type="text" class="form-control" placeholder="VicePresident Name" aria-label="VicePresident Name" aria-describedby="basic-addon1">
+                <input [class.is-invalid]="loadList.get('vpName')?.touched && loadList.get('vpName')?.errors?.['required']" type="text" class="form-control" placeholder="VicePresident Name" aria-label="VicePresident Name" aria-describedby="basic-addon1"
+                 formControlName="vpName">
               </div>
 
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Secretary 1 Name" aria-label="Secretary 1 Name" aria-describedby="basic-addon2">
+                <input [class.is-invalid]="loadList.get('sec1Name')?.touched && loadList.get('sec1Name')?.errors?.['required'] "type="text" class="form-control" placeholder="Secretary 1 Name" aria-label="Secretary 1 Name" aria-describedby="basic-addon2"
+                formControlName="sec1Name">
                 <span class="input-group-text" id="basic-addon2">S</span>
               </div>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Secretary 2 Name" aria-label="Secretary 2 Name" aria-describedby="basic-addon2">
+                <input [class.is-invalid]="loadList.get('sec2Name')?.touched && loadList.get('sec2Name')?.errors?.['required']" type="text" class="form-control" placeholder="Secretary 2 Name" aria-label="Secretary 2 Name" aria-describedby="basic-addon2"
+                formControlName="sec2Name">
                 <span class="input-group-text" id="basic-addon2">S</span>
               </div>
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Secretary 3 Name" aria-label="Secretary 3 Name" aria-describedby="basic-addon2">
+                <input [class.is-invalid]="loadList.get('sec3Name')?.touched && loadList.get('sec3Name')?.errors?.['required']"type="text" class="form-control" placeholder="Secretary 3 Name" aria-label="Secretary 3 Name" aria-describedby="basic-addon2"
+                formControlName="sec3Name">
                 <span class="input-group-text" id="basic-addon2">S</span>
               </div>
-              
-              <label for="basic-url" class="form-label">Tu URL</label>
+              <div class="mb-3">
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">https://example.com</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-              </div>
+                <label class="input-group-text" for="inputGroupFile02">Foto Lista</label>
+                <input type="file" class="form-control" id="inputGroupFile02"
+              formControlName="file">
+              </div></div>
 
               
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="List Name" aria-label="List Name">
+                <input [class.is-invalid]="loadList.get('listName')?.touched && loadList.get('listName')?.errors?.['required']" type="text" class="form-control" placeholder="List Name" aria-label="List Name"
+                formControlName="listName">
                 <span class="input-group-text">L</span>
               </div>
               
               <div class="input-group">
                 <span class="input-group-text">Propuestas</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea> 
+                <textarea class="form-control" aria-label="With textarea"
+                formControlName="textarea"></textarea> 
             </div>
-        
+          </form>
         </div>
         <br>
         <button type="button" class="btn btn-primary" (click)="openModal(template)">Cargar</button>
-        <br><br>
+        
         
         <ng-template #template>
         <div class="modal-body text-center">
             <p>¿Estás Seguro?</p>
-            <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+            <button type="submit" class="btn btn-default" (click)="load()">Yes</button>
             <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
         </div>
         </ng-template>

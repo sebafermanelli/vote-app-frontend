@@ -1,43 +1,61 @@
+<div class="exit"><button class="btn btn-info" (click)="exit()">Salir</button></div>
 <div class="container">
     <div class="row">
       <div class="col-md-6 mx-auto text-center">
         <h1 class="tit">Carga Alumnos</h1>
         <br>
+        <form [formGroup]="loadStudent">
         <div class="border p-3">
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">N</span>
-              <input type="text" class="form-control" placeholder="Nombre" aria-label="Name" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentName')?.touched && loadStudent.get('studentName')?.errors?.['required']"
+              type="text" class="form-control" placeholder="Nombre" aria-label="Name" aria-describedby="basic-addon1"
+              formControlName="studentName">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">A</span>
-              <input type="text" class="form-control" placeholder="Apellido" aria-label="Lastname" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentLastname')?.touched && loadStudent.get('studentLastname')?.errors?.['required']" type="text" class="form-control" placeholder="Apellido" aria-label="Lastname" aria-describedby="basic-addon1"
+              formControlName="studentLastname">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">D</span>
-              <input type="text" class="form-control" placeholder="Direccion" aria-label="Address" aria-describedby="basic-addon1">
+              <span class="input-group-text" id="basic-addon1">DNI</span>
+              <input [class.is-invalid]="loadStudent.get('studentID')?.touched && loadStudent.get('studentID')?.errors?.['required']" type="text" class="form-control" placeholder="DNI" aria-label="ID" aria-describedby="basic-addon1"
+              formControlName="studentID">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">@</span>
-              <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentEmail')?.touched && loadStudent.get('studentEmail')?.errors?.['required']" 
+              type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"
+              formControlName="studentEmail">
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">D</span>
+              <input [class.is-invalid]="loadStudent.get('studentAdress')?.touched && loadStudent.get('studentAdress')?.errors?.['required']"
+              type="text" class="form-control" placeholder="Direccion" aria-label="Address" aria-describedby="basic-addon1"
+              formControlName="studentAdress">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">C</span>
-              <input type="text" class="form-control" placeholder="Número Celular" aria-label="PhoneNumber" aria-describedby="basic-addon1">
+              <input [class.is-invalid]="loadStudent.get('studentPhone')?.touched && loadStudent.get('studentPhone')?.errors?.['required']"
+               type="text" class="form-control" placeholder="Número Celular" aria-label="PhoneNumber" aria-describedby="basic-addon1"
+              formControlName="studentPhone">
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
               <label class="input-group-text" for="inputGroupSelect01">Curso</label>
-              <select class="form-select" id="inputGroupSelect01">
+              <select class="form-select" id="inputGroupSelect01" formControlName="studentCourse">
                 <option selected>Seleccione...</option>
                 <option value="1">Primero</option>
                 <option value="2">Segundo</option>
@@ -49,12 +67,20 @@
           </div>
           <div class="mb-3">
             <div class="input-group mb-3">
-              <input type="file" class="form-control" id="inputGroupFile02">
+              <input type="file" class="form-control" id="inputGroupFile02" formControlName="studentPhoto">
               <label class="input-group-text" for="inputGroupFile02">Foto Alumno</label>
             </div>
           </div>
-          <button class="btn btn-primary">Cargar</button>
+          <button class="btn btn-primary" (click)="openModal(template)" >Cargar</button>
+          <ng-template #template>
+            <div class="modal-body text-center">
+              <p>¿Estás Seguro?</p>
+              <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+              <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+            </div>
+          </ng-template>
         </div>
+       </form>
       </div>
     </div>
   </div>

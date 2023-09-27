@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="exit position-absolute top-0 end-0">
+      <div class="exit">
+        <button class="btn btn-secondary" (click)="exit()">Volver</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+          <h1 class="tit">Crear Elección</h1>
+          <br>
+          <div class="border p-3">
+            <div class="mb-3">
+              <form [formGroup]="createForm"> 
+                <div class="container text-center">
+                  <div class="row justify-content-center">
+                    <div class="col-12 col-md-6">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">N</span>
+                        <input type="text" class="form-control" placeholder="Nombre de la Elección" aria-label="Username" aria-describedby="basic-addon1" formControlName="nombreEleccion">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Cantidad Listas</label>
+                        <select class="form-select" id="inputGroupSelect01" formControlName="cantidadListas">
+                          <option selected>Seleccione...</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option> 
+                          <option value="10">10</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" (click)="openModal(template)" [disabled]="!areCamposCompletos()">Aceptar</button>
+                </div>
+              </form> 
+              <ng-template #template> 
+                <div class="modal-body text-center">
+                  <p>¿Estás Seguro?</p>
+                  <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+                  <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+                </div>
+              </ng-template>
+              <div *ngIf="showModal">
+                <alert type="success">
+                  <strong>{{message}}</strong> 
+                </alert>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
