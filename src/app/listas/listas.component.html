@@ -1,31 +1,30 @@
 <div class="container text-center">
-    <div class="card-container">
-        <div *ngFor="let member of members; let i = index">
-            <br>
+    <div class="card-container row">
+        <div *ngFor="let member of members; let i = index" class="col-6">
             <div class="form-check">
                 <input
                     class="form-check-input"
                     type="radio"
                     name="exampleRadios"
                     [id]="'exampleRadios' + (i + 1)"
-                    value="option1" required
+                    value="option1"
+                    required
                 />
-                <div class="card card-custom" >
+                <div class="card card-custom">
                     <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body" id="miembro.id">
+                    <div class="card-body" [id]="member.id">
                         <h5 class="card-title">Presidente: {{ member.president }}</h5>
                         <p class="card-text">Vicepresidente: {{ member.vicepresident }}</p>
-                        secretarios: <br><br>
-                        <p>{{member.secretary1}}</p>
-                        <p>{{member.secretary2}}</p>
-                        <p>{{member.secretary3}}</p>
-                        
+                        secretarios: <br /><br />
+                        <p>{{ member.secretary1 }}</p>
+                        <p>{{ member.secretary2 }}</p>
+                        <p>{{ member.secretary3 }}</p>
+
                         <button (click)="moreInfo(member.id)" class="btn btn-secondary">Mas info.</button>
-                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)"
-                        (click)="memberSeleccionado.emit(i)">
+                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)" (click)="memberSeleccionado.emit(i)">
                             Seleccionar
                         </label>
-                    </div> 
+                    </div>
                 </div>
                 <div class="invalid-feedback">Tiene que seleccionar una lista</div>
             </div>
