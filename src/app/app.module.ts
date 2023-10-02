@@ -8,7 +8,6 @@ import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ListasComponent } from './listas/listas.component';
-import { InfoListasComponent } from './info-listas/info-listas.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { setTheme } from 'ngx-bootstrap/utils';
@@ -25,6 +24,7 @@ import { LoadStudentComponent } from './load-student/load-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateVotingComponent } from './create-voting/create-voting.component';
 
+
 @NgModule({
   
   declarations: [
@@ -33,7 +33,6 @@ import { CreateVotingComponent } from './create-voting/create-voting.component';
     LoginComponent,
     UserComponent,
     ListasComponent,
-    InfoListasComponent,
     LoginAdminComponent,
     MessageModalComponent,
     ValidationMailComponent,
@@ -41,6 +40,7 @@ import { CreateVotingComponent } from './create-voting/create-voting.component';
     ManageVotingComponent,
     LoadStudentComponent,
     CreateVotingComponent,
+
   ],
 
   imports: [

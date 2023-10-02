@@ -9,6 +9,7 @@ export class Member {
   secretary3: string;
   id: number;
   count:number;
+  propuestas: string;
 }
 
 @Component({
@@ -29,6 +30,7 @@ export class ListasComponent  {
     secretary3:'amilcar',
     id:1,
     count:0,
+    propuestas: 'poner flores',
     },
     {
       president:'Karlen Esteban',
@@ -38,6 +40,8 @@ export class ListasComponent  {
       secretary3:'amilcar',
       id:2,
       count:0,
+      propuestas: 'arreglar el patio',
+
     },
     {
       president:'Andrada Gaston',
@@ -47,6 +51,7 @@ export class ListasComponent  {
       secretary3:'amilcar',
       id:3,
       count:0,
+      propuestas: 'cambiar la bandera',
     },
     {
       president:'Fermanelli Sebastian',
@@ -56,19 +61,13 @@ export class ListasComponent  {
       secretary3:'amilcar',
       id:4,
       count:0,
+      propuestas: 'nuevos salones',
     }
   ]
   UserComponent: any;
 
   constructor(private route: Router,) {}
 
-  moreInfo(id_lista:number) {
-    this.route.navigate(['info_listas',id_lista])
-    
-  }
-  deleteLista(index:number){
-    if (confirm('¿Estás seguro de que deseas eliminar esta lista?')) {
-      this.members.splice(index, 1);
-    }
-  }
+
+  
 }

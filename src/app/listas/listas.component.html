@@ -1,12 +1,6 @@
 <div class="container text-center">
-<<<<<<< HEAD
     <div class="card-container row">
         <div *ngFor="let member of members; let i = index" class="col-6">
-=======
-    <div class="card-container">
-        <div *ngFor="let member of members; let i = index">
-            
->>>>>>> 8a4ea1984f0012a7c523bfbe35e38b8abcd30a69
             <div class="form-check">
                 <input
                     class="form-check-input"
@@ -26,7 +20,7 @@
                         <p>{{ member.secretary2 }}</p>
                         <p>{{ member.secretary3 }}</p>
 
-                        <button (click)="moreInfo(member.id)" class="btn btn-secondary">Mas info.</button>
+        
                         <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)" (click)="memberSeleccionado.emit(i)">
                             Seleccionar
                         </label>
