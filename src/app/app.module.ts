@@ -23,6 +23,7 @@ import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 import { LoadStudentComponent } from './load-student/load-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateVotingComponent } from './create-voting/create-voting.component';
+import { VotingInterfaceComponent } from './voting-interface/voting-interface.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { CreateVotingComponent } from './create-voting/create-voting.component';
     ManageVotingComponent,
     LoadStudentComponent,
     CreateVotingComponent,
+    VotingInterfaceComponent,
 
   ],
 
