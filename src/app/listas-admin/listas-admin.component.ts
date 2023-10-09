@@ -1,5 +1,5 @@
-import { Component, OnInit,EventEmitter, Output} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output} from '@angular/core';
+import { Router,ActivatedRoute } from '@angular/router';
 
 export class Member {
   president: string;
@@ -14,11 +14,11 @@ export class Member {
 }
 
 @Component({
-  selector: 'app-listas',
-  templateUrl: './listas.component.html',
-  styleUrls: ['./listas.component.scss']
+  selector: 'app-listas-admin',
+  templateUrl: './listas-admin.component.html',
+  styleUrls: ['./listas-admin.component.scss']
 })
-export class ListasComponent  {
+export class ListasAdminComponent {
 
   @Output() memberSeleccionado = new EventEmitter<number>();
 
@@ -66,13 +66,41 @@ export class ListasComponent  {
       count:0,
       propuestas: 'nuevos salones',
       id_election:2,
+    },
+    {
+      president:'Tom Jerry',
+      vicepresident:'Pepe',
+      secretary1:'carlos',
+      secretary2:'raul',
+      secretary3:'amilcar',
+      id:4,
+      count:0,
+      propuestas: 'nuevos salones',
+      id_election:3,
     }
     
   ]
   UserComponent: any;
 
-  constructor(private route: Router,) {}
+  constructor(private route: Router, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(params => {
+      const voteId = +params['voteId'];
+      this.members = this.members.filter(member => member.id_election === voteId);
+    });
+  }
 
+    delete(id: number) {
+      {
+        if (id >= 0 && id < this.members.length) {
+          this.members.splice(id, 1); 
+        }
+      }
+    }
+    volver(){
+      this.route.navigate(['manage-voting'])
+    }
+  }
 
   
-}
+
+

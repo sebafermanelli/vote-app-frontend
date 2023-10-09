@@ -66,4 +66,7 @@ export class ManageVotingComponent {
   exit(){
     this.route.navigate(['admin'])
   }
+  seeList(id: number) {
+    this.route.navigate(['listas-admin', id+1]);
+  }
 }

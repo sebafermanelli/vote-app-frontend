@@ -39,12 +39,19 @@ export class LoadListComponent {
     this.showModal=true;
     this.message = 'Confirmado!';
     this.modalRef?.hide();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
  
   
   decline(): void {
     this.showModal=false;
     this.modalRef?.hide();
+    this.route.navigate(['admin']);
   }
 
+  exit(){
+    this.route.navigate(['admin']);
+  }
 }

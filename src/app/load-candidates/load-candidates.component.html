@@ -1,0 +1,62 @@
+<div class="exit position-absolute top-0 end-0">
+  <div class="exit">
+    <button class="btn btn-secondary" (click)="exit()">Salir</button>
+  </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+      <div class="col-12 col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">Cargar Candidatos</h1>
+            <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+              <div class="mb-3">
+                <label class="visually-hidden" for="inputNombre">Nombre</label>
+                <div class="input-group">
+                  <div class="input-group-text">N</div>
+                  <input type="text" class="form-control" id="inputNombre" placeholder="Nombre de usuario"
+                    formControlName="nombre">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="visually-hidden" for="inputApellido">Apellido</label>
+                <div class="input-group">
+                  <div class="input-group-text">A</div>
+                  <input type="text" class="form-control" id="inputApellido" placeholder="Apellido"
+                    formControlName="apellido">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="visually-hidden" for="inputDNI">DNI</label>
+                <div class="input-group">
+                  <div class="input-group-text">D</div>
+                  <input type="text" class="form-control" id="inputDNI" placeholder="DNI" formControlName="dni">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="visually-hidden" for="inlineFormSelectPref">Selecciona un cargo</label>
+                <select class="form-select" id="inlineFormSelectPref" formControlName="cargo">
+                  <option selected disabled>Elige...</option>
+                  <option value="1">Presidente</option>
+                  <option value="2">Vicepresidente</option>
+                  <option value="3">Secretario</option>
+                </select>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" (click)="openModal(template)">Enviar</button>
+                <br><br>
+                <ng-template #template>
+                  <div class="modal-body text-center">
+                    <p>¿Desea Cargar otro candidato?</p>
+                    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+                    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+                  </div>
+                </ng-template> 
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

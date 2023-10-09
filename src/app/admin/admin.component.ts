@@ -32,4 +32,7 @@ export class AdminComponent implements OnInit {
   createVoting(){
     this.router.navigate(['create-voting'])
   }
+  listStudent(){
+    this.router.navigate(['list-students'])
+  }
 }

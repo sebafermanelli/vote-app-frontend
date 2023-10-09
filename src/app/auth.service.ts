@@ -10,6 +10,7 @@ export class AuthService {
     DNI: '12345678',
     mail:'santicinel@gmail.com',
     validation:123456, 
+     
   };
 
 

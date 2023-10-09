@@ -24,6 +24,10 @@ import { LoadStudentComponent } from './load-student/load-student.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateVotingComponent } from './create-voting/create-voting.component';
 import { VotingInterfaceComponent } from './voting-interface/voting-interface.component';
+import { ListStudentsComponent } from './list-students/list-students.component';
+import { ListasAdminComponent } from './listas-admin/listas-admin.component';
+import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
+
 
 
 @NgModule({
@@ -42,6 +46,10 @@ import { VotingInterfaceComponent } from './voting-interface/voting-interface.co
     LoadStudentComponent,
     CreateVotingComponent,
     VotingInterfaceComponent,
+    ListStudentsComponent,
+    ListasAdminComponent,
+    LoadCandidatesComponent,
+ 
 
   ],
 

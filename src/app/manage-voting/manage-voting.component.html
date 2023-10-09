@@ -3,6 +3,7 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Descripción</th>
+        <th scope="col">Ver Listas</th>
         <th scope="col">Inicar</th>
         <th scope="col">Finalizar</th>
         <th scope="col">Ver Resultados</th>
@@ -13,6 +14,7 @@
       <tr *ngFor="let vote of voting; let i = index">
         <th scope="row">{{vote.id}}</th>
         <td>{{vote.desc}}</td>
+        <td><button class="btn btn-secondary" (click)="seeList(i)">Ver Listas</button></td>
         <td><button class="btn btn-info" [disabled]="!vote.startActive" (click)="start(vote)">Iniciar</button></td>
         <td><button class="btn btn-warning" [disabled]="!vote.finishActive" (click)="finish(vote)">Finalizar</button></td>
         <td><button class="btn btn-success" [disabled]="!vote.resultActive" (click)="count(vote)">Ver Resultados</button></td>

@@ -27,7 +27,7 @@ export class CreateVotingComponent {
   }
 
   loadlist() {
-    this.router.navigate(['load-list'])
+    this.router.navigate(['load-candidates'])
   }
 
   openModal(template: TemplateRef<any>) {

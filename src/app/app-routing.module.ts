@@ -12,6 +12,10 @@ import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 import { LoadStudentComponent } from './load-student/load-student.component';
 import { CreateVotingComponent } from './create-voting/create-voting.component';
 import {VotingInterfaceComponent} from './voting-interface/voting-interface.component';
+import { ListStudentsComponent } from './list-students/list-students.component';
+import { ListasAdminComponent } from './listas-admin/listas-admin.component';
+import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, // Ruta para el componente LoginComponent
@@ -24,8 +28,11 @@ const routes: Routes = [
   { path: 'load-list',component:LoadListComponent}, //Ruta para el componente LoadListComponent
   { path: 'manage-voting', component:ManageVotingComponent}, //Ruta para el componente ManageVotingComponent
   { path: 'load-student', component:LoadStudentComponent}, //Ruta para el componente LoadStudentComponent
-  { path: 'create-voting', component:CreateVotingComponent}, //Ruta para el componente CreateVoting
-  { path: 'voting-interface', component:VotingInterfaceComponent}, //ruta para el componente de interfaz de votacion
+  { path: 'create-voting', component:CreateVotingComponent}, //Ruta para el componente CreateVotingComponent
+  { path: 'voting-interface', component:VotingInterfaceComponent}, //Ruta para el componente de VotingInterfaceComponent
+  { path: 'list-students', component:ListStudentsComponent}, //Ruta para el componente ListStudentComponent
+  { path: 'listas-admin/:voteId',component:ListasAdminComponent}, //Ruta para el componente ListasAdminComponent
+  { path: 'load-candidates',component:LoadCandidatesComponent}, //Ruta para el componente LoadCandidatesComponent
 ];
 
 @NgModule({
