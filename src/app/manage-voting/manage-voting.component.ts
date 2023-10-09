@@ -55,7 +55,9 @@ export class ManageVotingComponent {
     vote.finishActive=false;
     vote.resultActive=true;
   }
-  count(vote:any){}
+  count(vote:any){
+    this.route.navigate(['voting-interface'])
+  }
 
 
   deleteVote(i: number) {
