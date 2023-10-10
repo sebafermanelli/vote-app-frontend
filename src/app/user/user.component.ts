@@ -30,12 +30,6 @@ export class UserComponent implements OnInit{
               ){}
 
   ngOnInit(): void {
-    if (this.authService.getAuthtenticated()) {
-      const usuario = this.authService.getUsuario();
-      this.dni = usuario.DNI;
-      this.name = usuario.name;
-  }else{
-    this.route.navigate(['']);}
   }
 
 

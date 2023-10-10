@@ -23,11 +23,19 @@ export class LoginComponent {
   forUser(): void {
     if(this.userForm.valid && this.userForm.get('DNI')){
       const dni = this.userForm.get('DNI')?.value;
-       if (this.authService.login(dni)) {
-      this.route.navigate(['validation']);
-    } else {
-      this.showAlert = true;
-    }
+      this.authService.setId(dni);
+      console.log(this.authService.getId)
+       this.authService.emailCode(dni).subscribe(
+        (response:string)=>{
+          if(response){
+            this.route.navigate(['validation'])
+          }else{
+          }
+        },
+        (error)=>{
+          this.showAlert=true;
+        }
+       )
 
     }
    

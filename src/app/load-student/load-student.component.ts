@@ -2,6 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-load-student',
@@ -15,7 +16,7 @@ message?: string;
 showModal = false;
 
 
-constructor(private fb:FormBuilder,private modalService: BsModalService,private router: Router){
+constructor(private fb:FormBuilder,private modalService: BsModalService,private router: Router, private authservice:AuthService){
 
   this.loadStudent=this.fb.group({
     studentName:['',Validators.required],
