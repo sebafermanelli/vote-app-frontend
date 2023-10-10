@@ -26,11 +26,11 @@ return this.http.post<any>(`${this.URL}/auth/admin/login`,body)
 
   }
 
- emailCode(id:string) :Observable<any>{
+ emailCode(id:string) :Observable<string>{
 const dni = {
   id:id
 };
-return this.http.put<any>(`${this.URL}/users/code/${id}`,dni)
+return this.http.put<string>(`${this.URL}/users/${id}/code`,dni)
 
  }
 setToken(token:string): void {

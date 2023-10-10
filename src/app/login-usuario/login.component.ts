@@ -24,12 +24,12 @@ export class LoginComponent {
     if(this.userForm.valid && this.userForm.get('DNI')){
       const dni = this.userForm.get('DNI')?.value;
       this.authService.setId(dni);
-      console.log(this.authService.getId)
        this.authService.emailCode(dni).subscribe(
         (response:string)=>{
           if(response){
             this.route.navigate(['validation'])
           }else{
+             this.showAlert=true;
           }
         },
         (error)=>{
