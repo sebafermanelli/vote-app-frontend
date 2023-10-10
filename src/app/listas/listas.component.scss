@@ -5,3 +5,10 @@
     margin-bottom: 20px; 
     flex-wrap: wrap;
   }
+  .selected-card {
+    border: 2px solid #007bff; 
+  }
+  
+  .selected-list {
+    font-weight: bold;
+  }

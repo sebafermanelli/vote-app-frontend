@@ -3,7 +3,6 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { MessageModalComponent } from '../message-modal/message-modal.component';
 
 @Component({
   selector: 'app-user',
@@ -55,7 +54,7 @@ export class UserComponent implements OnInit{
     this.modalRef?.hide();
   }
 
-cancel(){ this.route.navigate(['']);} 
+cancel(){ this.route.navigate(['selection-election']);} 
 
 
 openMessageModal() {

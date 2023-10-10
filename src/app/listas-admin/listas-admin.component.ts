@@ -20,7 +20,7 @@ export class Member {
 })
 export class ListasAdminComponent {
 
-  @Output() memberSeleccionado = new EventEmitter<number>();
+  @Output() memberSeleccionado = new EventEmitter<number>(); 
 
   members: Member[] = [
     {

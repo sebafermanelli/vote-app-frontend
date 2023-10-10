@@ -1,0 +1,16 @@
+<table class="table table-hover" >
+    <thead >
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Seleccionar</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider" >
+      <tr *ngFor="let vote of voting; let i = index">
+        <th scope="row">{{vote.id}}</th>
+        <td>{{vote.desc}}</td>
+        <td><button class="btn btn-secondary" (click)="seeList(i)">Ir a votar</button></td>
+      </tr>
+    </tbody>
+  </table>

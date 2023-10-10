@@ -27,7 +27,8 @@ import { VotingInterfaceComponent } from './voting-interface/voting-interface.co
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
-import {HttpClientModule }  from '@angular/common/http'
+import {HttpClientModule }  from '@angular/common/http';
+import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component'
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {HttpClientModule }  from '@angular/common/http'
     ListStudentsComponent,
     ListasAdminComponent,
     LoadCandidatesComponent,
+    SelectionElectionUserComponent,
  
 
   ],

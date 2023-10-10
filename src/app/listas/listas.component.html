@@ -1,33 +1,23 @@
 <div class="container text-center">
-    <div class="card-container row">
-        <div *ngFor="let member of members; let i = index" class="col-6">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    [id]="'exampleRadios' + (i + 1)"
-                    value="option1"
-                    required
-                />
-                <div class="card card-custom">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body" [id]="member.id">
-                        <h5 class="card-title">Presidente: {{ member.president }}</h5>
-                        <p class="card-text">Vicepresidente: {{ member.vicepresident }}</p>
-                        secretarios: <br /><br />
-                        <p>{{ member.secretary1 }}</p>
-                        <p>{{ member.secretary2 }}</p>
-                        <p>{{ member.secretary3 }}</p>
-
-        
-                        <label class="form-check-label btn btn-primary" [for]="'exampleRadios' + (i + 1)" (click)="memberSeleccionado.emit(i)">
-                            Seleccionar
-                        </label>
-                    </div>
-                </div>
-                <div class="invalid-feedback">Tiene que seleccionar una lista</div>
+    <h1>Listas de la elección: {{ members.length > 0 ? members[0].id_election : 'No hay Listas' }}</h1>
+    <div class="row">
+        <div *ngFor="let member of members; let i = index" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="card" [ngClass]="{'selected-card': member.selected}">
+              <img src="..." class="card-img-top" alt="..." />
+              <div class="card-body" [id]="member.id">
+                <h5 class="card-title">Presidente: {{ member.president }}</h5>
+                <p class="card-text">Vicepresidente: {{ member.vicepresident }}</p>
+                Secretarios:
+                <ul class="list-unstyled">
+                  <li>{{ member.secretary1 }}</li>
+                  <li>{{ member.secretary2 }}</li>
+                  <li>{{ member.secretary3 }}</li>
+                </ul>
+                <button class="btn btn-primary" (click)="toggleSelection(member)">Seleccionar</button>
+              </div>
             </div>
-        </div>
+          </div>
+          
+          
     </div>
-</div>
+  </div>

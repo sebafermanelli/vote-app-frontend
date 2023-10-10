@@ -1,5 +1,5 @@
 import { Component, OnInit,EventEmitter, Output} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export class Member {
   president: string;
@@ -11,6 +11,7 @@ export class Member {
   count:number;
   propuestas: string;
   id_election:number;
+  selected: boolean;
 }
 
 @Component({
@@ -33,6 +34,7 @@ export class ListasComponent  {
     count:0,
     propuestas: 'poner flores',
     id_election:2,
+    selected: false,
     },
     {
       president:'Karlen Esteban',
@@ -44,6 +46,7 @@ export class ListasComponent  {
       count:0,
       propuestas: 'arreglar el patio',
       id_election:2,
+      selected: false,
     },
     {
       president:'Andrada Gaston',
@@ -55,6 +58,7 @@ export class ListasComponent  {
       count:0,
       propuestas: 'cambiar la bandera',
       id_election:2,
+      selected: false,
     },
     {
       president:'Fermanelli Sebastian',
@@ -66,13 +70,34 @@ export class ListasComponent  {
       count:0,
       propuestas: 'nuevos salones',
       id_election:2,
+      selected: false,
+    },
+    {
+      president:'Tom Jerry',
+      vicepresident:'Pepe',
+      secretary1:'carlos',
+      secretary2:'raul',
+      secretary3:'amilcar',
+      id:4,
+      count:0,
+      propuestas: 'nuevos salones',
+      id_election:3,
+      selected: false,
     }
-    
   ]
   UserComponent: any;
 
-  constructor(private route: Router,) {}
-
+  constructor(private route: Router, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(params => {
+      const voteId = +params['voteId'];
+      this.members = this.members.filter(member => member.id_election === voteId);
+    });
+  }
+  toggleSelection(member:any) {
+    this.members.forEach(m => m.selected = false);
+    member.selected=true;
+  }
+}
 
   
-}
+
