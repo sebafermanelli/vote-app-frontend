@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Chart } from "chart.js/auto";
  
 
@@ -13,6 +14,7 @@ import { Chart } from "chart.js/auto";
 export class VotingInterfaceComponent implements OnInit{
 
     public chart: any;
+    constructor(private route:Router){}
 
     ngOnInit(): void {
         this.createChart();
@@ -21,9 +23,9 @@ export class VotingInterfaceComponent implements OnInit{
     createChart(){
 
         this.chart = new Chart("MyChart", {
-          type: 'doughnut', //this denotes tha type of chart
+          type: 'doughnut', 
     
-          data: {// values on X-Axis
+          data: {
             labels: ['Red', 'Pink','Green','Yellow','Orange','Blue', ],
                datasets: [{
         label: 'My First Dataset',
@@ -45,5 +47,7 @@ export class VotingInterfaceComponent implements OnInit{
     
         });
       }
-      
+      exit(){
+        this.route.navigate(['admin'])
+      }
 }
