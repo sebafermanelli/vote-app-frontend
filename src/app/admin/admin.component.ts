@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {}
 
   salir() {
+   // this.authService.removeToken();
     this.router.navigate(['login-admin']);
   }
 

@@ -19,22 +19,26 @@ userName:['',[Validators.required]],
 userPassword: ['',[Validators.required]],
     })
   }
+  alAdmin() {
+    if (this.adminForm.valid) {
+      const username = this.adminForm.get('userName')?.value;
+      const password = this.adminForm.get('userPassword')?.value;
 
-  alAdmin(): void {
-    if(this.adminForm.valid && this.adminForm.get('userName')){
-      const user =this.adminForm.get('userName')?.value;
-      const password=this.adminForm.get('userPassword')?.value;
-      if (this.authService.loginAdmin(user, password)) {
-      this.route.navigate(['admin']);
-    } else {
-      this.showAlert=true;
+      this.authService.loginAdmin(username, password).subscribe(
+        (response: any) => {
+          if (response.accessToken) {
+            this.authService.setToken(response.accessToken);
+            this.route.navigate(['admin'])
+          }
+        },
+        (error) => {
+           this.showAlert=true;
+        }
+      );
     }
-    }  
-    
-  
-    
   }
 
+  
    exit(){
     this.route.navigate(['']);
   }

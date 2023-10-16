@@ -13,7 +13,6 @@ export class AppComponent {
   user: any;
 
   constructor(private authService: AuthService) {
-    this.user = authService.getUsuario(),
     setTheme('bs5'); 
   }
 

@@ -1,52 +1,114 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private usuario = {
-    name: 'Santiago',
-    age: 21,
-    DNI: '12345678',
-    mail:'santicinel@gmail.com',
-    validation:123456, 
-     
-  };
-
-
-  private admin = {
-    user: 'pepe',
-    password: '1234'
-  };
-
+  
   private isAuthenticated = false;
+  private URL='http://localhost:3000/api'
+  private id:string;
 
-  login(DNI: string): boolean {
-    this.isAuthenticated = this.usuario.DNI === DNI;
-    return this.isAuthenticated;
+  constructor(private http:HttpClient){
+
+  }
+  
+  loginAdmin(username:string,password:string):Observable<any>{
+    const body = {
+      username:username ,
+      password:password
+    };
+return this.http.post<string>(`${this.URL}/auth/admin/login`,body)
+
   }
 
-  loginAdmin(user: string, password: string): boolean {
-    console.log('User:', user);
-    console.log('Password:', password);
-    this.isAuthenticated=false;
-    if (this.admin.user === user && this.admin.password === password) {
-      this.isAuthenticated = true;
-    }
-    return this.isAuthenticated;
-  }
+ emailCode(id:string) :Observable<string>{
+const dni = {
+  id:id
+};
+return this.http.put<string>(`${this.URL}/users/${id}/code`,dni)
 
-  getUsuario() { 
-    return this.usuario;
-  }
+ }
+setToken(token:string): void {
+localStorage.setItem('token',token);
+}
+getToken():string| null {
+  return localStorage.getItem('token');
+}
+
+removeToken():void{
+  localStorage.removeItem('token');
+}
+loginUser(id:string, code:string) :Observable<string> { 
+    const body = {
+      id:id,
+     login_code:code
+    };
+return this.http.post<string>(`${this.URL}/auth/user/login`,body)  
+}
 
   getAuthtenticated() {
     return this.isAuthenticated;
   }
-  getMailUser(): string {
-    return this.usuario.mail;
+
+  loadStudent(id:string,name:string,last_name:string,course:string,address:string,email:string,phone:string,photo:FormData){
+    const body = {
+      id:id,
+      name:name,
+      last_name:last_name,
+      course:course,
+      address:address,
+      email:email,
+      phone:phone,
+      image:photo
+                  }
+        const token = this.getToken();
+        const header=new HttpHeaders({
+          'Authorization':`Bearer ${token}`
+        })         
+      return this.http.post(`${this.URL}/users/`,body,{headers:header})
+  
+
   }
-  getAdmin() {
-    return this.admin;
+
+ getAdmin() {
+    return this.http.get( `${this.URL}/admin`);
   }
+
+  setId(id:string):void{
+    this.id=id;
+  }
+
+  getId():string{
+    return this.id;
+  }
+  getStudent(){
+    const token = this.getToken();
+    const header=new HttpHeaders({
+      'Authorization':`Bearer ${token}`})
+          
+    return this.http.get<any>(`${this.URL}/users`,{headers:header});
+  }
+  deleteStudents(id:string){
+    const token = this.getToken();
+    const header=new HttpHeaders({
+      'Authorization':`Bearer ${token}`})
+          
+    return this.http.delete<any>(`${this.URL}/users/${id}`,{headers:header});
+
+  }
+ getStudentImageURL(imageBlob: Blob): string {
+    if (imageBlob) {
+      return URL.createObjectURL(imageBlob);
+    } else {
+      // URL de imagen por defecto si no hay imagen
+      return 'assets/default-image.png';
+    }
+  }
+
+
 }

@@ -27,7 +27,8 @@ import { VotingInterfaceComponent } from './voting-interface/voting-interface.co
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
-
+import {HttpClientModule }  from '@angular/common/http';
+import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component'
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { LoadCandidatesComponent } from './load-candidates/load-candidates.compo
     ListStudentsComponent,
     ListasAdminComponent,
     LoadCandidatesComponent,
+    SelectionElectionUserComponent,
  
 
   ],
@@ -65,7 +67,7 @@ import { LoadCandidatesComponent } from './load-candidates/load-candidates.compo
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ReactiveFormsModule,
-    
+    HttpClientModule
   ],
   exports:[RouterModule],
   providers: [BsModalService],

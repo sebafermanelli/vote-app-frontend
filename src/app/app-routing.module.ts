@@ -15,11 +15,12 @@ import {VotingInterfaceComponent} from './voting-interface/voting-interface.comp
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
+import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, // Ruta para el componente LoginComponent
-  { path: 'user', component: UserComponent }, // Ruta para el componente UserComponent
+  { path: 'user/:voteId', component: UserComponent }, // Ruta para el componente UserComponent
   { path: 'admin', component: AdminComponent}, // Ruta para el componente AdminComponent
   { path: 'listas', component:ListasComponent}, // Ruta para el componente ListasComponent
   { path: 'login-admin',component:LoginAdminComponent}, // Ruta para el componente LoginAdminComponent
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'list-students', component:ListStudentsComponent}, //Ruta para el componente ListStudentComponent
   { path: 'listas-admin/:voteId',component:ListasAdminComponent}, //Ruta para el componente ListasAdminComponent
   { path: 'load-candidates',component:LoadCandidatesComponent}, //Ruta para el componente LoadCandidatesComponent
+  { path: 'selection-election',component:SelectionElectionUserComponent}, //Ruta para el componente SelectionElectionUserComponent
 ];
 
 @NgModule({

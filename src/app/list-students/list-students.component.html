@@ -2,19 +2,26 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">DNI</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
-        <th scope="col">DNI</th>
+        <th scope="col">Email</th>
+        <th scope="col">Curso</th>
         <th scope="col">Eliminar</th>
+        
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let student of students; let i = index">
         <th scope="row">{{ i + 1 }}</th>
+        <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
-        <td>{{ student.lastname }}</td>
-        <td>{{ student.dni }}</td>
-        <td><button class="btn btn-danger" (click)="drop(i)">X</button></td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.course }}</td>
+
+
+        <td><button class="btn btn-danger" (click)="drop(student.id)">X</button></td>
       </tr>
     </tbody>
   </table>
