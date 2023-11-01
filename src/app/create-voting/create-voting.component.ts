@@ -1,7 +1,8 @@
 import { Component, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl  } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-create-voting',
@@ -13,24 +14,14 @@ export class CreateVotingComponent {
   message?: string;
   showModal = false;
   createForm: FormGroup; 
-  lists=[
-    {     value:'1', label: '1'    },
-    {     value:'2', label: '2'    },
-    {     value:'3', label: '3'    },
-    {     value:'4', label: '4'    },
-    {     value:'5', label: '5'    },
-    {     value:'6', label: '6'    },
-    {     value:'7', label: '7'    },
-    {     value:'8', label: '8'    },
-    {     value:'9', label: '9'    },
-    {     value:'10', label: '10'  }
-  ]
+  loadElections:FormGroup;
 
-  constructor(private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder) 
+
+  constructor(private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder,private authservice:AuthService) 
   {
-    this.createForm = this.formBuilder.group({
-      nombreEleccion: ['', Validators.required],
-      cantidadListas: [null, Validators.required]
+    this.loadElections = this.formBuilder.group({
+      admin_id: ['',Validators.required],
+      description: ['', Validators.required]
     });
   }
 
@@ -39,24 +30,33 @@ export class CreateVotingComponent {
   }
 
   loadlist() {
-    this.router.navigate(['load-candidates'])
+    if (this.loadElections.valid) {
+      const admin_id = this.authservice.getAdmin_id();
+      const description = this.loadElections.get('description')?.value;
+      this.authservice.loadElection(admin_id, description).subscribe(
+        (response: any) => {
+          if (response) {
+            console.log('Election saved successfully:', response);
+            this.router.navigate(['load-candidates']);
+          } else {
+            console.error('Failed to save the election.');
+          }
+        },
+        (error) => {
+          console.error('Error in HTTP request:', error);
+        }
+      );
+    }
   }
+  
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
-  }
+ 
 
-  confirm(): void {
-    this.showModal = true;
-    this.modalRef?.hide();
-    this.loadlist()
-  }
-
-  decline(): void {
-    this.showModal = false;
-    this.modalRef?.hide();
-  }
+ 
   areCamposCompletos(): boolean {
-    return this.createForm.valid;
+    const descriptionControl = this.createForm.get('description');
+    return descriptionControl ? descriptionControl.valid : false;
   }
+  
+  
 }

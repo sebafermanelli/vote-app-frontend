@@ -19,22 +19,22 @@ import { SelectionElectionUserComponent } from './selection-election-user/select
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent }, // Ruta para el componente LoginComponent
-  { path: 'user/:voteId', component: UserComponent }, // Ruta para el componente UserComponent
-  { path: 'admin', component: AdminComponent}, // Ruta para el componente AdminComponent
-  { path: 'listas', component:ListasComponent}, // Ruta para el componente ListasComponent
-  { path: 'login-admin',component:LoginAdminComponent}, // Ruta para el componente LoginAdminComponent
-  { path: 'message',component:MessageModalComponent}, // Ruta para el componente MessageComponent
-  { path: 'validation',component:ValidationMailComponent}, //Ruta para el componente ValidationmailComponent
-  { path: 'load-list',component:LoadListComponent}, //Ruta para el componente LoadListComponent
-  { path: 'manage-voting', component:ManageVotingComponent}, //Ruta para el componente ManageVotingComponent
-  { path: 'load-student', component:LoadStudentComponent}, //Ruta para el componente LoadStudentComponent
-  { path: 'create-voting', component:CreateVotingComponent}, //Ruta para el componente CreateVotingComponent
-  { path: 'voting-interface', component:VotingInterfaceComponent}, //Ruta para el componente de VotingInterfaceComponent
-  { path: 'list-students', component:ListStudentsComponent}, //Ruta para el componente ListStudentComponent
-  { path: 'listas-admin/:voteId',component:ListasAdminComponent}, //Ruta para el componente ListasAdminComponent
-  { path: 'load-candidates',component:LoadCandidatesComponent}, //Ruta para el componente LoadCandidatesComponent
-  { path: 'selection-election',component:SelectionElectionUserComponent}, //Ruta para el componente SelectionElectionUserComponent
+  { path: '', component: LoginComponent }, 
+  { path: 'user/:voteId', component: UserComponent }, 
+  { path: 'admin', component: AdminComponent}, 
+  { path: 'listas', component:ListasComponent}, 
+  { path: 'login-admin',component:LoginAdminComponent}, 
+  { path: 'message',component:MessageModalComponent}, 
+  { path: 'validation',component:ValidationMailComponent}, 
+  { path: 'load-list',component:LoadListComponent}, 
+  { path: 'manage-voting', component:ManageVotingComponent},
+  { path: 'load-student', component:LoadStudentComponent}, 
+  { path: 'create-voting', component:CreateVotingComponent}, 
+  { path: 'voting-interface', component:VotingInterfaceComponent}, 
+  { path: 'list-students', component:ListStudentsComponent}, 
+  { path: 'listas-admin/:voteId',component:ListasAdminComponent}, 
+  { path: 'load-candidates',component:LoadCandidatesComponent}, 
+  { path: 'selection-election',component:SelectionElectionUserComponent}, 
 ];
 
 @NgModule({
