@@ -2,6 +2,7 @@ import { Component ,TemplateRef} from '@angular/core';
 import {  Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-load-candidates',
@@ -13,34 +14,32 @@ export class LoadCandidatesComponent {
   modalRef?: BsModalRef;
   message?: string;
 
-  myForm: FormGroup;
+  loadCandidate: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private route:Router,private modalService: BsModalService) {
-    this.myForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
+  constructor(private formBuilder: FormBuilder,private route:Router,private modalService: BsModalService, private authservice:AuthService) {
+    this.loadCandidate = this.formBuilder.group({      
       dni: ['', Validators.required],
-      cargo: ['', Validators.required]
+    
     });
   }
   submitForm() {
-    if (this.myForm.valid) {
-      console.log(this.myForm.value);
+    if (this.loadCandidate.valid) {
+      const dni = this.loadCandidate.get('dni')?.value;
+      this.authservice.loadCandidates(dni).subscribe(
+          (response:any)=>{
+              if(response){
+              this.route.navigate(['load-list'])
+            }else {
+              console.log('No se cargo candidato')
+            }
+          }, 
+          (error)=>{
+            console.log('Error HTTP',error)
+          }
+      );
     }
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-  }
  
-  confirm(): void {
-    this.modalRef?.hide();
-    location.reload();
-  }
- 
-  decline(): void {
-    this.modalRef?.hide();
-    this.route.navigate(['load-list']);
-  }
   exit(){
     this.route.navigate(['admin']);
   }

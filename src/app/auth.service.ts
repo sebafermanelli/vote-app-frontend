@@ -129,5 +129,15 @@ loadElection(admin_id:string|null,description:string){
     }
   }
 
+  loadCandidates(user_id:string){
+   const body = {
+    user_id:user_id
+   }
+    const token = this.getToken();
+    const header=new HttpHeaders({
+     'Authorization':`Bearer ${token}`
+      })   
+      return this.http.post<any>(`${this.URL}/candidates`,body,{headers:header});
+  }  
 
 }
