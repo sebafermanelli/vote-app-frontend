@@ -20,7 +20,7 @@ export class CreateVotingComponent {
   constructor(private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder,private authservice:AuthService) 
   {
     this.loadElections = this.formBuilder.group({
-      admin_id: ['',Validators.required],
+      admin_id: [''],
       description: ['', Validators.required]
     });
   }
@@ -54,7 +54,7 @@ export class CreateVotingComponent {
 
  
   areCamposCompletos(): boolean {
-    const descriptionControl = this.createForm.get('description');
+    const descriptionControl = this.loadElections.get('description');
     return descriptionControl ? descriptionControl.valid : false;
   }
   

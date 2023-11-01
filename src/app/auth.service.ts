@@ -71,7 +71,7 @@ loadElection(admin_id:string|null,description:string){
   const header=new HttpHeaders({
     'Authorization':`Bearer ${token}`
   }) 
-  return this.http.post(`${this.URL}/api/elections/`,body,{headers:header})
+  return this.http.post(`${this.URL}/elections/`,body,{headers:header})
 }
 
   loadStudent(id:string,name:string,last_name:string,course:string,address:string,email:string,phone:string,photo:FormData){
