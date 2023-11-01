@@ -30,6 +30,7 @@ export class CreateVotingComponent {
   }
 
   loadlist() {
+    this.areCamposCompletos();
     if (this.loadElections.valid) {
       const admin_id = this.authservice.getAdmin_id();
       const description = this.loadElections.get('description')?.value;
