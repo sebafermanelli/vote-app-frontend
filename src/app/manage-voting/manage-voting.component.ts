@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { AdminComponent } from '../admin/admin.component';
 
 export class vote{
-  id:number;
-  desc:string;
+  id:string;
+  description:string;
   startActive:boolean;
   finishActive:boolean;
   resultActive:boolean;
@@ -19,33 +19,22 @@ export class vote{
 })
 export class ManageVotingComponent {
 
-  voting: vote[]=[
-    {
-      id:1,
-      desc:'Presidente centro estudiante',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    },
-    {
-      id:2,
-      desc:'Representante interescolar',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    },
-    {
-      id:3,
-      desc:'Delegados',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    }
-  ]
-  constructor(private route: Router,) {}
+  voting: vote[]=[]
+  constructor(private route: Router,private authservice:AuthService) {}
 
-  
+ ngOnInit(){
+this.loadElections();
 
+ }
+  loadElections(){
+    this.authservice.getElections().subscribe(
+      response => {
+        this.voting=response.results
+      }
+
+    )
+
+  }
   start(vote:any){
     vote.startActive=false;
     vote.finishActive=true;

@@ -81,7 +81,7 @@ loadDelegation(election_id:string){
   const header=new HttpHeaders({
     'Authorization':`Bearer ${token}`
   }) 
-  return this.http.post(`${this.URL}/delegations/`,body,{headers:header})
+  return this.http.post(`${this.URL}/delegations`,body,{headers:header})
 }
 loadRoles(description:string){
   const body={
@@ -91,7 +91,7 @@ loadRoles(description:string){
   const header=new HttpHeaders({
     'Authorization':`Bearer ${token}`
   }) 
-  return this.http.post(`${this.URL}/roles/`,body,{headers:header})
+  return this.http.post(`${this.URL}/roles`,body,{headers:header})
 }
 
   loadStudent(id:string,name:string,last_name:string,course:string,address:string,email:string,phone:string){
@@ -152,5 +152,15 @@ loadRoles(description:string){
       })   
       return this.http.post<any>(`${this.URL}/candidates`,body,{headers:header});
   }  
+
+  getElections(){
+    const token = this.getToken();
+    const header=new HttpHeaders({
+      'Authorization':`Bearer ${token}`})   
+    return this.http.get<any>(`${this.URL}/elections`,{headers:header});    
+
+
+  }
+
 
 }
