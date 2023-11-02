@@ -81,7 +81,7 @@ export class ListasComponent  {
       id:4,
       count:0,
       propuestas: 'nuevos salones',
-      id_election:3,
+      id_election:1,
       selected: false,
     }
   ]

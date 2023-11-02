@@ -53,7 +53,7 @@ export class LoadStudentComponent {
         .subscribe(
           (response: any) => {
             if (response) {
-              this.router.navigate(['admin']);
+              this.exit();
             } else {
               console.error('No paso el post');
             }
@@ -63,13 +63,6 @@ export class LoadStudentComponent {
           }
         );
     }
-  }
-
-
-
-  decline(): void {
-    this.showModal = false;
-    this.modalRef?.hide();
   }
  
   exit() {

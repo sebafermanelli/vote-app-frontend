@@ -35,21 +35,21 @@ return this.http.put<string>(`${this.URL}/users/${id}/code`,dni)
  }
 setToken(token:string,admin_id:string): void {
 localStorage.setItem('token',token);
-localStorage.setItem('admin_id',admin_id);
+localStorage.setItem('id',admin_id);
 }
 getToken():string| null {
   return localStorage.getItem('token');
 }
 getAdmin_id():string | null{
 
-    return localStorage.getItem('admin_id');
+    return localStorage.getItem('id');
   }
 
 
 
 removeToken():void{
   localStorage.removeItem('token');
-  localStorage.removeItem('admin_id');
+  localStorage.removeItem('id');
 }
 loginUser(id:string, code:string) :Observable<string> { 
     const body = {

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { AdminComponent } from '../admin/admin.component';
 
 export class vote{
   id:string;
@@ -30,11 +29,8 @@ this.loadElections();
     this.authservice.getElections().subscribe(
       response => {
         this.voting=response.results
-      }
-
-    )
-
-  }
+      })}
+      
   start(vote:any){
     vote.startActive=false;
     vote.finishActive=true;
