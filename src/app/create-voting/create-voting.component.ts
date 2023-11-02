@@ -1,32 +1,40 @@
 import { Component, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, Validators,FormControl  } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-create-voting',
   templateUrl: './create-voting.component.html',
-  styleUrls: ['./create-voting.component.scss']
+  styleUrls: ['./create-voting.component.scss'],
 })
 export class CreateVotingComponent {
   modalRef?: BsModalRef;
   message?: string;
   showModal = false;
-  createForm: FormGroup; 
-  loadElections:FormGroup;
+  createForm: FormGroup;
+  loadElections: FormGroup;
 
-
-  constructor(private modalService: BsModalService,private router: Router,private formBuilder: FormBuilder,private authservice:AuthService) 
-  {
+  constructor(
+    private modalService: BsModalService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authservice: AuthService
+  ) {
     this.loadElections = this.formBuilder.group({
       admin_id: [''],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
     });
   }
 
   exit() {
-    this.router.navigate(['admin'])
+    this.router.navigate(['admin']);
   }
 
   loadlist() {
@@ -38,6 +46,14 @@ export class CreateVotingComponent {
         (response: any) => {
           if (response) {
             console.log('Election saved successfully:', response);
+            this.authservice.loadDelegation(response.results.id).subscribe(
+              (response: any) => {
+                console.log(response);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
             this.router.navigate(['load-candidates']);
           } else {
             console.error('Failed to save the election.');
@@ -49,15 +65,9 @@ export class CreateVotingComponent {
       );
     }
   }
-  
 
- 
-
- 
   areCamposCompletos(): boolean {
     const descriptionControl = this.loadElections.get('description');
     return descriptionControl ? descriptionControl.valid : false;
   }
-  
-  
 }

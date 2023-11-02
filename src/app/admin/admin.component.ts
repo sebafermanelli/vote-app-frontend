@@ -36,4 +36,7 @@ export class AdminComponent implements OnInit {
   listStudent(){
     this.router.navigate(['list-students'])
   }
+  loadRoles(){
+    this.router.navigate(['roles'])
+  }
 }

@@ -2,6 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-load-list',
@@ -24,7 +25,6 @@ export class LoadListComponent {
       sec3Name:['',Validators.required],
       url:[''],
       listName:['',Validators.required],
-      textarea:['',Validators.required]
 
     })
 

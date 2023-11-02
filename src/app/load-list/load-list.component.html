@@ -14,29 +14,29 @@
           <form [formGroup]="loadList" (ngSubmit)="load()">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">P</span>
-              <input [class.is-invalid]="loadList.get('presidentName')?.touched && loadList.get('presidentName')?.errors?.['required']" 
-              type="text" class="form-control" placeholder="President Name" aria-label="President name" aria-describedby="basic-addon1"
-              formControlName="presidentName">
+              <input [class.is-invalid]="loadList.get('presidentID')?.touched && loadList.get('presidentID')?.errors?.['required']" 
+              type="text" class="form-control" placeholder="President ID" aria-label="President ID" aria-describedby="basic-addon1"
+              formControlName="presidentID">
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">V</span>
-              <input [class.is-invalid]="loadList.get('vpName')?.touched && loadList.get('vpName')?.errors?.['required']" type="text" class="form-control" placeholder="VicePresident Name" aria-label="VicePresident Name" aria-describedby="basic-addon1"
-               formControlName="vpName">
+              <input [class.is-invalid]="loadList.get('vpID')?.touched && loadList.get('vpID')?.errors?.['required']" type="text" class="form-control" placeholder="VicePresident ID" aria-label="VicePresident ID" aria-describedby="basic-addon1"
+               formControlName="vpID">
             </div>
 
             <div class="input-group mb-3">
-              <input [class.is-invalid]="loadList.get('sec1Name')?.touched && loadList.get('sec1Name')?.errors?.['required'] "type="text" class="form-control" placeholder="Secretary 1 Name" aria-label="Secretary 1 Name" aria-describedby="basic-addon2"
+              <input [class.is-invalid]="loadList.get('sec1ID')?.touched && loadList.get('sec1ID')?.errors?.['required'] "type="text" class="form-control" placeholder="Secretary 1 ID" aria-label="Secretary 1 ID" aria-describedby="basic-addon2"
               formControlName="sec1Name">
               <span class="input-group-text" id="basic-addon2">S</span>
             </div>
             <div class="input-group mb-3">
-              <input [class.is-invalid]="loadList.get('sec2Name')?.touched && loadList.get('sec2Name')?.errors?.['required']" type="text" class="form-control" placeholder="Secretary 2 Name" aria-label="Secretary 2 Name" aria-describedby="basic-addon2"
-              formControlName="sec2Name">
+              <input [class.is-invalid]="loadList.get('sec2ID')?.touched && loadList.get('sec2ID')?.errors?.['required']" type="text" class="form-control" placeholder="Secretary 2 ID" aria-label="Secretary 2 ID" aria-describedby="basic-addon2"
+              formControlName="sec2ID">
               <span class="input-group-text" id="basic-addon2">S</span>
             </div>
             <div class="input-group mb-3">
-              <input [class.is-invalid]="loadList.get('sec3Name')?.touched && loadList.get('sec3Name')?.errors?.['required']"type="text" class="form-control" placeholder="Secretary 3 Name" aria-label="Secretary 3 Name" aria-describedby="basic-addon2"
-              formControlName="sec3Name">
+              <input [class.is-invalid]="loadList.get('sec3ID')?.touched && loadList.get('sec3ID')?.errors?.['required']"type="text" class="form-control" placeholder="Secretary 3 ID" aria-label="Secretary 3 ID" aria-describedby="basic-addon2"
+              formControlName="sec3ID">
               <span class="input-group-text" id="basic-addon2">S</span>
             </div>
             <div class="mb-3">
@@ -52,12 +52,7 @@
               formControlName="listName">
               <span class="input-group-text">L</span>
             </div>
-            
-            <div class="input-group">
-              <span class="input-group-text">Propuestas</span>
-              <textarea class="form-control" aria-label="With textarea"
-              formControlName="textarea"></textarea> 
-          </div>
+       
         </form>
       </div>
       <br>

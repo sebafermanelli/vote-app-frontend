@@ -73,8 +73,28 @@ loadElection(admin_id:string|null,description:string){
   }) 
   return this.http.post(`${this.URL}/elections/`,body,{headers:header})
 }
+loadDelegation(election_id:string){
+  const body={
+    election_id:election_id,
+  } 
+  const token = this.getToken();
+  const header=new HttpHeaders({
+    'Authorization':`Bearer ${token}`
+  }) 
+  return this.http.post(`${this.URL}/delegations/`,body,{headers:header})
+}
+loadRoles(description:string){
+  const body={
+    description:description,
+  }
+  const token = this.getToken();
+  const header=new HttpHeaders({
+    'Authorization':`Bearer ${token}`
+  }) 
+  return this.http.post(`${this.URL}/roles/`,body,{headers:header})
+}
 
-  loadStudent(id:string,name:string,last_name:string,course:string,address:string,email:string,phone:string,photo:FormData){
+  loadStudent(id:string,name:string,last_name:string,course:string,address:string,email:string,phone:string){
     const body = {
       id:id,
       name:name,
@@ -83,7 +103,7 @@ loadElection(admin_id:string|null,description:string){
       address:address,
       email:email,
       phone:phone,
-      image:photo
+
                   }
         const token = this.getToken();
         const header=new HttpHeaders({
@@ -120,14 +140,7 @@ loadElection(admin_id:string|null,description:string){
     return this.http.delete<any>(`${this.URL}/users/${id}`,{headers:header});
 
   }
- getStudentImageURL(imageBlob: Blob): string {
-    if (imageBlob) {
-      return URL.createObjectURL(imageBlob);
-    } else {
-      // URL de imagen por defecto si no hay imagen
-      return 'assets/default-image.png';
-    }
-  }
+
 
   loadCandidates(user_id:string){
    const body = {
