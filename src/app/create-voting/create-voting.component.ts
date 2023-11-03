@@ -45,6 +45,7 @@ export class CreateVotingComponent {
       this.authservice.loadElection(admin_id, description).subscribe(
         (response: any) => {
           if (response) {
+            this.authservice.setElection_id(response.results.id);
             console.log('Election saved successfully:', response);
             this.authservice.loadDelegation(response.results.id).subscribe(
               (response: any) => {
