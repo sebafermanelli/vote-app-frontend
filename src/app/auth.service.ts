@@ -155,7 +155,7 @@ export class AuthService {
 
     return this.http.get<any>(`${this.URL}/users`, { headers: header });
   }
-  deleteStudents(id: string) {
+  deleteStudents(id: string|null) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,

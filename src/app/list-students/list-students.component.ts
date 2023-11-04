@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output,TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { BsModalService,BsModalRef } from 'ngx-bootstrap/modal';
 
 
 
@@ -18,8 +19,16 @@ export class ListStudentsComponent implements OnInit{
   @Output() memberSeleccionado = new EventEmitter<number>();  
 students:any=[];
 UserComponent: any;
+ modalRef?: BsModalRef;
+  message?: string;
+  showModal = false;
+  selectid:string | null;
 
-  constructor(private route: Router, private authservice:AuthService) {}
+  constructor(
+    private route: Router, 
+    private authservice:AuthService,
+    private modalService:BsModalService) 
+    {}
 
   ngOnInit(){ 
     this.loadData();
@@ -32,13 +41,19 @@ UserComponent: any;
     
   })}
 
+openModal(template:TemplateRef<any>,id:string){
+  this.modalRef=this.modalService.show(template,{class: 'modal-sm'});
+  this.selectid=id
+}
 
- 
+  
+
   volver(){
     this.route.navigate(['admin']);
 }
-  drop(dni: string) {
-      this.authservice.deleteStudents(dni)
+  deleteStudent(dni: string | null) {
+    if(this.selectid !== null){ 
+    this.authservice.deleteStudents(this.selectid)
       .subscribe(
         ()=>{
               this.loadData();
@@ -48,7 +63,15 @@ UserComponent: any;
           console.log("No se pudo eliminar")
         }
       );
+     this.selectid=null;
+     this.modalRef?.hide();
       }
-  
     }
+reload():void{
+      this.modalRef?.hide();
+
+}
+    
+
+}
 
