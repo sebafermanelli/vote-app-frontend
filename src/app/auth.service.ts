@@ -166,6 +166,18 @@ export class AuthService {
     });
   }
 
+deleteElections(id:string |null){
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+      return this.http.delete<any>(`${this.URL}/elections/${id}`, {
+      headers: header,
+    });
+
+}
+
+
   loadCandidates(user_id: string) {
     const body = {
       user_id: user_id,
