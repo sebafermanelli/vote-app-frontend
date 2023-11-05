@@ -13,15 +13,27 @@
     <tbody class="table-group-divider" >
       <tr *ngFor="let vote of voting; let i = index">
         <th scope="row">{{vote.id}}</th>
-        <td>{{vote.desc}}</td>
-        <td><button class="btn btn-secondary" (click)="seeList(i)">Ver Listas</button></td>
-        <td><button class="btn btn-info" [disabled]="!vote.startActive" (click)="start(vote)">Iniciar</button></td>
+        <td>{{vote.description}}</td>
+        <td><button class="btn btn-secondary" (click)="seeList(vote.id)">Ver Listas</button></td>
+        <td><button class="btn btn-info" [disabled]="vote.startActive" (click)="start(vote)">Iniciar</button></td>
         <td><button class="btn btn-warning" [disabled]="!vote.finishActive" (click)="finish(vote)">Finalizar</button></td>
         <td><button class="btn btn-success" [disabled]="!vote.resultActive" (click)="count(vote)">Ver Resultados</button></td>
-        <td><button class="btn btn-danger" (click)="deleteVote(i)">X <i class="fa fa-trash"></i></button></td>
+        <td><button class="btn btn-danger" (click)="openModal(confirmModal,vote.id)">X <i class="fa fa-trash"></i></button></td>
       </tr>
     </tbody>
   </table>
   <div class="exit text-right">
     <button class="btn btn-secondary" (click)="exit()">Volver</button>
 </div>
+<ng-template #confirmModal>
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar</h4>
+  </div>
+  <div class="modal-body">
+    <p>¿Está seguro que desea eliminar esta elección?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="deleteElections(selectid)">Aceptar</button>
+    <button type="button" class="btn btn-secondary"(click)="reload()">Volver</button>
+  </div>
+</ng-template>

@@ -9,8 +9,9 @@
     <tbody class="table-group-divider" >
       <tr *ngFor="let vote of voting; let i = index">
         <th scope="row">{{vote.id}}</th>
-        <td>{{vote.desc}}</td>
+        <td>{{vote.description}}</td>
         <td><button class="btn btn-secondary" (click)="seeList(i)">Ir a votar</button></td>
       </tr>
     </tbody>
   </table>
+  <div><button  (click)="exit()" class="btn btn-danger">Salir</button></div>

@@ -21,8 +21,20 @@
         <td>{{ student.course }}</td>
 
 
-        <td><button class="btn btn-danger" (click)="drop(student.id)">X</button></td>
+        <td><button class="btn btn-danger" (click)="openModal(confirmModal,student.id)">X</button></td>
       </tr>
     </tbody>
   </table>
   <button class="btn btn-secondary" (click)="volver()">Volver</button>
+  <ng-template #confirmModal>
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar</h4>
+    </div>
+    <div class="modal-body">
+      <p>¿Está seguro que desea eliminar este alumno?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="deleteStudent(selectid)">Aceptar</button>
+      <button type="button" class="btn btn-secondary" (click)="reload()">Volver</button>
+    </div>
+  </ng-template>

@@ -27,7 +27,7 @@ userPassword: ['',[Validators.required]],
       this.authService.loginAdmin(username, password).subscribe(
         (response: any) => {
           if (response.accessToken) {
-            this.authService.setToken(response.accessToken);
+            this.authService.setToken(response.accessToken,response.admin.id); 
             this.route.navigate(['admin'])
           }
         },

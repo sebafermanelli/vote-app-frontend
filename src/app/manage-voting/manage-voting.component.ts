@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,TemplateRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { AdminComponent } from '../admin/admin.component';
+import { BsModalService,BsModalRef } from 'ngx-bootstrap/modal';
 
 export class vote{
-  id:number;
-  desc:string;
+  id:string;
+  description:string;
   startActive:boolean;
   finishActive:boolean;
   resultActive:boolean;
@@ -18,36 +18,57 @@ export class vote{
   styleUrls: ['./manage-voting.component.scss']
 })
 export class ManageVotingComponent {
-
-  voting: vote[]=[
-    {
-      id:1,
-      desc:'Presidente centro estudiante',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    },
-    {
-      id:2,
-      desc:'Representante interescolar',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    },
-    {
-      id:3,
-      desc:'Delegados',
-      startActive:true,
-      finishActive:false,
-      resultActive:false,
-    }
-  ]
-  constructor(private route: Router,) {}
-
+  voting: vote[]=[]
+  id:string | null;
+  modalRef?: BsModalRef;
+  message?: string;
+  showModal = false;
+  selectid:string | null;
   
+  constructor(
+    private route: Router,
+    private authservice:AuthService,
+    private modalService:BsModalService) {}
+
+ ngOnInit(){
+this.loadElections();
+
+ }
+  loadElections(){
+    this.authservice.getElections().subscribe(
+      response => {
+        this.voting=response.results
+      })}
+ 
+
+openModal(template: TemplateRef<any>,id:string) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    this.selectid=id;  
+  }      
+
+
+  deleteElections(id:string | null){
+    if(this.selectid !== null){     
+    this.authservice.deleteElections(id)
+.subscribe(
+    ()=>{
+      this.loadElections()
+      console.log("Eliminación Exitosa")
+    })
+      this.selectid=null;
+      this.modalRef?.hide();
+
+
+    }
+}      
+reload():void{
+      this.modalRef?.hide();
+
+}
+
 
   start(vote:any){
-    vote.startActive=false;
+    vote.startActive=true;
     vote.finishActive=true;
   }
   finish(vote:any){
@@ -68,7 +89,10 @@ export class ManageVotingComponent {
   exit(){
     this.route.navigate(['admin'])
   }
-  seeList(id: number) {
-    this.route.navigate(['listas-admin', id+1]);
+  seeList(id: string) {
+    this.id = this.authservice.getElection_id();
+    this.route.navigate(['listas-admin', id]);
   }
+
+
 }

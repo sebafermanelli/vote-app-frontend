@@ -1,24 +1,35 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Chart } from "chart.js/auto";
+import { AuthService } from "../auth.service";
  
 
 @Component({
     selector: "app-voting-interface",
     templateUrl: "./voting-interface.component.html",
     styleUrls: ["./voting-interface.component.scss"]
+    
 
 })
 
 
 export class VotingInterfaceComponent implements OnInit{
 
+ 
     public chart: any;
-    constructor(private route:Router){}
+    constructor(private route:Router , private AuthService: AuthService, ){
+      }
 
     ngOnInit(): void {
+        //this.datos();
         this.createChart();
     }
+
+    /*datos(){
+      this.data = this.AuthService.getElections();
+      console.log(this.data)
+      console.log(this.AuthService.getElections())
+    }*/
 
     createChart(){
 

@@ -11,40 +11,21 @@
         <br>
         <div class="border p-3">
           <div class="mb-3">
-            <form [formGroup]="createForm"> 
-              <div class="container text-center">
+            <form [formGroup]="loadElections" (ngSubmit)="loadlist()"> 
+              <div class="container">
                 <div class="row justify-content-center">
                   <div class="col-12 col-md-6">
                     <div class="input-group mb-3">
                       <span class="input-group-text" id="basic-addon1">N</span>
-                      <input type="text" class="form-control" placeholder="Nombre de la Elección" aria-label="Username" aria-describedby="basic-addon1" formControlName="nombreEleccion">
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <div class="input-group mb-3">
-                      <label class="input-group-text" for="inputGroupSelect01">Cantidad Listas</label>
-                      <select class="form-select" id="inputGroupSelect01" formControlName="cantidadListas">
-                        <option   *ngFor="let list of lists" [value]="list.value">{{list.label}}</option>
-                       
-                      </select>
+                      <input type="text" class="form-control" placeholder="Nombre de la Elección" aria-label="Username" aria-describedby="basic-addon1" formControlName="description">
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-primary" (click)="openModal(template)" [disabled]="!areCamposCompletos()">Aceptar</button>
+                <button type="Submit" class="btn btn-primary" [disabled]="!areCamposCompletos()">Aceptar</button>
               </div>
+              
             </form> 
-            <ng-template #template> 
-              <div class="modal-body text-center">
-                <p>¿Estás Seguro?</p>
-                <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
-                <button type="button" class="btn btn-primary" (click)="decline()">No</button>
-              </div>
-            </ng-template>
-            <div *ngIf="showModal">
-              <alert type="success">
-                <strong>{{message}}</strong> 
-              </alert>
-            </div>
+    
           </div>
         </div>
       </div>

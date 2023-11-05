@@ -28,7 +28,8 @@ import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import {HttpClientModule }  from '@angular/common/http';
-import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component'
+import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
+import { RolesComponent } from './roles/roles.component'
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { SelectionElectionUserComponent } from './selection-election-user/select
     ListasAdminComponent,
     LoadCandidatesComponent,
     SelectionElectionUserComponent,
+    RolesComponent,
  
 
   ],

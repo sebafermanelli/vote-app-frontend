@@ -45,7 +45,7 @@ export class UserComponent implements OnInit{
     this.route.navigate(['message']),
     setTimeout(() => {
       this.messageModalRef?.hide();
-      this.route.navigate(['']);
+      this.route.navigate(['selection-election']);
     }, 2000);  }
   
  

@@ -43,6 +43,7 @@ this.codeNumbers=this.fb.group({
     this.authService.loginUser(dni,userValidationCode).subscribe(
         (response:any)=>{
           if(response){
+            this.authService.setToken(response.accessToken,response.user.id);
             this.route.navigate(['selection-election']);
           } else {
                 this.showAlert = true;
