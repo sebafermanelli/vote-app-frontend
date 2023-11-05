@@ -1,0 +1,21 @@
+.listas{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.p{
+    font-size: 20px;
+    font-weight:inherit;
+}
+.button-container{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+        .exit-button{
+            margin-left: 15px;
+        }
+}
+.modal-body {
+    padding: 20px; 
+  }

@@ -1,0 +1,40 @@
+
+
+<h1 class="tit">Ingreso Administrador</h1>
+<body>
+    
+    <div class="login-container">
+        <form [formGroup]="adminForm"  (ngSubmit)="alAdmin()">
+            <div class="form-group">
+                <label for="exampleInputUser1">Usuario</label>
+                <input [class.is-invalid]="adminForm.get('userName')?.touched && adminForm.get('userName')?.errors?.['required']" type="text" class="form-control" id="exampleInputUser1" 
+                aria-describedby="userHelp" placeholder="Usuario" formControlName="userName">
+                <small id="UserHelp" class="form-text text-muted"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input 
+                [class.is-invalid]="adminForm.get('userPassword')?.touched && adminForm.get('userPassword')?.errors?.['required']" 
+                type="password" class="form-control" 
+                id="exampleInputPassword1" placeholder="Contraseña" formControlName="userPassword">
+            </div>
+       
+            <div class="form-group form-check" >
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Guardar</label>
+            </div>
+            <div class="button-group">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            <button type="submit" class="btn btn-secundary border border-blue" (click)="exit()">Salir</button>
+        </div>
+        <div *ngIf="showAlert" class="alertUsu">
+        <alert type="danger">
+            <strong>Usuario o Contraseña incorrectas</strong> 
+          </alert>
+        </div>
+        </form>
+    </div>
+    
+  
+</body>

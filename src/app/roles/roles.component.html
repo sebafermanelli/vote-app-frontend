@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto my-5">
+            <div class="border p-4">
+                <div class="cargar-rol">
+                    <form [formGroup]="rolForm">
+                        <h2 class="text-center">Estructura de tu elección</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-control mb-3" formControlName="description" placeholder="Ingrese la descripción del rol" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" (click)="cargarCandidatos()">Cargar y salir</button>
+                            <button class="btn btn-success" (click)="cargarNuevoRol()">Cargar Nuevo Rol</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center"> 
+    <button class="btn btn-danger" (click)="exit()">Salir</button>
+</div>

@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Ingrese su número de validación</h2>
+      <h3>Le ha llegado a su correo electrónico</h3>
+      <form   [formGroup]="codeNumbers"   (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label for="validationNumber">Número de Validación:</label>
+          <div class="row">
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number1')?.touched && codeNumbers.get('number1')?.errors?.['required']"
+              type="text" class="form-control" id="validationNumber1" formControlName="number1">
+            </div>
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number2')?.touched && codeNumbers.get('number2')?.errors?.['required']" 
+              type="text" class="form-control" id="validationNumber2"  formControlName="number2">
+            </div>
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number3')?.touched && codeNumbers.get('number3')?.errors?.['required']"
+              type="text" class="form-control" id="validationNumber3"  formControlName="number3">
+            </div>
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number4')?.touched && codeNumbers.get('number4')?.errors?.['required']"
+              type="text" class="form-control" id="validationNumber4"  formControlName="number4">
+            </div>
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number5')?.touched && codeNumbers.get('number5')?.errors?.['required']" 
+              type="text" class="form-control" id="validationNumber5"  formControlName="number5" >
+            </div>
+            <div class="col-2">
+              <input [class.is-invalid]="codeNumbers.get('number6')?.touched && codeNumbers.get('number6')?.errors?.['required']"
+              type="text" class="form-control" id="validationNumber6" formControlName="number6">
+            </div>
+          </div>
+        </div>
+        <div class="send-button">
+          <button type="submit" class="btn btn-primary" >Aceptar</button>
+        </div>
+      </form>
+      <br><br>
+      <div class="send-code d-flex justify-content-end">
+      <button class="btn btn-secondary">Reenviar Código</button>
+    </div>
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Código incorrecto,</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         Revise nuevamente el código enviado a su mail
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

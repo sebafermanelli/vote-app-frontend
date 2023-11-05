@@ -1,0 +1,78 @@
+<div *ngIf="! showRoles">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto text-center">
+      <h1 class="tit">Crear Lista</h1>
+      <br>
+      <div class="border p-3">
+        <div class="mb-3">
+          <form [formGroup]="loadList" (ngSubmit)="loadLista()"> 
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">N</span>
+                    <input type="text" class="form-control" placeholder="Nombre de la Lista" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
+                  </div>
+                </div>
+              </div>
+              <button type="Submit" class="btn btn-primary" [disabled]="!areCamposCompletos()">Aceptar</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="showRoles">
+<div class="exit position-absolute top-0 end-0">
+  <div class="exit">
+    <button class="btn btn-secondary" (click)="exit()">Salir</button>
+  </div>
+</div>
+<div class="centered">
+  <div class="collapsed">
+    <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Carga</button>
+    <hr>
+    <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+      <div class="container">
+        <form [formGroup]="loadRol" (ngSubmit)="loadRols()">
+        <h3>Roles:</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Rol</th>
+              <th>DNI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rol of roles; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ rol.description }}</td>
+              <td>
+                <input type="text" class="form-control" placeholder="DNI del alumno" aria-label="candidate_id" aria-describedby="basic-addon1" formControlName="candidate_id">
+              </td>
+            </tr>
+          </tbody> <div class="button"><button class="btn btn-success" (click)="openModal(confirmModal)">Registrar Lista</button></div>
+        </table>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ng-template #confirmModal>
+  <div class="modal-header">
+    <h4 class="modal-title">¿Qué deseas hacer a continuación?</h4>
+  </div>
+  <div class="modal-body">
+    <p>¿Quieres cargar otra lista, salir al menú o refrescar la página?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="load()">Cargar otra lista</button>
+    <button type="button" class="btn btn-secondary" (click)="decline()">Salir al menú</button>
+  </div>
+</ng-template>

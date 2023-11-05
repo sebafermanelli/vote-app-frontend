@@ -1,0 +1,18 @@
+.centered {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+  }
+  .green-text {
+    color: green; 
+  }
+  .exit{
+    text-align: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.button{
+  align-items: center;
+  margin-top: 15px;
+}
