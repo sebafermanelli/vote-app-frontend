@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'create-voting', component:CreateVotingComponent}, 
   { path: 'voting-interface', component:VotingInterfaceComponent}, 
   { path: 'list-students', component:ListStudentsComponent}, 
-  { path: 'listas-admin/:voteId',component:ListasAdminComponent}, 
+  { path: 'listas-admin/:id',component:ListasAdminComponent}, 
   { path: 'load-candidates',component:LoadCandidatesComponent}, 
   { path: 'selection-election',component:SelectionElectionUserComponent}, 
   { path: 'roles',component:RolesComponent},

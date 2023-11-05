@@ -200,6 +200,12 @@ deleteElections(id:string |null){
     return this.http.get<any>(`${this.URL}/elections`, { headers: header });
   }
 
+  getListbyElection(id:string){
+    const token = this.getToken();
+    const header = new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+        });     return this.http.get<any>(`${this.URL}/elections/${id}/lists`, { headers: header });
+    }
 
   getList(){
     const token = this.getToken();

@@ -2,14 +2,8 @@ import { Component,TemplateRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { BsModalService,BsModalRef } from 'ngx-bootstrap/modal';
+import { vote } from './vote';
 
-export class vote{
-  id:string;
-  description:string;
-  startActive:boolean;
-  finishActive:boolean;
-  resultActive:boolean;
-}
 
 
 @Component({
@@ -72,7 +66,7 @@ reload():void{
     vote.finishActive=true;
   }
   finish(vote:any){
-    vote.startActive=false;
+    vote.startActive=true;
     vote.finishActive=false;
     vote.resultActive=true;
   }
@@ -90,7 +84,6 @@ reload():void{
     this.route.navigate(['admin'])
   }
   seeList(id: string) {
-    this.id = this.authservice.getElection_id();
     this.route.navigate(['listas-admin', id]);
   }
 
