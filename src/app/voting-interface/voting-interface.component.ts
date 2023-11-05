@@ -28,8 +28,8 @@ export class VotingInterfaceComponent implements OnInit{
           data: {
             labels: ['Red', 'Pink','Green','Yellow','Orange','Blue', ],
                datasets: [{
-        label: 'My First Dataset',
-        data: [600, 240, 100, 432, 253, 34],
+        label: 'Cantidad de votos',
+        data: [600, 50, 100, 432, 253, 34],
         backgroundColor: [
           'red',
           'pink',

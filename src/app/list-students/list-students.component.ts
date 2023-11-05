@@ -15,9 +15,8 @@ import { AuthService } from '../auth.service';
 
 
 export class ListStudentsComponent implements OnInit{
-  @Output() memberSeleccionado = new EventEmitter<number>();  
 students:any=[];
-UserComponent: any;
+
 
   constructor(private route: Router, private authservice:AuthService) {}
 
@@ -29,7 +28,6 @@ UserComponent: any;
   this.authservice.getStudent().subscribe(
     response => {
       this.students = response.results;
-    
   })}
 
 
