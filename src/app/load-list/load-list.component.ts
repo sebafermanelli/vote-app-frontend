@@ -11,12 +11,14 @@ import { AuthService } from '../auth.service';
 })
 export class LoadListComponent implements OnInit {
   loadList: FormGroup;
+  loadRol:FormGroup;
   isCollapsed = true;
   modalRef?: BsModalRef;
   message?: string;
   showModal = false;
   showRoles = false;
   roles: any = [];
+  list:any=[];
 
   constructor(
     private modalService: BsModalService,
@@ -28,6 +30,12 @@ export class LoadListComponent implements OnInit {
       election_id: [''],
       description: ['', Validators.required],
     });
+    this.loadRol=this.formBuilder.group({
+      order:[''],
+      list_id:[''],
+      role_id:[''],
+      candidate_id:['',Validators.required],
+    })
   }
 
   ngOnInit() {
@@ -54,7 +62,30 @@ export class LoadListComponent implements OnInit {
         (response: any) => {
           if (response) {
             console.log('List saved Successfully: ', response);
+            this.list=response.results;
+            console.log(this.list)
             this.showRoles = true;
+          } else {
+            console.error('error to save list');
+          }
+        },
+        (error) => {
+          console.error('Error in HTTP request: ', error);
+        }
+      );
+    }
+  }
+  loadRols(){
+    if(this.loadRol.valid){
+      const order=1;
+      const list_id=this.list.id;
+      const role_id=this.roles.id;
+      const candidate_id=this.loadRol.get('candidate_id')?.value;
+      console.log(this.loadList)
+      this.authService.loadListRoles(order,list_id,role_id,candidate_id).subscribe(
+        (response: any) => {
+          if (response) {
+            console.log('List saved Successfully: ', response);
           } else {
             console.error('error to save list');
           }

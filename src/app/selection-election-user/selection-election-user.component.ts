@@ -2,20 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
-export class vote{
-  id:string;
-  description:string;
-  startActive:boolean;
-  finishActive:boolean;
-  resultActive:boolean;
-}
+
 @Component({
   selector: 'app-selection-election-user',
   templateUrl: './selection-election-user.component.html',
   styleUrls: ['./selection-election-user.component.scss']
 })
 export class SelectionElectionUserComponent {
-  voting: vote[]=[]
+  voting: any=[]
   constructor(private route: Router,private authservice:AuthService ) {}
 
   ngOnInit(){
@@ -32,8 +26,8 @@ export class SelectionElectionUserComponent {
     
       }
 
-  seeList(id: number) {
-    this.route.navigate(['user', id+1]);
+  seeList(id: string) {
+    this.route.navigate(['user', id]);
   }
   exit(){
     this.authservice.removeToken()

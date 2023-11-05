@@ -38,6 +38,7 @@
     <hr>
     <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
       <div class="container">
+        <form [formGroup]="loadRol" (ngSubmit)="loadRols()">
         <h3>Roles:</h3>
         <table class="table table-bordered">
           <thead>
@@ -52,11 +53,12 @@
               <th scope="row">{{ i + 1 }}</th>
               <td>{{ rol.description }}</td>
               <td>
-                <input type="text" class="form-control" placeholder="Ingrese DNI">
+                <input type="text" class="form-control" placeholder="DNI del alumno" aria-label="candidate_id" aria-describedby="basic-addon1" formControlName="candidate_id">
               </td>
             </tr>
           </tbody> <div class="button"><button class="btn btn-success" (click)="openModal(confirmModal)">Registrar Lista</button></div>
         </table>
+      </form>
       </div>
     </div>
   </div>

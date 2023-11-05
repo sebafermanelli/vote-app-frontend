@@ -11,7 +11,7 @@
       <tr *ngFor="let vote of voting; let i = index">
         <th scope="row">{{vote.id}}</th>
         <td>{{vote.description}}</td>
-        <td><button class="btn btn-secondary" (click)="seeList(i)">Ir a votar</button></td>
+        <td><button class="btn btn-secondary" (click)="seeList(vote.id)">Ir a votar</button></td>
       </tr>
     </tbody>
   </table>

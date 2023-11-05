@@ -21,7 +21,7 @@ import { RolesComponent } from './roles/roles.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, 
-  { path: 'user/:voteId', component: UserComponent }, 
+  { path: 'user/:id', component: UserComponent }, 
   { path: 'admin', component: AdminComponent}, 
   { path: 'listas', component:ListasComponent}, 
   { path: 'login-admin',component:LoginAdminComponent}, 

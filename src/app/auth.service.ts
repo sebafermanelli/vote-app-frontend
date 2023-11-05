@@ -177,7 +177,21 @@ deleteElections(id:string |null){
     });
 
 }
-
+loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
+  const body={ 
+    order:order, 
+    list_id:list_id,
+    role_id:role_id,
+    candidate_id:candidate_id
+  }
+  const token = this.getToken();
+  const header = new HttpHeaders({
+  Authorization: `Bearer ${token}`,
+    });
+    return this.http.post<any>(`${this.URL}/listroles`, body, {
+      headers: header,
+    });
+}
 
   loadCandidates(user_id: string) {
     const body = {

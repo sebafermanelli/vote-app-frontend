@@ -1,22 +1,16 @@
 <div class="container text-center">
-    <h1>Listas de la elección: {{ members.length > 0 ? members[0].id_election : 'No hay Listas' }}</h1>
-    <div class="row">
-        <div *ngFor="let member of members; let i = index" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-            <div class="card" [ngClass]="{'selected-card': member.selected}">
-              <div class="card-body" [id]="member.id">
-                <h5 class="card-title">Presidente: {{ member.president }}</h5>
-                <p class="card-text">Vicepresidente: {{ member.vicepresident }}</p>
-                Secretarios:
-                <ul class="list-unstyled">
-                  <li>{{ member.secretary1 }}</li>
-                  <li>{{ member.secretary2 }}</li>
-                  <li>{{ member.secretary3 }}</li>
-                </ul>
-                <button class="btn btn-primary" (click)="toggleSelection(member)">Seleccionar</button>
-              </div>
-            </div>
-          </div>
-          
-          
+  <h1>Listas de la elección: {{ id }}</h1>
+  <div class="row">
+    <div *ngFor="let member of members; let i = index" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card" [ngClass]="{'selected-card': member.selected}">
+        <div class="card-body" [id]="member.id" (click)="selectMembers(member)">
+          <ul class="list-unstyled">
+            <li>{{ member.id }}</li>
+            <li>{{ member.description }}</li>
+          </ul>
+          <button class="btn btn-primary">Seleccionar</button>
+        </div>
+      </div>
     </div>
   </div>
+</div>
