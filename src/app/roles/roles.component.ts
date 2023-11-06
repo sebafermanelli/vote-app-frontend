@@ -20,6 +20,7 @@ export class RolesComponent {
   loadRole(){
     if (this.rolForm.valid) {
       const description = this.rolForm.get('description')?.value;
+      console.log(description);
       this.authservice.loadRoles(description).subscribe(
         (response: any) => {
           if (response) {
