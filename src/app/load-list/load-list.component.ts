@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   selector: 'app-load-list',
   templateUrl: './load-list.component.html',
@@ -32,15 +33,16 @@ export class LoadListComponent implements OnInit {
     });
     this.loadRol=this.formBuilder.group({
       order:[''],
-      list_id:[''],
-      role_id:[''],
+      
       candidate_id:['',Validators.required],
     })
   }
 
   ngOnInit() {
     this.getRole();
+    console.log('sssssssssssssssssss',this.roles)
   }
+  
   getRole() {
     this.authService.getroles().subscribe(
       (data) => {
@@ -56,6 +58,7 @@ export class LoadListComponent implements OnInit {
   loadLista() {
     this.areCamposCompletos();
     if (this.loadList.valid) {
+      console.log('ROL',this.loadRol)
       const election_id = this.authService.getElection_id();
       const description = this.loadList.get('description')?.value;
       this.authService.loadList(election_id, description).subscribe(
@@ -81,7 +84,7 @@ export class LoadListComponent implements OnInit {
       const list_id=this.list.id;
       const role_id=this.roles.id;
       const candidate_id=this.loadRol.get('candidate_id')?.value;
-      console.log(this.loadList)
+      console.log('aaaaaaaaaaaaaaaaaaaaa',this.loadRol)
       this.authService.loadListRoles(order,list_id,role_id,candidate_id).subscribe(
         (response: any) => {
           if (response) {

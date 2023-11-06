@@ -38,12 +38,14 @@
     <hr>
     <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
       <div class="container">
-        <form [formGroup]="loadRol" (ngSubmit)="loadRols()">
+        
         <h3>Roles:</h3>
+        <form [formGroup]="loadRol" (ngSubmit)="loadRols()">
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>#</th>
+              <th>ID</th>
               <th>Rol</th>
               <th>DNI</th>
             </tr>
@@ -51,12 +53,14 @@
           <tbody>
             <tr *ngFor="let rol of roles; let i = index">
               <th scope="row">{{ i + 1 }}</th>
+              <td>{{rol.id}}</td>
               <td>{{ rol.description }}</td>
               <td>
-                <input type="text" class="form-control" placeholder="DNI del alumno" aria-label="candidate_id" aria-describedby="basic-addon1" formControlName="candidate_id">
+                <input type="text" class="form-control" placeholder="DNI del alumno" aria-label="candidate_id" aria-describedby="basic-addon1" [formControlName]="'candidate_id' +rol.id">
               </td>
             </tr>
-          </tbody> <div class="button"><button class="btn btn-success" (click)="openModal(confirmModal)">Registrar Lista</button></div>
+          </tbody> <div class="button">
+            <button type="submit" class="btn btn-success" (click)="openModal(confirmModal)">Registrar Lista</button></div>
         </table>
       </form>
       </div>

@@ -39,7 +39,9 @@ export class LoadCandidatesComponent {
       );
     }
   }
- 
+  reload(){
+    location.reload();
+  }
   exit(){
     this.route.navigate(['admin']);
   }

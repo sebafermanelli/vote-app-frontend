@@ -95,7 +95,7 @@ export class AuthService {
   }
   loadRoles(description: string) {
     const body = {
-      description: description,
+    description: description,
     };
     const token = this.getToken();
     const header = new HttpHeaders({
