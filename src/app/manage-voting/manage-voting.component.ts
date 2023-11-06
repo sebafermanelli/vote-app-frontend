@@ -18,6 +18,7 @@ export class ManageVotingComponent {
   message?: string;
   showModal = false;
   selectid:string | null;
+  vot:any=[]
   
   constructor(
     private route: Router,
@@ -32,6 +33,7 @@ this.loadElections();
     this.authservice.getElections().subscribe(
       response => {
         this.voting=response.results
+
       })}
  
 

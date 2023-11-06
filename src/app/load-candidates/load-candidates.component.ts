@@ -16,12 +16,18 @@ export class LoadCandidatesComponent {
 
   loadCandidate: FormGroup;
 
+
   constructor(private formBuilder: FormBuilder,private route:Router,private modalService: BsModalService, private authservice:AuthService) {
     this.loadCandidate = this.formBuilder.group({      
       dni: ['', Validators.required],
     
     });
   }
+
+  ngOninit(): void{
+
+}
+
   submitForm() {
     if (this.loadCandidate.valid) {
       const dni = this.loadCandidate.get('dni')?.value;

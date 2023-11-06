@@ -1,9 +1,13 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, EventEmitter, OnInit,Output,TemplateRef } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+import { response } from 'express';
+type vote = {
+  election_id: string;
+  list_id: string;
+}
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -11,14 +15,25 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 
 export class UserComponent implements OnInit{
+  @Output() memberSeleccionado = new EventEmitter<number>();
+
+  list: string;
+  id: string;
+  name: string;
+
+  members: any = [];
+  selectMember: any = null; 
+
   modalRef?: BsModalRef;
   message?: string;
   dni: string = '';
-  name: string = '';
+  nameUser: string = '';
   showAlert: boolean = false;
   selectedIndex: number;
   showModal: boolean = false;
   messageModalRef?: BsModalRef;
+  voto: vote = {election_id: '',
+                list_id:''}
 
   
 
@@ -26,19 +41,49 @@ export class UserComponent implements OnInit{
               private dataService: DataService,
               private authService: AuthService,
               private modalService: BsModalService,
-              ){}
+              private activatedRoute: ActivatedRoute, 
+              private authservice: AuthService ){}
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.id = params.get('id') || '';
+      console.log(this.id);
+      this.authservice.getListbyElection(this.id).subscribe((response) => {
+        this.members = response.results;
+        console.log(response);
+      });
+    });
   }
 
+  selectMembers(miembro: any) {
+    if (this.selectMember) {
+      this.selectMember.selected = false;
+      console.log(this.selectMember.id)
+    }
+    miembro.selected = true; 
+    this.selectMember = miembro;
+    this.memberSeleccionado.emit(miembro.id);
+  }
 
  openModal(template: TemplateRef<any>) {
   this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
+  registerVote(): void{
+      console.log(this.id)
+      console.log(this.selectMember.id)
+      this.voto.election_id = this.id
+      this.voto.list_id = String(this.selectMember.id)
+      console.log(this.voto)
+    this.authService.loadVote(this.voto ).subscribe(response => {
+
+      console.log(response)
+    }) 
+  }
+  
   
   confirm(): void {
-    
+    this.registerVote();
     this.modalRef?.hide();
     this.showAlert=true;
     this.openMessageModal(); 

@@ -7,7 +7,6 @@ import { LoginComponent } from './login-usuario/login.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ListasComponent } from './listas/listas.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { setTheme } from 'ngx-bootstrap/utils';
@@ -29,7 +28,7 @@ import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import {HttpClientModule }  from '@angular/common/http';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
-import { RolesComponent } from './roles/roles.component'
+
 
 
 @NgModule({
@@ -39,7 +38,6 @@ import { RolesComponent } from './roles/roles.component'
     AdminComponent,
     LoginComponent,
     UserComponent,
-    ListasComponent,
     LoginAdminComponent,
     MessageModalComponent,
     ValidationMailComponent,
@@ -52,7 +50,7 @@ import { RolesComponent } from './roles/roles.component'
     ListasAdminComponent,
     LoadCandidatesComponent,
     SelectionElectionUserComponent,
-    RolesComponent,
+
  
 
   ],

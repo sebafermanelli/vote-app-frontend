@@ -33,6 +33,8 @@ export class CreateVotingComponent {
     });
   }
 
+  
+
   exit() {
     this.router.navigate(['admin']);
   }
