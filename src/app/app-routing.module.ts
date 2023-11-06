@@ -16,7 +16,7 @@ import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
-import { RolesComponent } from './roles/roles.component';
+
 
 
 const routes: Routes = [
@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'listas-admin/:id',component:ListasAdminComponent}, 
   { path: 'load-candidates',component:LoadCandidatesComponent}, 
   { path: 'selection-election',component:SelectionElectionUserComponent}, 
-  { path: 'roles',component:RolesComponent},
+
 ];
 
 @NgModule({

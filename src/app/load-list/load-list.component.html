@@ -1,73 +1,44 @@
-<div *ngIf="! showRoles">
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mx-auto text-center">
-      <h1 class="tit">Crear Lista</h1>
-      <br>
-      <div class="border p-3">
-        <div class="mb-3">
-          <form [formGroup]="loadList" (ngSubmit)="loadLista()"> 
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-12 col-md-6">
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">N</span>
-                    <input type="text" class="form-control" placeholder="Nombre de la Lista" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
+<button class="btn btn-secondary" (click)="exit()">Salir</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto text-center">
+        <h1 class="tit">Crear Lista</h1>
+        <br> 
+        <div class="border p-3">
+          <div class="mb-3">
+            <form [formGroup]="loadList" (ngSubmit)="loadLista()"> 
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">N</span>
+                      <input type="text" class="form-control" placeholder="Nombre de la Lista" aria-label="description" aria-describedby="basic-addon1" formControlName="description">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">P</span>
+                      <input type="text" class="form-control" placeholder="DNI Presidente" aria-label="rol1_id" aria-describedby="basic-addon1" formControlName="rol1_id">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">V</span>
+                      <input type="text" class="form-control" placeholder="DNI VicePresidente" aria-label="rol2_id" aria-describedby="basic-addon1" formControlName="rol2_id">
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">S</span>
+                      <input type="text" class="form-control" placeholder="DNI Secretario" aria-label="rol3_id" aria-describedby="basic-addon1" formControlName="rol3_id">
+                    </div>
                   </div>
                 </div>
+                <button type="submit" class="btn btn-primary" (click)="openModal(confirmModal)"[disabled]="!areCamposCompletos()">Registrar Lista</button>
               </div>
-              <button type="Submit" class="btn btn-primary" [disabled]="!areCamposCompletos()">Aceptar</button>
-            </div>
             </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-<div *ngIf="showRoles">
-<div class="exit position-absolute top-0 end-0">
-  <div class="exit">
-    <button class="btn btn-secondary" (click)="exit()">Salir</button>
-  </div>
-</div>
-<div class="centered">
-  <div class="collapsed">
-    <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Carga</button>
-    <hr>
-    <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-      <div class="container">
-        
-        <h3>Roles:</h3>
-        <form [formGroup]="loadRol" (ngSubmit)="loadRols()">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ID</th>
-              <th>Rol</th>
-              <th>DNI</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let rol of roles; let i = index">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>{{rol.id}}</td>
-              <td>{{ rol.description }}</td>
-              <td>
-                <input type="text" class="form-control" placeholder="DNI del alumno" aria-label="candidate_id" aria-describedby="basic-addon1" [formControlName]="'candidate_id' +rol.id">
-              </td>
-            </tr>
-          </tbody> <div class="button">
-            <button type="submit" class="btn btn-success" (click)="openModal(confirmModal)">Registrar Lista</button></div>
-        </table>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+
+       
+
 <ng-template #confirmModal>
   <div class="modal-header">
     <h4 class="modal-title">¿Qué deseas hacer a continuación?</h4>

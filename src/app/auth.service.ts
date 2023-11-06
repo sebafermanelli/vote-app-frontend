@@ -71,10 +71,13 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/elections/`, body, { headers: header });
   }
-  loadList(election_id: string | null, description: string) {
+  loadList(election_id: string | null, description: string,rol1_id:string,rol2_id:string,rol3_id:string) {
     const body = {
       election_id: election_id,
       description: description,
+      rol1_id:rol1_id,
+      rol2_id:rol2_id,
+      rol3_id:rol3_id
     };
     const token = this.getToken();
     const header = new HttpHeaders({
@@ -93,16 +96,7 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/delegations`, body, { headers: header });
   }
-  loadRoles(description: string) {
-    const body = {
-    description: description,
-    };
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.post(`${this.URL}/roles`, body, { headers: header });
-  }
+  
 
   loadStudent(
     id: string,
@@ -128,14 +122,7 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/users/`, body, { headers: header });
   }
-  getroles() {
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<any>(`${this.URL}/roles`, { headers: header });
-  }
+  
 
   getAdmin() {
     return this.http.get(`${this.URL}/admin`);
