@@ -1,9 +1,8 @@
 export class vote{
     id:string;
     description:string;
-    startActive:boolean;
-    finishActive:boolean;
-    resultActive:boolean;
+    total_votes:number;
+    finalizated:boolean;
   }
   
   

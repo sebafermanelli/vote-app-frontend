@@ -4,7 +4,6 @@
         <th scope="col">ID</th>
         <th scope="col">Descripción</th>
         <th scope="col">Ver Listas</th>
-        <th scope="col">Inicar</th>
         <th scope="col">Finalizar</th>
         <th scope="col">Ver Resultados</th>
         <th scope="col">Eliminar</th>
@@ -15,9 +14,8 @@
         <th scope="row">{{vote.id}}</th>
         <td>{{vote.description}}</td>
         <td><button class="btn btn-secondary" (click)="seeList(vote.id)">Ver Listas</button></td>
-        <td><button class="btn btn-info" [disabled]="vote.startActive" (click)="start(vote)">Iniciar</button></td>
-        <td><button class="btn btn-warning" [disabled]="!vote.finishActive" (click)="finish(vote)">Finalizar</button></td>
-        <td><button class="btn btn-success" [disabled]="!vote.resultActive" (click)="count(vote)">Ver Resultados</button></td>
+        <td><button class="btn btn-warning" [disabled]="vote.finalizated" (click)="finish(vote.id)">Finalizar</button></td>
+        <td><button class="btn btn-success" [disabled]="!vote.finalizated" (click)="count(vote)">Ver Resultados</button></td>
         <td><button class="btn btn-danger" (click)="openModal(confirmModal,vote.id)">X <i class="fa fa-trash"></i></button></td>
       </tr>
     </tbody>

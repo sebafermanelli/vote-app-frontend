@@ -18,7 +18,7 @@ export class ManageVotingComponent {
   message?: string;
   showModal = false;
   selectid:string | null;
-  vot:any=[]
+  
   
   constructor(
     private route: Router,
@@ -33,7 +33,6 @@ this.loadElections();
     this.authservice.getElections().subscribe(
       response => {
         this.voting=response.results
-        console.log('aaaaaaaaaa',this.voting)
       })}
  
 
@@ -62,18 +61,17 @@ reload():void{
 
 }
 
-
-  start(vote:any){
-    vote.startActive=true;
-    vote.finishActive=true;
-  }
   finish(vote:any){
-    vote.startActive=true;
-    vote.finishActive=false;
-    vote.resultActive=true;
+    this.authservice.finalizated(vote).subscribe();
+    
+  
+
+
   }
   count(vote:any){
-    this.route.navigate(['voting-interface'])
+    if(vote.finalizated=true){
+      this.route.navigate(['voting-interface',vote.id])
+    }
   }
 
 

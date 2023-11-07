@@ -47,13 +47,12 @@ export class UserComponent implements OnInit{
 
               ngOnInit(): void {
                 this.userDNI = this.authService.getAdmin_id();
-                if (this.userDNI !== null) {  // ATENTO HAY ERROR DE AUTORIZACION
+                if (this.userDNI !== null) {  
                   this.authService.getOneStudent(this.userDNI).subscribe((userData) => {
-                    console.log('aaaaaaaaaaaa',userData)
                     
                       this.completeName = userData.results.name +' '+ userData.results.last_name
                     
-                  });// HASTA ACA
+                  });
                 }
                 this.activatedRoute.paramMap.subscribe((params) => {
                   this.id = params.get('id') || '';

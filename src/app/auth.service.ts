@@ -259,7 +259,21 @@ loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
     {headers: header});
   }
 
+  finalizated(id:string){
+    
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return  this.http.put(`${this.URL}/elections/${id}/finalize`, {},{headers: header});
+  }
 
-  
+  getElectionDelegation(id:string){
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return  this.http.get<any>(`${this.URL}/elections/${id}/delegation`, {headers: header});
+  }
 
 }
