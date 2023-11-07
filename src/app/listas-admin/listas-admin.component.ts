@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 
+
 @Component({
   selector: 'app-listas-admin',
   templateUrl: './listas-admin.component.html',
@@ -17,7 +18,7 @@ export class ListasAdminComponent {
   name:string;
   selectid:string | null;
   members: any=[]
-
+  
   UserComponent: any;
   constructor(
     private route: Router, 
@@ -28,8 +29,9 @@ export class ListasAdminComponent {
 
 ngOnInit(){
   this.loadlist();
-
 }
+
+
 loadlist(){
   this.activatedRoute.paramMap.subscribe(params => {
     this.id = params.get('id') || '';
@@ -39,6 +41,8 @@ loadlist(){
   response => {
     this.members=response.results;
     console.log(response)
+    
+   
   })
 });
 }

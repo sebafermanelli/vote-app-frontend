@@ -5,6 +5,7 @@ import { AuthService } from "../auth.service";
 import { response } from "express";
 
 
+
 @Component({
     selector: "app-voting-interface",
     templateUrl: "./voting-interface.component.html",
@@ -12,9 +13,15 @@ import { response } from "express";
 })
 export class VotingInterfaceComponent implements OnInit {
     public chart: any;
+    id_list:string;
     id:string;
     delegation:any=[];
     lists: any = [];
+    completeName1='';
+    completeName2='';
+    completeName3='';
+    descriptionList='';
+    electionName='';
 
     constructor(private router: Router, private authService: AuthService,private activatedRoute: ActivatedRoute,) {}
 
@@ -24,6 +31,21 @@ export class VotingInterfaceComponent implements OnInit {
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
         this.getListCharts();
+        this.authService.getOneStudent(this.delegation.rol1_id).subscribe((userData) => {
+            this.completeName1 = userData.results.name +' '+ userData.results.last_name
+        });
+        this.authService.getOneStudent(this.delegation.rol2_id).subscribe((userData) => {
+            this.completeName2 = userData.results.name +' '+ userData.results.last_name
+        });
+        this.authService.getOneStudent(this.delegation.rol3_id).subscribe((userData) => {
+            this.completeName3 = userData.results.name +' '+ userData.results.last_name
+        });
+        this.authService.getOneElection(this.id).subscribe((userData)=>{
+            this.electionName=userData.results.description
+        })
+        
+
+
         });});
         
     }
@@ -31,13 +53,21 @@ export class VotingInterfaceComponent implements OnInit {
     getListCharts(){
             this.authService.getListbyElection(this.id).subscribe((response)=>{
             this.lists = response.results
-            console.log('dentro del metodo',this.lists);
+            const listWithMaxVotes: any = this.lists.reduce((maxList:any, currentList:any) => {
+                return currentList.votes > maxList.votes ? currentList : maxList;
+            }, this.lists[0]); 
+            if (listWithMaxVotes) {
+                this.id_list = listWithMaxVotes.id;
+                this.authService.getOneList(this.id_list).subscribe((userData)=>{
+                this.descriptionList=userData.results.description
+                })
+            }
             this.createChart();
         })
+        
     }
 
     createChart() {
-        console.log('222', this.lists  )
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {

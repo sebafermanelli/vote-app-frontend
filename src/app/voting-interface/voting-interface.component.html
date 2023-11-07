@@ -1,4 +1,4 @@
-<h1 id="titulo-recuento">Recuento de Votación</h1>
+<h1 id="titulo-recuento">Recuento de la Elección: <span class="important-text">{{ electionName }}</span></h1>
     <div class="container">
         <div class="donut">
             <div class="title-graph">Gráfico de Votos</div>
@@ -10,13 +10,12 @@
             <div class="card-content">
                 <h5 class="card-title">Ganador</h5>
                 <ul class="list-unstyled">
-                    <li>Lista N°: 1</li>
-                    <li>Nombre Lista: Lista A</li>
-                    <li>{{delegation.rol1_id}}</li>
-                    <li>{{delegation.rol2_id}}</li>
-                    <li>{{delegation.rol3_id}}</li>
+                    <li>Lista N°: <span class="important-text">{{ id_list }}</span></li>
+                    <li>Nombre de la Lista: <span class="important-text">{{ descriptionList }}</span></li>
+                    <li><span class="important-text">{{ completeName1 }}</span></li>
+                    <li><span class="important-text">{{ completeName2 }}</span></li>
+                    <li><span class="important-text">{{ completeName3 }}</span></li>
                 </ul>
-                <p><small>Última actualización hace 3 minutos</small></p>
             </div>
         </div>
         <div class="exit position-absolute top-0 end-0">
