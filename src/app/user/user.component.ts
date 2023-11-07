@@ -33,11 +33,8 @@ export class UserComponent implements OnInit{
   messageModalRef?: BsModalRef;
   voto: vote = {election_id: '',
                 list_id:''}
-  completeName:person={
-    id:'',
-    name:'',
-    last_name:''
-  }
+  completeName=''
+  
 
   
 
@@ -51,10 +48,11 @@ export class UserComponent implements OnInit{
               ngOnInit(): void {
                 this.userDNI = this.authService.getAdmin_id();
                 if (this.userDNI !== null) {  // ATENTO HAY ERROR DE AUTORIZACION
-                  this.authService.getStudent().subscribe((userData: person) => {
-                    if(this.userDNI==userData.id){
-                      this.completeName = userData;
-                    }
+                  this.authService.getOneStudent(this.userDNI).subscribe((userData) => {
+                    console.log('aaaaaaaaaaaa',userData)
+                    
+                      this.completeName = userData.results.name +' '+ userData.results.last_name
+                    
                   });// HASTA ACA
                 }
                 this.activatedRoute.paramMap.subscribe((params) => {
