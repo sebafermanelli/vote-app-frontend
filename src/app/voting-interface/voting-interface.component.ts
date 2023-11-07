@@ -23,9 +23,9 @@ export class VotingInterfaceComponent implements OnInit {
         this.id=params.get('id')||'';
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
-            this.createChart();
-        });});
         this.getListCharts();
+        });});
+        
     }
     
     getListCharts(){
@@ -41,7 +41,7 @@ export class VotingInterfaceComponent implements OnInit {
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {
-                labels:this.lists.map((list:any) => list.description),
+                labels: this.lists.map((list:any) => list.description),
                 datasets: [{
                     label:'Cantidad de Votos',
                     data: this.lists.map((list:any) => list.votes),
@@ -65,12 +65,7 @@ export class VotingInterfaceComponent implements OnInit {
             }
         });
     }
-
-
-
-
-
-    exit() {
+   exit() {
         this.router.navigate(['admin']);
     }
 }
