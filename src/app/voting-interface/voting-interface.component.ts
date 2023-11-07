@@ -18,32 +18,37 @@ export class VotingInterfaceComponent implements OnInit {
 
     constructor(private router: Router, private authService: AuthService,private activatedRoute: ActivatedRoute,) {}
 
-    ngOnInit(): void {
-        this.createChart();
+    ngOnInit() {
         this.activatedRoute.paramMap.subscribe((params)=>{
         this.id=params.get('id')||'';
-        console.log(this.id);
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
         });});
-        this.getLists(); 
+        this.getListCharts();
     }
     
+    getListCharts(){
+            this.authService.getListbyElection(this.id).subscribe((response)=>{
+            this.lists = response.results
+            console.log('dentro del metodo',this.lists);
+            this.createChart();
+        })
+    }
 
     createChart() {
         console.log(this.lists)
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Pink', 'Green', 'Yellow', 'Orange', 'Blue','Juan',''],
+                labels:this.lists.map((list:any) => list.description),
                 datasets: [{
-                    label: 'Cantidad de votos',
-                    data: [600, 50, 100, 432, 253, 34,8000],
+                    label:'Cantidad de Votos',
+                    data: this.lists.map((list:any) => list.votes),
                     backgroundColor: [
                         'red',
-                        'pink',
                         'green',
-                        'yellow',
+                        'white',
+                        'black',
                         'orange',
                         'blue',
                         'black',
@@ -58,11 +63,7 @@ export class VotingInterfaceComponent implements OnInit {
         });
     }
 
-    getLists(){
-        this.authService.getListbyElection(this.id).subscribe((response)=>{
-            this.lists = response.results
-        })
-    }
+
 
 
 
