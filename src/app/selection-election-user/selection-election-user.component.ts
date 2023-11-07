@@ -14,17 +14,15 @@ export class SelectionElectionUserComponent {
 
   ngOnInit(){
     this.loadElections();
-    
+     
      }
-      loadElections(){
-        this.authservice.getElections().subscribe(
-          response => {
-            this.voting=response.results
-          }
-    
-        )
-    
-      }
+     loadElections() {
+      this.authservice.getElections().subscribe(
+        response => {
+          this.voting = response.results.filter((vt:any) => !this.voting.finalizated);
+        }
+      );
+    }
 
   seeList(id: string) {
     this.route.navigate(['user', id]);

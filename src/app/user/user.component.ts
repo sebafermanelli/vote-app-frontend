@@ -55,10 +55,9 @@ export class UserComponent implements OnInit {
       console.log(this.id);
       this.authservice.getListbyElection(this.id).subscribe((response) => {
         this.members = response.results;
-        console.log(this.members.rol1_id)
-        this.getNameRoles(this.members.rol1_id,this.members.rol2_id,this.members.rol3_id);
-        console.log(response);
-      });
+        this.members.forEach ((per:any) => {
+        this.getNameRoles(per.rol1_id,per.rol2_id,per.rol3_id);
+      });});
     });
   }
   getName() {
@@ -72,18 +71,20 @@ export class UserComponent implements OnInit {
   }
   getNameRoles(rol1:string,rol2:string,rol3:string){
     console.log(rol1,rol2,rol3)
+    
     this.authService.getOneStudent(rol1).subscribe((userData) => {
-        this.completeNameRole1 =
-          userData.results.name + ' ' + userData.results.last_name;
+      this.completeNameRole1.name =userData.results.name
+      this.completeNameRole1.last_name= userData.results.last_name;
       });
       this.authService.getOneStudent(rol2).subscribe((userData) => {
-        this.completeNameRole1 =
-          userData.results.name + ' ' + userData.results.last_name;
+        this.completeNameRole2.name =userData.results.name
+        this.completeNameRole2.last_name= userData.results.last_name;
       });
       this.authService.getOneStudent(rol3).subscribe((userData) => {
-        this.completeNameRole3 =
-          userData.results.name + ' ' + userData.results.last_name;
+        this.completeNameRole3.name =userData.results.name
+        this.completeNameRole3.last_name= userData.results.last_name;
       });
+      console.log(this.completeNameRole1)
   }
 
   selectMembers(miembro: any) {
