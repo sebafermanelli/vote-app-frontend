@@ -19,35 +19,43 @@ export class VotingInterfaceComponent implements OnInit {
     constructor(private router: Router, private authService: AuthService,private activatedRoute: ActivatedRoute,) {}
 
     ngOnInit(): void {
-        this.createChart();
+        
         this.activatedRoute.paramMap.subscribe((params)=>{
         this.id=params.get('id')||'';
         console.log(this.id);
+
+        this.authService.getListbyElection(this.id).subscribe((response)=>{
+            this.lists = response.results
+            console.log('list',this.lists)    
+        })
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
+            this.createChart();
         });});
-        this.getLists(); 
+        
     }
     
 
     createChart() {
-        console.log(this.lists)
+        console.log('222', this.lists  )
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Pink', 'Green', 'Yellow', 'Orange', 'Blue','Juan',''],
+                labels: this.lists.map((list:any) => list.description),
                 datasets: [{
                     label: 'Cantidad de votos',
-                    data: [600, 50, 100, 432, 253, 34,8000],
+                    data: this.lists.map((list:any) => list.votes),
                     backgroundColor: [
                         'red',
-                        'pink',
+                        'grey',
                         'green',
                         'yellow',
                         'orange',
                         'blue',
                         'black',
                         'white',
+                        'purple',
+                        'prink'
                     ],
                     hoverOffset: 4
                 }],
@@ -58,12 +66,15 @@ export class VotingInterfaceComponent implements OnInit {
         });
     }
 
-    getLists(){
+  /*   getLists(){
         this.authService.getListbyElection(this.id).subscribe((response)=>{
             this.lists = response.results
+            console.log('list',this.lists)
+            return this.lists
+            
         })
     }
-
+ */
 
 
     exit() {
