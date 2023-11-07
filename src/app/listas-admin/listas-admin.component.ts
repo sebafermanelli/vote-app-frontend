@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
 export class ListasAdminComponent {
 
   @Output() memberSeleccionado = new EventEmitter<number>(); 
-
+  description_election:string;
   list:string;
   id:string;
   name:string;
@@ -35,7 +35,8 @@ ngOnInit(){
 loadlist(){
   this.activatedRoute.paramMap.subscribe(params => {
     this.id = params.get('id') || '';
-    console.log(this.id)
+    this.authservice.getOneElection(this.id).subscribe((userData)=>
+    { this.description_election=userData.results.description})
   this.authservice.getListbyElection(this.id)
   .subscribe(
   response => {

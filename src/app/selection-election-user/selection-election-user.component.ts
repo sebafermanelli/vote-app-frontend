@@ -10,18 +10,28 @@ import { AuthService } from '../auth.service';
 })
 export class SelectionElectionUserComponent {
   voting: any=[]
+  p:any=[];
+  user_id:string|null;
   constructor(private route: Router,private authservice:AuthService ) {}
 
   ngOnInit(){
     this.loadElections();
-     
+     this.user_id=this.authservice.getAdmin_id();
      }
      loadElections() {
       this.authservice.getElections().subscribe(
         response => {
-          this.voting = response.results.filter((vt:any) => !this.voting.finalizated);
+          this.voting = response.results.filter((vt:any) => !vt.finalizated);
+          if(this.user_id!==null){
+            this.authservice.getNotVotedYet(this.user_id).subscribe(
+              response=>{
+                this.p=response.results;
+              }
+            );
+          }
         }
       );
+      console.log(this.p)
     }
 
   seeList(id: string) {

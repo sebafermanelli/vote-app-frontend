@@ -167,6 +167,13 @@ export class AuthService {
     });
     return this.http.get<any>(`${this.URL}/elections/${id}`, { headers: header });
   }
+  getNotVotedYet(user_id:string){
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.URL}/electionusers/${user_id}/notvotedyet`, { headers: header });
+  }
   
   deleteStudents(id: string|null) {
     const token = this.getToken();
