@@ -23,6 +23,7 @@ export class VotingInterfaceComponent implements OnInit {
         this.id=params.get('id')||'';
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
+            this.createChart();
         });});
         this.getListCharts();
     }
@@ -36,7 +37,7 @@ export class VotingInterfaceComponent implements OnInit {
     }
 
     createChart() {
-        console.log(this.lists)
+        console.log('222', this.lists  )
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {
@@ -53,6 +54,8 @@ export class VotingInterfaceComponent implements OnInit {
                         'blue',
                         'black',
                         'white',
+                        'purple',
+                        'prink'
                     ],
                     hoverOffset: 4
                 }],
