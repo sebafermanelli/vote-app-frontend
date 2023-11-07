@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router,ActivatedRoute } from "@angular/router";
 import { Chart } from "chart.js/auto";
 import { AuthService } from "../auth.service";
+import { response } from "express";
 
 
 @Component({
@@ -12,7 +13,8 @@ import { AuthService } from "../auth.service";
 export class VotingInterfaceComponent implements OnInit {
     public chart: any;
     id:string;
-    delegation:any=[]
+    delegation:any=[];
+    lists: any = [];
 
     constructor(private router: Router, private authService: AuthService,private activatedRoute: ActivatedRoute,) {}
 
@@ -23,11 +25,13 @@ export class VotingInterfaceComponent implements OnInit {
         console.log(this.id);
         this.authService.getElectionDelegation(this.id).subscribe((response)=>{
             this.delegation=response.results;
-            console.log(response)
         });});
+        this.getLists(); 
     }
+    
 
     createChart() {
+        console.log(this.lists)
         this.chart = new Chart("MyChart", {
             type: 'doughnut',
             data: {
@@ -53,6 +57,13 @@ export class VotingInterfaceComponent implements OnInit {
             }
         });
     }
+
+    getLists(){
+        this.authService.getListbyElection(this.id).subscribe((response)=>{
+            this.lists = response.results
+        })
+    }
+
 
 
     exit() {

@@ -239,6 +239,7 @@ loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
     return this.http.get<any>(`${this.URL}/lists`, {headers: header});
   }
 
+
   loadElectionUser(id: string){
     const body={};
     const token = this.getToken();
