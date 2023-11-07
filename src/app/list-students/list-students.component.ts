@@ -46,7 +46,7 @@ openModal(template:TemplateRef<any>,id:string){
 
   
 
-  volver(){
+  volver(){ 
     this.route.navigate(['admin']);
 }
   deleteStudent(dni: string | null) {

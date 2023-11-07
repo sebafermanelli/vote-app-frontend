@@ -33,7 +33,7 @@ this.loadElections();
     this.authservice.getElections().subscribe(
       response => {
         this.voting=response.results
-
+        console.log('aaaaaaaaaa',this.voting)
       })}
  
 

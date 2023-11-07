@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -143,6 +144,8 @@ export class AuthService {
 
     return this.http.get<any>(`${this.URL}/users`, { headers: header });
   }
+  
+  
   deleteStudents(id: string|null) {
     const token = this.getToken();
     const header = new HttpHeaders({
@@ -150,6 +153,16 @@ export class AuthService {
     });
 
     return this.http.delete<any>(`${this.URL}/users/${id}`, {
+      headers: header,
+    });
+  }
+
+  deleteList(id:string|null){
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<any>(`${this.URL}/lists/${id}`, {
       headers: header,
     });
   }

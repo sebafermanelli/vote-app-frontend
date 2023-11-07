@@ -3,11 +3,11 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { response } from 'express';
-type vote = {
-  election_id: string;
-  list_id: string;
-}
+import { person } from './person';
+import { vote } from './vote';
+
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -20,10 +20,9 @@ export class UserComponent implements OnInit{
   list: string;
   id: string;
   name: string;
-
   members: any = [];
   selectMember: any = null; 
-
+  userDNI:string|null;
   modalRef?: BsModalRef;
   message?: string;
   dni: string = '';
@@ -34,6 +33,11 @@ export class UserComponent implements OnInit{
   messageModalRef?: BsModalRef;
   voto: vote = {election_id: '',
                 list_id:''}
+  completeName:person={
+    id:'',
+    name:'',
+    last_name:''
+  }
 
   
 
@@ -44,16 +48,25 @@ export class UserComponent implements OnInit{
               private activatedRoute: ActivatedRoute, 
               private authservice: AuthService ){}
 
-  ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      this.id = params.get('id') || '';
-      console.log(this.id);
-      this.authservice.getListbyElection(this.id).subscribe((response) => {
-        this.members = response.results;
-        console.log(response);
-      });
-    });
-  }
+              ngOnInit(): void {
+                this.userDNI = this.authService.getAdmin_id();
+                if (this.userDNI !== null) {  // ATENTO HAY ERROR DE AUTORIZACION
+                  this.authService.getStudent().subscribe((userData: person) => {
+                    if(this.userDNI==userData.id){
+                      this.completeName = userData;
+                    }
+                  });// HASTA ACA
+                }
+                this.activatedRoute.paramMap.subscribe((params) => {
+                  this.id = params.get('id') || '';
+                  console.log(this.id);
+                  this.authservice.getListbyElection(this.id).subscribe((response) => {
+                    this.members = response.results;
+                    console.log(response);
+                  });
+                });
+              }
+              
 
   selectMembers(miembro: any) {
     if (this.selectMember) {
@@ -76,7 +89,6 @@ export class UserComponent implements OnInit{
       this.voto.list_id = String(this.selectMember.id)
       console.log(this.voto)
     this.authService.loadVote(this.voto ).subscribe(response => {
-
       console.log(response)
     }) 
   }
