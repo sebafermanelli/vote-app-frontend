@@ -2,10 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
-
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -30,9 +26,22 @@ export class AuthService {
     };
     return this.http.put<string>(`${this.URL}/users/${id}/code`, dni);
   }
+  setCode(code:string){
+    localStorage.setItem('code',code)
+
+  }
+  getCode():string|null{
+
+    return localStorage.getItem('code')
+  }
+  
   setToken(token: string, admin_id: string): void {
     localStorage.setItem('token', token);
-    localStorage.setItem('id', admin_id);
+    localStorage.setItem('admin_id', admin_id);
+  }
+   setTokenUser(token: string, user_id:string): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user_id', user_id);
   }
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -49,7 +58,7 @@ export class AuthService {
 
   removeToken(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.removeItem('admin_id');
   }
   loginUser(id: string, code: string): Observable<string> {
     const body = {

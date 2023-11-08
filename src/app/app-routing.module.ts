@@ -15,26 +15,28 @@ import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
+import { authGuard } from './guards/auth.guard';
+import { studentauthGuard } from './guards/studentauth.guard';
 
 
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, 
-  { path: 'user/:id', component: UserComponent }, 
-  { path: 'admin', component: AdminComponent}, 
+  { path: 'user/:id', component: UserComponent,canActivate:[studentauthGuard] }, 
+  { path: 'admin', component: AdminComponent, canActivate:[authGuard]}, 
   { path: 'login-admin',component:LoginAdminComponent}, 
-  { path: 'message',component:MessageModalComponent}, 
+  { path: 'message',component:MessageModalComponent,canActivate:[studentauthGuard]}, 
   { path: 'validation',component:ValidationMailComponent}, 
-  { path: 'load-list',component:LoadListComponent}, 
-  { path: 'manage-voting', component:ManageVotingComponent},
-  { path: 'load-student', component:LoadStudentComponent}, 
-  { path: 'create-voting', component:CreateVotingComponent}, 
-  { path: 'voting-interface/:id', component:VotingInterfaceComponent}, 
-  { path: 'list-students', component:ListStudentsComponent}, 
-  { path: 'listas-admin/:id',component:ListasAdminComponent}, 
-  { path: 'load-candidates',component:LoadCandidatesComponent}, 
-  { path: 'selection-election',component:SelectionElectionUserComponent}, 
+  { path: 'load-list',component:LoadListComponent,canActivate:[authGuard]}, 
+  { path: 'manage-voting', component:ManageVotingComponent,canActivate:[authGuard]},
+  { path: 'load-student', component:LoadStudentComponent,canActivate:[authGuard]}, 
+  { path: 'create-voting', component:CreateVotingComponent,canActivate:[authGuard]}, 
+  { path: 'voting-interface/:id', component:VotingInterfaceComponent,canActivate:[authGuard]}, 
+  { path: 'list-students', component:ListStudentsComponent,canActivate:[authGuard]}, 
+  { path: 'listas-admin/:id',component:ListasAdminComponent,canActivate:[authGuard]}, 
+  { path: 'load-candidates',component:LoadCandidatesComponent,canActivate:[authGuard]}, 
+  { path: 'selection-election',component:SelectionElectionUserComponent,canActivate:[studentauthGuard]}, 
 
 ];
 

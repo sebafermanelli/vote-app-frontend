@@ -40,10 +40,11 @@ this.codeNumbers=this.fb.group({
       this.codeNumbers.get('number3')?.value + this.codeNumbers.get('number4')?.value +
       this.codeNumbers.get('number5')?.value + this.codeNumbers.get('number6')?.value;
     const dni = this.authService.getId();
+    this.authService.setCode(userValidationCode);
     this.authService.loginUser(dni,userValidationCode).subscribe(
         (response:any)=>{
           if(response){
-            this.authService.setToken(response.accessToken,response.user.id);
+            this.authService.setTokenUser(response.accessToken,response.user.id);
             this.route.navigate(['selection-election']);
           } else {
                 this.showAlert = true;

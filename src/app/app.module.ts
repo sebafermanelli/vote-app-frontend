@@ -28,7 +28,7 @@ import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import {HttpClientModule }  from '@angular/common/http';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
-
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -67,7 +67,8 @@ import { SelectionElectionUserComponent } from './selection-election-user/select
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule
   ],
   exports:[RouterModule],
   providers: [BsModalService],
