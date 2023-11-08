@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
-
 @Component({
   selector: 'app-create-voting',
   templateUrl: './create-voting.component.html',
@@ -21,7 +20,7 @@ export class CreateVotingComponent {
   showModal = false;
   createForm: FormGroup;
   loadElections: FormGroup;
-  student:any=[];
+  student: any = [];
 
   constructor(
     private modalService: BsModalService,
@@ -34,8 +33,6 @@ export class CreateVotingComponent {
       description: ['', Validators.required],
     });
   }
-
- 
 
   exit() {
     this.router.navigate(['admin']);
@@ -51,12 +48,14 @@ export class CreateVotingComponent {
           if (response) {
             this.authservice.setElection_id(response.results.id);
             console.log('Election saved successfully:', response);
-            this.authservice.loadElectionUser(response.results.id).subscribe((response: any) => {
-              console.log(response);
-            },
-            (error) => {
-              console.log(error);
-            });
+            this.authservice.loadElectionUser(response.results.id).subscribe(
+              (response: any) => {
+                console.log(response);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
             this.authservice.loadDelegation(response.results.id).subscribe(
               (response: any) => {
                 console.log(response);
@@ -65,7 +64,7 @@ export class CreateVotingComponent {
                 console.log(error);
               }
             );
-            
+
             this.router.navigate(['load-candidates']);
           } else {
             console.error('Failed to save the election.');
@@ -77,10 +76,6 @@ export class CreateVotingComponent {
       );
     }
   }
-
-  
-
-
 
   areCamposCompletos(): boolean {
     const descriptionControl = this.loadElections.get('description');

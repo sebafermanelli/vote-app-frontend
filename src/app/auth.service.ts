@@ -2,10 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
-
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,14 +11,6 @@ export class AuthService {
   private id: string;
 
   constructor(private http: HttpClient) {}
-
-  loginAdmin(username: string, password: string): Observable<any> {
-    const body = {
-      username: username,
-      password: password,
-    };
-    return this.http.post<string>(`${this.URL}/auth/admin/login`, body);
-  }
 
   emailCode(id: string): Observable<string> {
     const dni = {
@@ -34,22 +22,22 @@ export class AuthService {
     localStorage.setItem('token', token);
     localStorage.setItem('id', admin_id);
   }
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
-  getAdmin_id(): string | null {
-    return localStorage.getItem('id');
-  }
+
   setElection_id(election_id: string): void {
     localStorage.setItem('election_id', election_id);
-  }
-  getElection_id(): string | null {
-    return localStorage.getItem('election_id');
   }
 
   removeToken(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+  }
+
+  loginAdmin(username: string, password: string): Observable<any> {
+    const body = {
+      username: username,
+      password: password,
+    };
+    return this.http.post<string>(`${this.URL}/auth/admin/login`, body);
   }
   loginUser(id: string, code: string): Observable<string> {
     const body = {
@@ -59,9 +47,6 @@ export class AuthService {
     return this.http.post<string>(`${this.URL}/auth/user/login`, body);
   }
 
-  getAuthtenticated() {
-    return this.isAuthenticated;
-  }
   loadElection(admin_id: string | null, description: string) {
     const body = {
       admin_id: admin_id,
@@ -73,13 +58,19 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/elections/`, body, { headers: header });
   }
-  loadList(election_id: string | null, description: string,rol1_id:string,rol2_id:string,rol3_id:string) {
+  loadList(
+    election_id: string | null,
+    description: string,
+    rol1_id: string,
+    rol2_id: string,
+    rol3_id: string
+  ) {
     const body = {
       election_id: election_id,
       description: description,
-      rol1_id:rol1_id,
-      rol2_id:rol2_id,
-      rol3_id:rol3_id
+      rol1_id: rol1_id,
+      rol2_id: rol2_id,
+      rol3_id: rol3_id,
     };
     const token = this.getToken();
     const header = new HttpHeaders({
@@ -98,7 +89,6 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/delegations`, body, { headers: header });
   }
-  
 
   loadStudent(
     id: string,
@@ -124,103 +114,27 @@ export class AuthService {
     });
     return this.http.post(`${this.URL}/users/`, body, { headers: header });
   }
-  
 
-  getAdmin() {
-    return this.http.get(`${this.URL}/admin`);
-  }
-
-  setId(id: string): void {
-    this.id = id;
-  }
-
-  getId(): string {
-    return this.id;
-  }
-  getStudent() {
+  loadListRoles(
+    order: number,
+    list_id: string,
+    role_id: string,
+    candidate_id: string
+  ) {
+    const body = {
+      order: order,
+      list_id: list_id,
+      role_id: role_id,
+      candidate_id: candidate_id,
+    };
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<any>(`${this.URL}/users`, { headers: header });
-  }
-  getOneStudent(id:string){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<any>(`${this.URL}/users/${id}`, { headers: header });
-  }
-  getOneList(id:string){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>(`${this.URL}/lists/${id}`, { headers: header });
-  }
-  getOneElection(id:string){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>(`${this.URL}/elections/${id}`, { headers: header });
-  }
-  getNotVotedYet(user_id:string){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>(`${this.URL}/electionusers/${user_id}/notvotedyet`, { headers: header });
-  }
-  
-  deleteStudents(id: string|null) {
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.delete<any>(`${this.URL}/users/${id}`, {
-      headers: header,
-    });
-  }
-
-  deleteList(id:string|null){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.delete<any>(`${this.URL}/lists/${id}`, {
-      headers: header,
-    });
-  }
-
-deleteElections(id:string |null){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-      return this.http.delete<any>(`${this.URL}/elections/${id}`, {
-      headers: header,
-    });
-
-}
-loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
-  const body={ 
-    order:order, 
-    list_id:list_id,
-    role_id:role_id,
-    candidate_id:candidate_id
-  }
-  const token = this.getToken();
-  const header = new HttpHeaders({
-  Authorization: `Bearer ${token}`,
     });
     return this.http.post<any>(`${this.URL}/listroles`, body, {
       headers: header,
     });
-}
+  }
 
   loadCandidates(user_id: string) {
     const body = {
@@ -235,8 +149,91 @@ loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
     });
   }
 
+  loadElectionUser(id: string) {
+    const body = {};
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.post(`${this.URL}/electionusers/${id}/generate`, body, {
+      headers: header,
+    });
+  }
+  loadVote(vote: any) {
+    const body = vote;
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(
+      `${this.URL}/electionusers/${this.getAdmin_id()}/vote`,
+      body,
+      { headers: header }
+    );
+  }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+  getAdmin_id(): string | null {
+    return localStorage.getItem('id');
+  }
+  getElection_id(): string | null {
+    return localStorage.getItem('election_id');
+  }
 
-  
+  getAuthtenticated() {
+    return this.isAuthenticated;
+  }
+
+  getAdmin() {
+    return this.http.get(`${this.URL}/admin`);
+  }
+  getId(): string {
+    return this.id;
+  }
+  getStudent() {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(`${this.URL}/users`, { headers: header });
+  }
+  getOneStudent(id: string) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(`${this.URL}/users/${id}`, { headers: header });
+  }
+  getOneList(id: string) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.URL}/lists/${id}`, { headers: header });
+  }
+  getOneElection(id: string) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.URL}/elections/${id}`, {
+      headers: header,
+    });
+  }
+  getNotVotedYet(user_id: string) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(
+      `${this.URL}/electionusers/${user_id}/notvotedyet`,
+      { headers: header }
+    );
+  }
+
   getElections() {
     const token = this.getToken();
     const header = new HttpHeaders({
@@ -245,57 +242,77 @@ loadListRoles(order:number,list_id:string,role_id:string,candidate_id:string){
     return this.http.get<any>(`${this.URL}/elections`, { headers: header });
   }
 
-  getListbyElection(id:string){
-    const token = this.getToken();
-    const header = new HttpHeaders({
-          Authorization: `Bearer ${token}`,
-        });     return this.http.get<any>(`${this.URL}/elections/${id}/lists`, { headers: header });
-    }
-
-  getList(){
+  getListbyElection(id: string) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`${this.URL}/lists`, {headers: header});
+    return this.http.get<any>(`${this.URL}/elections/${id}/lists`, {
+      headers: header,
+    });
   }
 
-
-  loadElectionUser(id: string){
-    const body={};
+  getList() {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return  this.http.post(`${this.URL}/electionusers/${id}/generate`,body, {headers: header});
+    return this.http.get<any>(`${this.URL}/lists`, { headers: header });
   }
 
-
-  loadVote(vote:any){
-    const body = vote
-    const token = this.getToken();
-    const header = new HttpHeaders({
-    Authorization: `Bearer ${token}`, 
-    });
-    return this.http.put(`${this.URL}/electionusers/${this.getAdmin_id()}/vote`, body,
-    {headers: header});
-  }
-
-  finalizated(id:string){
-    
+  getElectionDelegation(id: string) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return  this.http.put(`${this.URL}/elections/${id}/finalize`, {},{headers: header});
+    return this.http.get<any>(`${this.URL}/elections/${id}/delegation`, {
+      headers: header,
+    });
   }
 
-  getElectionDelegation(id:string){
+  finalizated(id: string) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return  this.http.get<any>(`${this.URL}/elections/${id}/delegation`, {headers: header});
+    return this.http.put(
+      `${this.URL}/elections/${id}/finalize`,
+      {},
+      { headers: header }
+    );
+  }
+  setId(id: string): void {
+    this.id = id;
   }
 
+  deleteStudents(id: string | null) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.delete<any>(`${this.URL}/users/${id}`, {
+      headers: header,
+    });
+  }
+
+  deleteList(id: string | null) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<any>(`${this.URL}/lists/${id}`, {
+      headers: header,
+    });
+  }
+
+  deleteElections(id: string | null) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<any>(`${this.URL}/elections/${id}`, {
+      headers: header,
+    });
+  }
 }

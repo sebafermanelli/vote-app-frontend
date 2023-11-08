@@ -8,12 +8,12 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  admin: any; 
-  id:string|null;
+  admin: any;
+  id: string | null;
 
   constructor(private router: Router, private authService: AuthService) {
     this.admin = this.authService.getAdmin();
-    this.id=this.authService.getAdmin_id();
+    this.id = this.authService.getAdmin_id();
   }
 
   ngOnInit() {}
@@ -26,17 +26,16 @@ export class AdminComponent implements OnInit {
   loadlist() {
     this.router.navigate(['load-list']);
   }
-  manageList(){
-    this.router.navigate(['manage-voting'])
+  manageList() {
+    this.router.navigate(['manage-voting']);
   }
-  loadStudent(){
-    this.router.navigate(['load-student'])
+  loadStudent() {
+    this.router.navigate(['load-student']);
   }
-  createVoting(){
-    this.router.navigate(['create-voting'])
+  createVoting() {
+    this.router.navigate(['create-voting']);
   }
-  listStudent(){
-    this.router.navigate(['list-students'])
+  listStudent() {
+    this.router.navigate(['list-students']);
   }
- 
 }

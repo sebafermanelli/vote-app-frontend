@@ -64,7 +64,7 @@ export class LoadStudentComponent {
         );
     }
   }
- 
+
   exit() {
     this.router.navigate(['admin']);
   }

@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../shared/data.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { vote } from './vote';
 
@@ -36,23 +35,22 @@ export class UserComponent implements OnInit {
   voto: vote = { election_id: '', list_id: '' };
   completeName = '';
   nombresPersonasListas: {
-    createdAt:string;
-    description:string;
-    election_id:number;
-    id:number;
+    createdAt: string;
+    description: string;
+    election_id: number;
+    id: number;
     nombre1: string;
     nombre2: string;
     nombre3: string;
-    rol1_id:string;
-    rol2_id:string;
-    rol3_id:string;
-    updatedAt:string;
-    votes:number;
+    rol1_id: string;
+    rol2_id: string;
+    rol3_id: string;
+    updatedAt: string;
+    votes: number;
   }[] = [];
 
   constructor(
     private route: Router,
-    private dataService: DataService,
     private authService: AuthService,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
@@ -65,7 +63,7 @@ export class UserComponent implements OnInit {
       this.id = params.get('id') || '';
       this.authservice.getListbyElection(this.id).subscribe((response) => {
         this.members = response.results;
-         this.members.map((list: any) => {
+        this.members.map((list: any) => {
           list = { ...list, nombre1: '', nombre2: '', nombre3: '' };
           this.authService.getOneStudent(list.rol1_id).subscribe((userData) => {
             list.nombre1 =
@@ -80,7 +78,6 @@ export class UserComponent implements OnInit {
               userData.results.name + ' ' + userData.results.last_name;
           });
           this.nombresPersonasListas.push(list);
-         
         });
       });
     });
