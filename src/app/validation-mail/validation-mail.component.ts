@@ -36,6 +36,25 @@ export class ValidationMailComponent {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
+<<<<<<< HEAD
+=======
+  
+  submitForm() {
+    const userValidationCode = this.codeNumbers.get('number1')?.value + this.codeNumbers.get('number2')?.value +
+      this.codeNumbers.get('number3')?.value + this.codeNumbers.get('number4')?.value +
+      this.codeNumbers.get('number5')?.value + this.codeNumbers.get('number6')?.value;
+    const dni = this.authService.getId();
+    this.authService.setCode(userValidationCode);
+    this.authService.loginUser(dni,userValidationCode).subscribe(
+        (response:any)=>{
+          if(response){
+            this.authService.setTokenUser(response.accessToken,response.user.id);
+            this.route.navigate(['selection-election']);
+          } else {
+                this.showAlert = true;
+      this.openModal(this.template);
+          }
+>>>>>>> e940cd7a5c6c2145adbc9cacffa80df87e3cbd6e
 
   submitForm() {
     const userValidationCode =

@@ -18,9 +18,22 @@ export class AuthService {
     };
     return this.http.put<string>(`${this.URL}/users/${id}/code`, dni);
   }
+  setCode(code:string){
+    localStorage.setItem('code',code)
+
+  }
+  getCode():string|null{
+
+    return localStorage.getItem('code')
+  }
+  
   setToken(token: string, admin_id: string): void {
     localStorage.setItem('token', token);
-    localStorage.setItem('id', admin_id);
+    localStorage.setItem('admin_id', admin_id);
+  }
+   setTokenUser(token: string, user_id:string): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user_id', user_id);
   }
 
   setElection_id(election_id: string): void {
@@ -29,7 +42,7 @@ export class AuthService {
 
   removeToken(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.removeItem('admin_id');
   }
 
   loginAdmin(username: string, password: string): Observable<any> {
