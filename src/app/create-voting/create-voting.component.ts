@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Election } from '../models/election';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-create-voting',
@@ -25,7 +26,8 @@ export class CreateVotingComponent {
     private modalService: BsModalService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private ls: BrowserStorageService
   ) {
     this.loadElections = this.formBuilder.group({
       admin_id: [''],
@@ -40,14 +42,14 @@ export class CreateVotingComponent {
   loadlist() {
     this.areCamposCompletos();
     if (this.loadElections.valid) {
-      const  election:Election={
-      admin_id:this.authservice.getAdmin_id(),
-      description:this.loadElections.get('description')?.value 
+      const election: Election = {
+        admin_id: this.ls.getAdminId(),
+        description: this.loadElections.get('description')?.value,
       };
       this.authservice.loadElection(election).subscribe(
         (response: any) => {
           if (response) {
-            this.authservice.setElection_id(response.results.id);
+            this.ls.setElectionId(response.results.id);
             console.log('Election saved successfully:', response);
             this.authservice.loadElectionUser(response.results.id).subscribe(
               (response: any) => {

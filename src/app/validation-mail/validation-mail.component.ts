@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../models/student';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-validation-mail',
@@ -14,7 +15,7 @@ export class ValidationMailComponent {
   codeNumbers: FormGroup;
   modalRef: BsModalRef | undefined = undefined;
   userMail: string;
-  student:Student
+  student: Student;
 
   showAlert: boolean = false;
 
@@ -24,7 +25,8 @@ export class ValidationMailComponent {
     private route: Router,
     private authService: AuthService,
     private modalService: BsModalService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ls: BrowserStorageService
   ) {
     this.codeNumbers = this.fb.group({
       number1: ['', [Validators.required]],
@@ -46,18 +48,16 @@ export class ValidationMailComponent {
       this.codeNumbers.get('number4')?.value +
       this.codeNumbers.get('number5')?.value +
       this.codeNumbers.get('number6')?.value;
-    
-    const student:Student={
-      id:this.authService.getUser_id(),
-      login_code:userValidationCode
-    }
-    console.log(student)
+
+    const student: Student = {
+      id: this.ls.getUserId(),
+      login_code: userValidationCode,
+    };
     this.authService.loginUser(student).subscribe(
       (response: any) => {
         if (response) {
-          console.log(response)
-          this.authService.setTokenUser(response.accessToken, response.user.id);
-          this.authService.setCode(userValidationCode)
+          this.ls.setUser(response.accessToken, response.user.id);
+          this.ls.setCode(userValidationCode);
           this.route.navigate(['selection-election']);
         } else {
           this.showAlert = true;

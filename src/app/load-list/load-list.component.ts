@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
 import { List } from '../models/list';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-load-list',
@@ -18,13 +19,14 @@ export class LoadListComponent {
   message?: string;
   showModal = false;
   showRoles = false;
-  list: List []= [];
+  list: List[] = [];
 
   constructor(
     private modalService: BsModalService,
     private route: Router,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private ls: BrowserStorageService
   ) {
     this.loadList = this.formBuilder.group({
       election_id: [''],
@@ -38,30 +40,28 @@ export class LoadListComponent {
   loadLista() {
     this.areCamposCompletos();
     if (this.loadList.valid) {
-      const list:List={
-       election_id : this.authService.getElection_id(),
-       description : this.loadList.get('description')?.value,
-       rol1_id : this.loadList.get('rol1_id')?.value,
-       rol2_id : this.loadList.get('rol2_id')?.value,
-       rol3_id : this.loadList.get('rol3_id')?.value,
+      const list: List = {
+        election_id: this.ls.getElectionId(),
+        description: this.loadList.get('description')?.value,
+        rol1_id: this.loadList.get('rol1_id')?.value,
+        rol2_id: this.loadList.get('rol2_id')?.value,
+        rol3_id: this.loadList.get('rol3_id')?.value,
       };
-      this.authService
-        .loadList(list)
-        .subscribe(
-          (response: any) => {
-            if (response) {
-              console.log('List saved Successfully: ', response);
-              this.list = response.results;
-              console.log(this.list);
-              this.showRoles = true;
-            } else {
-              console.error('error to save list');
-            }
-          },
-          (error) => {
-            console.error('Error in HTTP request: ', error);
+      this.authService.loadList(list).subscribe(
+        (response: any) => {
+          if (response) {
+            console.log('List saved Successfully: ', response);
+            this.list = response.results;
+            console.log(this.list);
+            this.showRoles = true;
+          } else {
+            console.error('error to save list');
           }
-        );
+        },
+        (error) => {
+          console.error('Error in HTTP request: ', error);
+        }
+      );
     }
   }
 

@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent {
   constructor(
     private route: Router,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ls: BrowserStorageService
   ) {
     setTheme('bs5');
     this.userForm = this.fb.group({
@@ -32,7 +34,7 @@ export class LoginComponent {
   forUser(): void {
     if (this.userForm.valid && this.userForm.get('DNI')) {
       const dni = this.userForm.get('DNI')?.value;
-      this.authService.setTokenUser('', dni);
+      this.ls.setUser('', dni);
       this.authService.emailCode(dni).subscribe(
         (response: string) => {
           if (response) {

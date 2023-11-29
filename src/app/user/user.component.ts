@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { vote } from './vote';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-user',
@@ -54,7 +55,8 @@ export class UserComponent implements OnInit {
     private authService: AuthService,
     private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private ls: BrowserStorageService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class UserComponent implements OnInit {
     });
   }
   getName() {
-    this.userDNI = this.authService.getAdmin_id();
+    this.userDNI = this.ls.getAdminId();
     if (this.userDNI !== null) {
       this.authService.getOneStudent(this.userDNI).subscribe((userData) => {
         this.completeName =

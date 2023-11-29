@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Admin } from '../models/admin';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,18 +10,19 @@ import { Admin } from '../models/admin';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  Admin:any;
-  id:Admin['id']
-
-  constructor(private router: Router, private authService: AuthService) {
-    this.Admin= this.authService.getAdmin(); // que hace este??
-    this.id = this.authService.getAdmin_id();
+  Admin: any;
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private ls: BrowserStorageService
+  ) {
+    this.Admin = this.authService.getAdmin();
   }
 
   ngOnInit() {}
 
   salir() {
-    this.authService.removeToken();
+    this.ls.clear();
     this.router.navigate(['login-admin']);
   }
 

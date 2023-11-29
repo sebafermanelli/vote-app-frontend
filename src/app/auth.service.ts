@@ -6,6 +6,7 @@ import { Student } from './models/student';
 import { Election } from './models/election';
 import { Candidate } from './models/candidate';
 import { List } from './models/list';
+import { BrowserStorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,8 @@ import { List } from './models/list';
 export class AuthService {
   private isAuthenticated = false;
   private URL = 'http://localhost:3000/api';
-  private id: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private ls: BrowserStorageService) {}
 
   emailCode(id: string): Observable<string> {
     const dni = {
@@ -23,31 +23,6 @@ export class AuthService {
     };
     return this.http.put<string>(`${this.URL}/users/${id}/code`, dni);
   }
-  setCode(code: string) {
-    localStorage.setItem('code', code);
-  }
-  getCode(): string | null {
-    return localStorage.getItem('code');
-  }
-
-  setToken(token: string, admin_id: string): void {
-    localStorage.setItem('token', token);
-    localStorage.setItem('admin_id', admin_id);
-  }
-  setTokenUser(token: string, user_id: string): void {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user_id', user_id);
-  }
-
-  setElection_id(election_id: string): void {
-    localStorage.setItem('election_id', election_id);
-  }
-
-  removeToken(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('admin_id');
-  }
-
   loginAdmin(username: string, password: string): Observable<any> {
     const body = {
       username: username,
@@ -60,7 +35,7 @@ export class AuthService {
   }
 
   loadElection(election: Election) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -69,7 +44,7 @@ export class AuthService {
     });
   }
   loadList(list: List) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -80,7 +55,7 @@ export class AuthService {
     const body = {
       election_id: election_id,
     };
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -88,21 +63,13 @@ export class AuthService {
   }
 
   loadStudent(student: Student) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.post(`${this.URL}/users/`, student, { headers: header });
   }
-  editStudent(student: Student) {
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.put(`${this.URL}/users/${student.id}`, student, {
-      headers: header,
-    });
-  }
+
   loadListRoles(
     order: number,
     list_id: string,
@@ -110,12 +77,12 @@ export class AuthService {
     candidate_id: string
   ) {
     const body = {
-      order: order,
-      list_id: list_id,
-      role_id: role_id,
-      candidate_id: candidate_id,
+      order,
+      list_id,
+      role_id,
+      candidate_id,
     };
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -125,7 +92,7 @@ export class AuthService {
   }
 
   loadCandidates(candidate: Candidate) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -136,7 +103,7 @@ export class AuthService {
 
   loadElectionUser(id: string) {
     const body = {};
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -146,55 +113,22 @@ export class AuthService {
   }
   loadVote(vote: any) {
     const body = vote;
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.put(
-      `${this.URL}/electionusers/${this.getUser_id()}/vote`,
+      `${this.URL}/electionusers/${this.ls.getUserId()}/vote`,
       body,
       { headers: header }
     );
   }
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
-  getAdmin_id(): string {
-    const id = localStorage.getItem('admin_id');
-    if (id) {
-      return id;
-    } else {
-      return '';
-    }
-  }
-  getUser_id(): string {
-    const id = localStorage.getItem('user_id');
-    if (id) {
-      return id;
-    } else {
-      return '';
-    }
-  }
-
-  getElection_id(): string {
-    const election_id = localStorage.getItem('election_id');
-    if (election_id) {
-      return election_id;
-    }
-
-    return '';
-  }
-
-  getAuthtenticated() {
-    return this.isAuthenticated;
-  }
-
   getAdmin() {
     return this.http.get(`${this.URL}/admin`);
   }
 
   getStudent(): Observable<Student[]> {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -202,7 +136,7 @@ export class AuthService {
     return this.http.get<Student[]>(`${this.URL}/users`, { headers: header });
   }
   getOneStudent(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -210,14 +144,14 @@ export class AuthService {
     return this.http.get<any>(`${this.URL}/users/${id}`, { headers: header });
   }
   getOneList(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.get<any>(`${this.URL}/lists/${id}`, { headers: header });
   }
   getOneElection(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -226,7 +160,7 @@ export class AuthService {
     });
   }
   getNotVotedYet(user_id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -237,7 +171,7 @@ export class AuthService {
   }
 
   getElections() {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -245,7 +179,7 @@ export class AuthService {
   }
 
   getListbyElection(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -254,7 +188,7 @@ export class AuthService {
     });
   }
   getElectionByStudent(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -264,7 +198,7 @@ export class AuthService {
   }
 
   getList() {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -272,7 +206,7 @@ export class AuthService {
   }
 
   getElectionDelegation(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -282,7 +216,7 @@ export class AuthService {
   }
 
   finalizated(id: string) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -292,12 +226,8 @@ export class AuthService {
       { headers: header }
     );
   }
-  setId(id: string): void {
-    this.id = id;
-  }
-
   deleteStudents(id: string | null) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -308,7 +238,7 @@ export class AuthService {
   }
 
   deleteList(id: string | null) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -318,7 +248,7 @@ export class AuthService {
   }
 
   deleteElections(id: string | null) {
-    const token = this.getToken();
+    const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });

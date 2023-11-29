@@ -7,6 +7,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { BrowserStorageService } from '../storage.service';
 
 @Component({
   selector: 'app-login-admin',
@@ -20,7 +21,8 @@ export class LoginAdminComponent {
   constructor(
     private route: Router,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ls: BrowserStorageService
   ) {
     this.adminForm = this.fb.group({
       userName: ['', [Validators.required]],
@@ -35,7 +37,7 @@ export class LoginAdminComponent {
       this.authService.loginAdmin(username, password).subscribe(
         (response: any) => {
           if (response.accessToken) {
-            this.authService.setToken(response.accessToken, response.admin.id);
+            this.ls.setAdmin(response.accessToken, response.admin.id);
             this.route.navigate(['admin']);
           }
         },
