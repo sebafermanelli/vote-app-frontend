@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Admin } from '../models/admin';
 
 @Component({
   selector: 'app-admin',
@@ -8,11 +9,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  admin: any;
-  id: string | null;
+  Admin:any;
+  id:Admin['id']
 
   constructor(private router: Router, private authService: AuthService) {
-    this.admin = this.authService.getAdmin();
+    this.Admin= this.authService.getAdmin(); // que hace este??
     this.id = this.authService.getAdmin_id();
   }
 

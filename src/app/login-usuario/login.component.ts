@@ -25,14 +25,14 @@ export class LoginComponent {
   ) {
     setTheme('bs5');
     this.userForm = this.fb.group({
-      DNI: ['', Validators.required],
+      DNI: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
     });
   }
 
   forUser(): void {
     if (this.userForm.valid && this.userForm.get('DNI')) {
       const dni = this.userForm.get('DNI')?.value;
-      this.authService.setId(dni);
+      this.authService.setTokenUser('', dni);
       this.authService.emailCode(dni).subscribe(
         (response: string) => {
           if (response) {

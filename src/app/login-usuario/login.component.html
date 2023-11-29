@@ -10,15 +10,18 @@
                 <div>
                     <label for="floatingDNI"></label>
                     <div class="login">
-                        <input 
-                            [class.is-invalid]="userForm.get('DNI')?.touched && userForm.get('DNI')?.errors?.['required']"
-                            type="text"
-                            name="dni"
-                            class="form-control"
-                            id="floatingInput"
-                            placeholder="DNI"
-                            formControlName="DNI"
-                        />
+                    <input type="text" class="form-control" id="DNI" formControlName="DNI" placeholder="DNI"
+                        [class.is-invalid]="userForm.get('DNI')?.touched && userForm.get('DNI')?.invalid"
+                        [class.is-valid]="userForm.get('DNI')?.touched && userForm.get('DNI')?.valid">
+                    
+                    <div *ngIf="userForm.get('DNI')?.touched && userForm.get('DNI')?.hasError('required')"
+                        class="invalid-feedback">
+                        Este campo es obligatorio.
+                    </div>
+                    <div *ngIf="userForm.get('DNI')?.touched && userForm.get('DNI')?.hasError('pattern')"
+                        class="invalid-feedback">
+                        Ingrese un DNI válido.
+                    </div>
                     </div>
                 </div>
                 <div class="button-container">

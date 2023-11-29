@@ -1,6 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Admin } from './models/admin';
+import { Student } from './models/student';
+import { Election } from './models/election';
+import { Candidate } from './models/candidate';
+import { List } from './models/list';
 
 @Injectable({
   providedIn: 'root',
@@ -18,20 +23,18 @@ export class AuthService {
     };
     return this.http.put<string>(`${this.URL}/users/${id}/code`, dni);
   }
-  setCode(code:string){
-    localStorage.setItem('code',code)
-
+  setCode(code: string) {
+    localStorage.setItem('code', code);
   }
-  getCode():string|null{
-
-    return localStorage.getItem('code')
+  getCode(): string | null {
+    return localStorage.getItem('code');
   }
-  
+
   setToken(token: string, admin_id: string): void {
     localStorage.setItem('token', token);
     localStorage.setItem('admin_id', admin_id);
   }
-   setTokenUser(token: string, user_id:string): void {
+  setTokenUser(token: string, user_id: string): void {
     localStorage.setItem('token', token);
     localStorage.setItem('user_id', user_id);
   }
@@ -52,44 +55,25 @@ export class AuthService {
     };
     return this.http.post<string>(`${this.URL}/auth/admin/login`, body);
   }
-  loginUser(id: string, code: string): Observable<string> {
-    const body = {
-      id: id,
-      login_code: code,
-    };
-    return this.http.post<string>(`${this.URL}/auth/user/login`, body);
+  loginUser(student: Student) {
+    return this.http.post<string>(`${this.URL}/auth/user/login`, student);
   }
 
-  loadElection(admin_id: string | null, description: string) {
-    const body = {
-      admin_id: admin_id,
-      description: description,
-    };
+  loadElection(election: Election) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post(`${this.URL}/elections/`, body, { headers: header });
+    return this.http.post(`${this.URL}/elections/`, election, {
+      headers: header,
+    });
   }
-  loadList(
-    election_id: string | null,
-    description: string,
-    rol1_id: string,
-    rol2_id: string,
-    rol3_id: string
-  ) {
-    const body = {
-      election_id: election_id,
-      description: description,
-      rol1_id: rol1_id,
-      rol2_id: rol2_id,
-      rol3_id: rol3_id,
-    };
+  loadList(list: List) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post(`${this.URL}/lists/`, body, { headers: header });
+    return this.http.post(`${this.URL}/lists/`, list, { headers: header });
   }
 
   loadDelegation(election_id: string) {
@@ -103,31 +87,22 @@ export class AuthService {
     return this.http.post(`${this.URL}/delegations`, body, { headers: header });
   }
 
-  loadStudent(
-    id: string,
-    name: string,
-    last_name: string,
-    course: string,
-    address: string,
-    email: string,
-    phone: string
-  ) {
-    const body = {
-      id: id,
-      name: name,
-      last_name: last_name,
-      course: course,
-      address: address,
-      email: email,
-      phone: phone,
-    };
+  loadStudent(student: Student) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post(`${this.URL}/users/`, body, { headers: header });
+    return this.http.post(`${this.URL}/users/`, student, { headers: header });
   }
-
+  editStudent(student: Student) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put(`${this.URL}/users/${student.id}`, student, {
+      headers: header,
+    });
+  }
   loadListRoles(
     order: number,
     list_id: string,
@@ -149,15 +124,12 @@ export class AuthService {
     });
   }
 
-  loadCandidates(user_id: string) {
-    const body = {
-      user_id: user_id,
-    };
+  loadCandidates(candidate: Candidate) {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.post<any>(`${this.URL}/candidates`, body, {
+    return this.http.post<any>(`${this.URL}/candidates`, candidate, {
       headers: header,
     });
   }
@@ -179,7 +151,7 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
     });
     return this.http.put(
-      `${this.URL}/electionusers/${this.getAdmin_id()}/vote`,
+      `${this.URL}/electionusers/${this.getUser_id()}/vote`,
       body,
       { headers: header }
     );
@@ -187,11 +159,30 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
-  getAdmin_id(): string | null {
-    return localStorage.getItem('id');
+  getAdmin_id(): string {
+    const id = localStorage.getItem('admin_id');
+    if (id) {
+      return id;
+    } else {
+      return '';
+    }
   }
-  getElection_id(): string | null {
-    return localStorage.getItem('election_id');
+  getUser_id(): string {
+    const id = localStorage.getItem('user_id');
+    if (id) {
+      return id;
+    } else {
+      return '';
+    }
+  }
+
+  getElection_id(): string {
+    const election_id = localStorage.getItem('election_id');
+    if (election_id) {
+      return election_id;
+    }
+
+    return '';
   }
 
   getAuthtenticated() {
@@ -201,16 +192,14 @@ export class AuthService {
   getAdmin() {
     return this.http.get(`${this.URL}/admin`);
   }
-  getId(): string {
-    return this.id;
-  }
-  getStudent() {
+
+  getStudent(): Observable<Student[]> {
     const token = this.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
 
-    return this.http.get<any>(`${this.URL}/users`, { headers: header });
+    return this.http.get<Student[]>(`${this.URL}/users`, { headers: header });
   }
   getOneStudent(id: string) {
     const token = this.getToken();
@@ -261,6 +250,15 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
     });
     return this.http.get<any>(`${this.URL}/elections/${id}/lists`, {
+      headers: header,
+    });
+  }
+  getElectionByStudent(id: string) {
+    const token = this.getToken();
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.URL}/electionusers/${id}`, {
       headers: header,
     });
   }

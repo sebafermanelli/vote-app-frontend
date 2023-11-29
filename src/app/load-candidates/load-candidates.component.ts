@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
+import { Candidate } from '../models/candidate';
 
 @Component({
   selector: 'app-load-candidates',
@@ -30,8 +31,10 @@ export class LoadCandidatesComponent {
 
   submitForm() {
     if (this.loadCandidate.valid) {
-      const dni = this.loadCandidate.get('dni')?.value;
-      this.authservice.loadCandidates(dni).subscribe(
+      const candidate:Candidate={
+      user_id:this.loadCandidate.get('dni')?.value
+      };
+      this.authservice.loadCandidates(candidate).subscribe(
         (response: any) => {
           if (response) {
             this.route.navigate(['load-list']);

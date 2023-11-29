@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
+import { List } from '../models/list';
 
 @Component({
   selector: 'app-load-list',
@@ -17,7 +18,7 @@ export class LoadListComponent {
   message?: string;
   showModal = false;
   showRoles = false;
-  list: any = [];
+  list: List []= [];
 
   constructor(
     private modalService: BsModalService,
@@ -37,13 +38,15 @@ export class LoadListComponent {
   loadLista() {
     this.areCamposCompletos();
     if (this.loadList.valid) {
-      const election_id = this.authService.getElection_id();
-      const description = this.loadList.get('description')?.value;
-      const rol1_id = this.loadList.get('rol1_id')?.value;
-      const rol2_id = this.loadList.get('rol2_id')?.value;
-      const rol3_id = this.loadList.get('rol3_id')?.value;
+      const list:List={
+       election_id : this.authService.getElection_id(),
+       description : this.loadList.get('description')?.value,
+       rol1_id : this.loadList.get('rol1_id')?.value,
+       rol2_id : this.loadList.get('rol2_id')?.value,
+       rol3_id : this.loadList.get('rol3_id')?.value,
+      };
       this.authService
-        .loadList(election_id, description, rol1_id, rol2_id, rol3_id)
+        .loadList(list)
         .subscribe(
           (response: any) => {
             if (response) {

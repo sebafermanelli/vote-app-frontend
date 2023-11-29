@@ -8,6 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Election } from '../models/election';
 
 @Component({
   selector: 'app-create-voting',
@@ -20,8 +21,6 @@ export class CreateVotingComponent {
   showModal = false;
   createForm: FormGroup;
   loadElections: FormGroup;
-  student: any = [];
-
   constructor(
     private modalService: BsModalService,
     private router: Router,
@@ -41,9 +40,11 @@ export class CreateVotingComponent {
   loadlist() {
     this.areCamposCompletos();
     if (this.loadElections.valid) {
-      const admin_id = this.authservice.getAdmin_id();
-      const description = this.loadElections.get('description')?.value;
-      this.authservice.loadElection(admin_id, description).subscribe(
+      const  election:Election={
+      admin_id:this.authservice.getAdmin_id(),
+      description:this.loadElections.get('description')?.value 
+      };
+      this.authservice.loadElection(election).subscribe(
         (response: any) => {
           if (response) {
             this.authservice.setElection_id(response.results.id);

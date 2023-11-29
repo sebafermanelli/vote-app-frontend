@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
+import { Student } from '../models/student';
 
 @Component({
   selector: 'app-load-student',
@@ -14,7 +15,6 @@ export class LoadStudentComponent {
   modalRef?: BsModalRef;
   message?: string;
   showModal = false;
-  selectedFile: File;
   options = [
     { value: '1', label: 'Primero' },
     { value: '2', label: 'Segundo' },
@@ -34,34 +34,37 @@ export class LoadStudentComponent {
       studentLastname: ['', Validators.required],
       studentID: ['', Validators.required],
       studentAddress: ['', Validators.required],
-      studentEmail: ['', Validators.required],
+      studentEmail: [
+        '',
+        [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)],
+      ],
       studentPhone: ['', Validators.required],
       studentCourse: ['', Validators.required],
     });
   }
   load() {
     if (this.loadStudent.valid) {
-      const dni = this.loadStudent.get('studentID')?.value;
-      const name = this.loadStudent.get('studentName')?.value;
-      const lastName = this.loadStudent.get('studentLastname')?.value;
-      const courses = this.loadStudent.get('studentCourse')?.value;
-      const address = this.loadStudent.get('studentAddress')?.value;
-      const email = this.loadStudent.get('studentEmail')?.value;
-      const phone = this.loadStudent.get('studentPhone')?.value;
-      this.authservice
-        .loadStudent(dni, name, lastName, courses, address, email, phone)
-        .subscribe(
-          (response: any) => {
-            if (response) {
-              this.exit();
-            } else {
-              console.error('No paso el post');
-            }
-          },
-          (error) => {
-            console.error(error);
+      const student: Student = {
+        id: this.loadStudent.get('studentID')?.value,
+        name: this.loadStudent.get('studentName')?.value,
+        last_name: this.loadStudent.get('studentLastname')?.value,
+        course: this.loadStudent.get('studentCourse')?.value,
+        address: this.loadStudent.get('studentAddress')?.value,
+        email: this.loadStudent.get('studentEmail')?.value,
+        phone: this.loadStudent.get('studentPhone')?.value,
+      };
+      this.authservice.loadStudent(student).subscribe(
+        (response: any) => {
+          if (response) {
+            this.exit();
+          } else {
+            console.error('No paso el post');
           }
-        );
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
   }
 

@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Student } from '../models/student';
 
 @Component({
   selector: 'app-validation-mail',
@@ -13,6 +14,7 @@ export class ValidationMailComponent {
   codeNumbers: FormGroup;
   modalRef: BsModalRef | undefined = undefined;
   userMail: string;
+  student:Student
 
   showAlert: boolean = false;
 
@@ -36,26 +38,6 @@ export class ValidationMailComponent {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-<<<<<<< HEAD
-=======
-  
-  submitForm() {
-    const userValidationCode = this.codeNumbers.get('number1')?.value + this.codeNumbers.get('number2')?.value +
-      this.codeNumbers.get('number3')?.value + this.codeNumbers.get('number4')?.value +
-      this.codeNumbers.get('number5')?.value + this.codeNumbers.get('number6')?.value;
-    const dni = this.authService.getId();
-    this.authService.setCode(userValidationCode);
-    this.authService.loginUser(dni,userValidationCode).subscribe(
-        (response:any)=>{
-          if(response){
-            this.authService.setTokenUser(response.accessToken,response.user.id);
-            this.route.navigate(['selection-election']);
-          } else {
-                this.showAlert = true;
-      this.openModal(this.template);
-          }
->>>>>>> e940cd7a5c6c2145adbc9cacffa80df87e3cbd6e
-
   submitForm() {
     const userValidationCode =
       this.codeNumbers.get('number1')?.value +
@@ -64,11 +46,18 @@ export class ValidationMailComponent {
       this.codeNumbers.get('number4')?.value +
       this.codeNumbers.get('number5')?.value +
       this.codeNumbers.get('number6')?.value;
-    const dni = this.authService.getId();
-    this.authService.loginUser(dni, userValidationCode).subscribe(
+    
+    const student:Student={
+      id:this.authService.getUser_id(),
+      login_code:userValidationCode
+    }
+    console.log(student)
+    this.authService.loginUser(student).subscribe(
       (response: any) => {
         if (response) {
-          this.authService.setToken(response.accessToken, response.user.id);
+          console.log(response)
+          this.authService.setTokenUser(response.accessToken, response.user.id);
+          this.authService.setCode(userValidationCode)
           this.route.navigate(['selection-election']);
         } else {
           this.showAlert = true;

@@ -1,18 +1,27 @@
-<table class="table table-hover" >
-    <thead >
+<div *ngIf="voting.length > 0; else noElections">
+  <table class="table table-hover">
+    <thead>
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Descripción</th>
         <th scope="col">Seleccionar</th>
       </tr>
     </thead>
-    <tbody class="table-group-divider" >
-
+    <tbody class="table-group-divider">
       <tr *ngFor="let vote of voting; let i = index">
-        <th scope="row">{{vote.id}}</th>
-        <td>{{vote.description}}</td>
-        <td><button class="btn btn-secondary" (click)="seeList(vote.id)">Ir a votar</button></td>
+        <th scope="row">{{ vote.id }}</th>
+        <td>{{ vote.description }}</td>
+        <td><button class="btn btn-secondary" (click)="seeList(vote.id!)">Ir a votar</button></td>
       </tr>
     </tbody>
   </table>
-  <div><button  (click)="exit()" class="btn btn-danger">Salir</button></div>
+  <div><button (click)="exit()" class="btn btn-danger">Salir</button></div>
+</div>
+
+
+<ng-template #noElections>
+  <div class="alert alert-warning">
+    <p>No hay elecciones disponibles en este momento o ya has votado.</p>
+  </div>
+  <div><button (click)="exit()" class="btn btn-danger">Salir</button></div>
+</ng-template>

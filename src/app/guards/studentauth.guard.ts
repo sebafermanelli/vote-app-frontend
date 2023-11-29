@@ -1,21 +1,26 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from '../auth.service';
 
 export const studentauthGuard: CanActivateFn = () => {
   const router=inject(Router)
+  const authService=inject(AuthService)
   const jwt= new JwtHelperService();
   const token=localStorage.getItem('token');
     if(token && !jwt.isTokenExpired(token)){
       try {
         const decodedToken = jwt.decodeToken(token);
-        const studentCode = localStorage.getItem('code');
+        const studentid = authService.getCode();
         console.log(decodedToken)
-        if (decodedToken.sub === studentCode){
+        console.log(studentid)
+
+        if (decodedToken.sub === studentid){
+          console.log('Autenticado')
           return true;
 
         } else{
-          router.navigate(['']);
+          router.navigate([''])
           return false;
         }
       }catch(error){
