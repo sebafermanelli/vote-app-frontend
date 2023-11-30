@@ -25,7 +25,6 @@ export class LoadStudentComponent {
 
   constructor(
     private fb: FormBuilder,
-    private modalService: BsModalService,
     private router: Router,
     private authservice: AuthService
   ) {
@@ -34,8 +33,7 @@ export class LoadStudentComponent {
       studentLastname: ['', Validators.required],
       studentID: ['', Validators.required],
       studentAddress: ['', Validators.required],
-      studentEmail: [
-        '',
+      studentEmail: ['',
         [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)],
       ],
       studentPhone: ['', Validators.required],
@@ -47,7 +45,7 @@ export class LoadStudentComponent {
       const student: Student = {
         id: this.loadStudent.get('studentID')?.value,
         name: this.loadStudent.get('studentName')?.value,
-        last_name: this.loadStudent.get('studentLastname')?.value,
+        lastName: this.loadStudent.get('studentLastname')?.value,
         course: this.loadStudent.get('studentCourse')?.value,
         address: this.loadStudent.get('studentAddress')?.value,
         email: this.loadStudent.get('studentEmail')?.value,
@@ -57,15 +55,37 @@ export class LoadStudentComponent {
         (response: any) => {
           if (response) {
             this.exit();
-          } else {
-            console.error('No paso el post');
-          }
+          } 
         },
         (error) => {
           console.error(error);
         }
       );
     }
+  }
+
+  name() {
+    return this.loadStudent.get('studentName')?.touched && this.loadStudent.get('studentName')?.hasError('required');
+  }
+  lastName(){
+    return this.loadStudent.get('studentLastname')?.touched && this.loadStudent.get('studentLastname')?.errors?.['required']
+  }  
+  id(){
+    return this.loadStudent.get('studentID')?.touched && this.loadStudent.get('studentID')?.errors?.['required']
+  }
+  mail1(){
+    return this.loadStudent.get('studentEmail')?.touched && this. loadStudent.get('studentEmail')?.invalid}
+  mail2(){
+    return this.loadStudent.get('studentEmail')?.touched && this.loadStudent.get('studentEmail')?.valid
+  }
+  mail3(){
+    return this.loadStudent.get('studentEmail')?.touched && this.loadStudent.get('studentEmail')?.hasError('pattern')
+  }
+  address(){
+    return this.loadStudent.get('studentAddress')?.touched && this.loadStudent.get('studentAddress')?.errors?.['required']
+  }
+  phone(){
+    return this.loadStudent.get('studentPhone')?.touched && this.loadStudent.get('studentPhone')?.errors?.['required']
   }
 
   exit() {

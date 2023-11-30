@@ -41,7 +41,6 @@ export class ManageVotingComponent {
     if (this.selectid !== null) {
       this.authservice.deleteElections(id).subscribe(() => {
         this.loadElections();
-        console.log('Eliminación Exitosa');
       });
       this.selectid = null;
       this.modalRef?.hide();

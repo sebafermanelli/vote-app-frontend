@@ -6,7 +6,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { vote } from './vote';
 import { BrowserStorageService } from '../storage.service';
@@ -33,19 +33,19 @@ export class UserComponent implements OnInit {
   selectedIndex: number;
   showModal: boolean = false;
   messageModalRef?: BsModalRef;
-  voto: vote = { election_id: '', list_id: '' };
+  voto: vote = { electionId: '', listId: '' };
   completeName = '';
   nombresPersonasListas: {
     createdAt: string;
     description: string;
-    election_id: number;
+    electioId: number;
     id: number;
     nombre1: string;
     nombre2: string;
     nombre3: string;
-    rol1_id: string;
-    rol2_id: string;
-    rol3_id: string;
+    rol1Id: string;
+    rol2Id: string;
+    rol3Id: string;
     updatedAt: string;
     votes: number;
   }[] = [];
@@ -61,23 +61,23 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getName();
-    this.activatedRoute.paramMap.subscribe((params) => {
+    this.activatedRoute.paramMap.subscribe((params:ParamMap) => {
       this.id = params.get('id') || '';
       this.authservice.getListbyElection(this.id).subscribe((response) => {
         this.members = response.results;
         this.members.map((list: any) => {
           list = { ...list, nombre1: '', nombre2: '', nombre3: '' };
-          this.authService.getOneStudent(list.rol1_id).subscribe((userData) => {
+          this.authService.getOneStudent(list.rol1Id).subscribe((userData) => {
             list.nombre1 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
-          this.authService.getOneStudent(list.rol2_id).subscribe((userData) => {
+          this.authService.getOneStudent(list.rol2Id).subscribe((userData) => {
             list.nombre2 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
-          this.authService.getOneStudent(list.rol3_id).subscribe((userData) => {
+          this.authService.getOneStudent(list.rol3Id).subscribe((userData) => {
             list.nombre3 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
           this.nombresPersonasListas.push(list);
         });
@@ -89,18 +89,15 @@ export class UserComponent implements OnInit {
     if (this.userDNI !== null) {
       this.authService.getOneStudent(this.userDNI).subscribe((userData) => {
         this.completeName =
-          userData.results.name + ' ' + userData.results.last_name;
+          userData.results.name + ' ' + userData.results.lastName;
       });
     }
   }
-  getNameRoles(rol1: string, rol2: string, rol3: string) {
-    console.log(rol1, rol2, rol3);
-  }
+
 
   selectMembers(miembro: any) {
     if (this.selectMember) {
       this.selectMember.selected = false;
-      console.log(this.selectMember.id);
     }
     miembro.selected = true;
     this.selectMember = miembro;
@@ -112,13 +109,9 @@ export class UserComponent implements OnInit {
   }
 
   registerVote(): void {
-    console.log(this.id);
-    console.log(this.selectMember.id);
-    this.voto.election_id = this.id;
-    this.voto.list_id = String(this.selectMember.id);
-    console.log(this.voto);
+    this.voto.electionId = this.id;
+    this.voto.listId = String(this.selectMember.id);
     this.authService.loadVote(this.voto).subscribe((response) => {
-      console.log(response);
     });
   }
 

@@ -1,12 +1,12 @@
 export interface Student{
   id?:string,
   name?:string,
-  last_name?:string,
+  lastName?:string,
   course?:string,
   address?:string,
   email?:string,
   phone?:string,
-  login_code?:string
+  loginCode?:string
   createdAt?:Date,
   updatedAt?:Date
 }

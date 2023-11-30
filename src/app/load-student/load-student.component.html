@@ -7,12 +7,12 @@
       <h1 class="tit">Carga Alumnos</h1>
       <br />
       <form [formGroup]="loadStudent" (ngSubmit)="load()">
-        <div class="border p-3">
+        <div class="border p-3"> 
           <div class="mb-3">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">N</span>
               <input
-                [class.is-invalid]="loadStudent.get('studentName')?.touched && loadStudent.get('studentName')?.errors?.['required']"
+                [class.is-invalid]="name()"
                 type="text"
                 class="form-control"
                 placeholder="Nombre"
@@ -26,7 +26,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">A</span>
               <input
-                [class.is-invalid]="loadStudent.get('studentLastname')?.touched && loadStudent.get('studentLastname')?.errors?.['required']"
+                [class.is-invalid]="lastName()"
                 type="text"
                 class="form-control"
                 placeholder="Apellido"
@@ -40,7 +40,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">DNI</span>
               <input
-                [class.is-invalid]="loadStudent.get('studentID')?.touched && loadStudent.get('studentID')?.errors?.['required']"
+                [class.is-invalid]="id()"
                 type="text"
                 class="form-control"
                 placeholder="DNI"
@@ -55,12 +55,10 @@
               <span class="input-group-text" id="basic-addon1">Email</span>
               <input
                 [class.is-invalid]="
-                  loadStudent.get('studentEmail')?.touched &&
-                  loadStudent.get('studentEmail')?.invalid
+                  mail1()
                 "
                 [class.is-valid]="
-                  loadStudent.get('studentEmail')?.touched &&
-                  loadStudent.get('studentEmail')?.valid
+                  mail2()
                 "
                 type="text"
                 class="form-control"
@@ -69,14 +67,9 @@
                 aria-describedby="basic-addon1"
                 formControlName="studentEmail"
               />
-              <div
-                *ngIf="
-                  loadStudent.get('studentEmail')?.touched &&
-                  loadStudent.get('studentEmail')?.hasError('pattern')
-                "
-                class="invalid-feedback"
+              <div *ngIf="mail3()" class="invalid-feedback"
               >
-                Ingrese un email de la forma: usuario@dominio.com.
+              Ingrese un email de la forma: usuario&#64;dominio.com.
               </div>
             </div>
           </div>
@@ -84,7 +77,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">D</span>
               <input
-                [class.is-invalid]="loadStudent.get('studentAddress')?.touched && loadStudent.get('studentAddress')?.errors?.['required']"
+                [class.is-invalid]="address()"
                 type="text"
                 class="form-control"
                 placeholder="Direccion"
@@ -98,7 +91,7 @@
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">C</span>
               <input
-                [class.is-invalid]="loadStudent.get('studentPhone')?.touched && loadStudent.get('studentPhone')?.errors?.['required']"
+                [class.is-invalid]="phone()"
                 type="text"
                 class="form-control"
                 placeholder="Número Celular"

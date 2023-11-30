@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class ListasAdminComponent {
   @Output() memberSeleccionado = new EventEmitter<number>();
-  description_election: string;
+  descriptionElection: string;
   list: string;
   id: string;
   name: string;
@@ -29,14 +29,13 @@ export class ListasAdminComponent {
   }
 
   loadlist() {
-    this.activatedRoute.paramMap.subscribe((params) => {
+    this.activatedRoute.paramMap.subscribe((params:ParamMap) => {
       this.id = params.get('id') || '';
       this.authservice.getOneElection(this.id).subscribe((userData) => {
-        this.description_election = userData.results.description;
+        this.descriptionElection = userData.results.description;
       });
       this.authservice.getListbyElection(this.id).subscribe((response) => {
         this.members = response.results;
-        console.log(response);
       });
     });
   }
@@ -45,11 +44,7 @@ export class ListasAdminComponent {
       this.authservice.deleteList(this.id).subscribe(
         () => {
           this.loadlist();
-          console.log('Eliminacion exitosa');
         },
-        (error) => {
-          console.log('No se pudo eliminar');
-        }
       );
     }
   }

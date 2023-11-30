@@ -56,7 +56,6 @@ export class ListStudentsComponent implements OnInit {
 
   loadData() {
     this.authservice.getStudent().subscribe((response: any) => {
-      console.log(response);
       this.students = response.results;
     });
   }
@@ -74,7 +73,6 @@ export class ListStudentsComponent implements OnInit {
       this.authservice.deleteStudents(this.selectid).subscribe(
         () => {
           this.loadData();
-          console.log('Eliminacion exitosa');
         },
         (error) => {
           console.log('No se pudo eliminar', error);

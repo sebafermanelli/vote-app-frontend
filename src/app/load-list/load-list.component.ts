@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from '../auth.service';
 import { List } from '../models/list';
 import { BrowserStorageService } from '../storage.service';
+import { ValidatorHelper } from './areCamposCompletos';
 
 @Component({
   selector: 'app-load-list',
@@ -13,7 +14,6 @@ import { BrowserStorageService } from '../storage.service';
 })
 export class LoadListComponent {
   loadList: FormGroup;
-  loadRol: FormGroup;
   isCollapsed = true;
   modalRef?: BsModalRef;
   message?: string;
@@ -29,11 +29,11 @@ export class LoadListComponent {
     private ls: BrowserStorageService
   ) {
     this.loadList = this.formBuilder.group({
-      election_id: [''],
+      electionId: [''],
       description: ['', Validators.required],
-      rol1_id: ['', Validators.required],
-      rol2_id: ['', Validators.required],
-      rol3_id: ['', Validators.required],
+      rol1Id: ['', Validators.required],
+      rol2Id: ['', Validators.required],
+      rol3Id: ['', Validators.required],
     });
   }
 
@@ -41,22 +41,18 @@ export class LoadListComponent {
     this.areCamposCompletos();
     if (this.loadList.valid) {
       const list: List = {
-        election_id: this.ls.getElectionId(),
+        electionId: this.ls.getElectionId(),
         description: this.loadList.get('description')?.value,
-        rol1_id: this.loadList.get('rol1_id')?.value,
-        rol2_id: this.loadList.get('rol2_id')?.value,
-        rol3_id: this.loadList.get('rol3_id')?.value,
+        rol1Id: this.loadList.get('rol1Id')?.value,
+        rol2Id: this.loadList.get('rol2Id')?.value,
+        rol3Id: this.loadList.get('rol3Id')?.value,
       };
       this.authService.loadList(list).subscribe(
         (response: any) => {
           if (response) {
-            console.log('List saved Successfully: ', response);
             this.list = response.results;
-            console.log(this.list);
             this.showRoles = true;
-          } else {
-            console.error('error to save list');
-          }
+          } 
         },
         (error) => {
           console.error('Error in HTTP request: ', error);
@@ -69,16 +65,7 @@ export class LoadListComponent {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
   areCamposCompletos(): boolean {
-    const descriptionControl = this.loadList.get('description');
-    const rol1_id = this.loadList.get('rol1_id');
-    const rol2_id = this.loadList.get('rol2_id');
-    const rol3_id = this.loadList.get('rol3_id');
-    return (
-      (descriptionControl?.valid ?? false) &&
-      (rol1_id?.valid ?? false) &&
-      (rol2_id?.valid ?? false) &&
-      (rol3_id?.valid ?? false)
-    );
+    return ValidatorHelper.areCamposCompletos(this.loadList);
   }
 
   load(): void {

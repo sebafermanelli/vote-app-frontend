@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin } from './models/admin';
 import { Student } from './models/student';
 import { Election } from './models/election';
 import { Candidate } from './models/candidate';
@@ -12,7 +11,6 @@ import { BrowserStorageService } from './storage.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
   private URL = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient, private ls: BrowserStorageService) {}
@@ -51,9 +49,9 @@ export class AuthService {
     return this.http.post(`${this.URL}/lists/`, list, { headers: header });
   }
 
-  loadDelegation(election_id: string) {
+  loadDelegation(electionId: string) {
     const body = {
-      election_id: election_id,
+      electionId: electionId,
     };
     const token = this.ls.getToken();
     const header = new HttpHeaders({
@@ -72,15 +70,15 @@ export class AuthService {
 
   loadListRoles(
     order: number,
-    list_id: string,
-    role_id: string,
-    candidate_id: string
+    listId: string,
+    roleId: string,
+    candidateId: string
   ) {
     const body = {
       order,
-      list_id,
-      role_id,
-      candidate_id,
+      listId,
+      roleId,
+      candidateId,
     };
     const token = this.ls.getToken();
     const header = new HttpHeaders({
@@ -159,13 +157,13 @@ export class AuthService {
       headers: header,
     });
   }
-  getNotVotedYet(user_id: string) {
+  getNotVotedYet(userId: string) {
     const token = this.ls.getToken();
     const header = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this.http.get<any>(
-      `${this.URL}/electionusers/${user_id}/notvotedyet`,
+      `${this.URL}/electionusers/${userId}/notvotedyet`,
       { headers: header }
     );
   }

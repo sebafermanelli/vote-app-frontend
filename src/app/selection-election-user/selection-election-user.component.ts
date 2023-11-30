@@ -11,7 +11,7 @@ import { BrowserStorageService } from '../storage.service';
 })
 export class SelectionElectionUserComponent {
   voting: Election[] = [];
-  user_id: string | null;
+  userId: string | null;
   constructor(
     private route: Router,
     private authservice: AuthService,

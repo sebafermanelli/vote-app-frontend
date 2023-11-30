@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = () => {
   if (token && !jwt.isTokenExpired(token)) {
     try {
       const decodedToken = jwt.decodeToken(token);
-      const adminId = localStorage.getItem('admin_id');
+      const adminId = localStorage.getItem('adminId');
       const studentCode = localStorage.getItem('code');
       if (decodedToken.sub === adminId) {
         // El usuario es un administrador, puede continuar

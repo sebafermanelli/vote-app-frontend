@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { AuthService } from '../auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class VotingInterfaceComponent implements OnInit {
   public chart: any;
-  id_list: string;
+  idList: string;
   id: string;
   delegation: any = [];
   lists: any = [];
@@ -27,28 +27,28 @@ export class VotingInterfaceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params) => {
+    this.activatedRoute.paramMap.subscribe((params:ParamMap) => {
       this.id = params.get('id') || '';
       this.authService.getElectionDelegation(this.id).subscribe((response) => {
         this.delegation = response.results;
         this.getListCharts();
         this.authService
-          .getOneStudent(this.delegation.rol1_id)
+          .getOneStudent(this.delegation.rol1Id)
           .subscribe((userData) => {
             this.completeName1 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
         this.authService
-          .getOneStudent(this.delegation.rol2_id)
+          .getOneStudent(this.delegation.rol2Id)
           .subscribe((userData) => {
             this.completeName2 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
         this.authService
-          .getOneStudent(this.delegation.rol3_id)
+          .getOneStudent(this.delegation.rol3Id)
           .subscribe((userData) => {
             this.completeName3 =
-              userData.results.name + ' ' + userData.results.last_name;
+              userData.results.name + ' ' + userData.results.lastName;
           });
         this.authService.getOneElection(this.id).subscribe((userData) => {
           this.electionName = userData.results.description;
@@ -67,8 +67,8 @@ export class VotingInterfaceComponent implements OnInit {
         this.lists[0]
       );
       if (listWithMaxVotes) {
-        this.id_list = listWithMaxVotes.id;
-        this.authService.getOneList(this.id_list).subscribe((userData) => {
+        this.idList = listWithMaxVotes.id;
+        this.authService.getOneList(this.idList).subscribe((userData) => {
           this.descriptionList = userData.results.description;
         });
       }

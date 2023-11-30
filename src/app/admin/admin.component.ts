@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Admin } from '../models/admin';
 import { BrowserStorageService } from '../storage.service';
 
 @Component({

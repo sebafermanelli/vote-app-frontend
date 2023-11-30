@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import {
-  FormControl,
   FormGroup,
   Validators,
   FormBuilder,
@@ -41,7 +40,7 @@ export class LoginAdminComponent {
             this.route.navigate(['admin']);
           }
         },
-        (error) => {
+        (error:any) => {
           this.showAlert = true;
         }
       );

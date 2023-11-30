@@ -32,7 +32,7 @@ export class LoadCandidatesComponent {
   submitForm() {
     if (this.loadCandidate.valid) {
       const candidate:Candidate={
-      user_id:this.loadCandidate.get('dni')?.value
+      userId:this.loadCandidate.get('dni')?.value
       };
       this.authservice.loadCandidates(candidate).subscribe(
         (response: any) => {

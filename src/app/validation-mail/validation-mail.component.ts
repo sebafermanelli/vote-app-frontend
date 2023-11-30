@@ -51,7 +51,7 @@ export class ValidationMailComponent {
 
     const student: Student = {
       id: this.ls.getUserId(),
-      login_code: userValidationCode,
+      loginCode: userValidationCode,
     };
     this.authService.loginUser(student).subscribe(
       (response: any) => {
@@ -65,7 +65,6 @@ export class ValidationMailComponent {
         }
       },
       (error) => {
-        console.error(error);
         this.showAlert = true;
         this.openModal(this.template);
       }

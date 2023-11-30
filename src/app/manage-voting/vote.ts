@@ -1,7 +1,7 @@
 export class vote{
     id:string;
     description:string;
-    total_votes:number;
+    totalVotes:number;
     finalizated:boolean;
   }
   

@@ -30,7 +30,7 @@ export class CreateVotingComponent {
     private ls: BrowserStorageService
   ) {
     this.loadElections = this.formBuilder.group({
-      admin_id: [''],
+      adminId: [''],
       description: ['', Validators.required],
     });
   }
@@ -43,31 +43,15 @@ export class CreateVotingComponent {
     this.areCamposCompletos();
     if (this.loadElections.valid) {
       const election: Election = {
-        admin_id: this.ls.getAdminId(),
+        adminId: this.ls.getAdminId(),
         description: this.loadElections.get('description')?.value,
       };
       this.authservice.loadElection(election).subscribe(
         (response: any) => {
           if (response) {
             this.ls.setElectionId(response.results.id);
-            console.log('Election saved successfully:', response);
-            this.authservice.loadElectionUser(response.results.id).subscribe(
-              (response: any) => {
-                console.log(response);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-            this.authservice.loadDelegation(response.results.id).subscribe(
-              (response: any) => {
-                console.log(response);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-
+            this.authservice.loadElectionUser(response.results.id).subscribe();
+            this.authservice.loadDelegation(response.results.id).subscribe();
             this.router.navigate(['load-candidates']);
           } else {
             console.error('Failed to save the election.');
