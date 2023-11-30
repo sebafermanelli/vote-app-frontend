@@ -6,29 +6,39 @@ import { BrowserStorageService } from '../storage.service';
 export const authGuard: CanActivateFn = () => {
   const route = inject(Router);
   const jwt = new JwtHelperService();
-  const ls = inject(BrowserStorageService);
-  const token = ls.getToken();
+  const storageService = inject(BrowserStorageService);
 
-  if (token && !jwt.isTokenExpired(token)) {
-    try {
-      const decodedToken = jwt.decodeToken(token);
-      const adminId = localStorage.getItem('adminId');
-      const studentCode = localStorage.getItem('code');
-      if (decodedToken.sub === adminId) {
-        // El usuario es un administrador, puede continuar
-        return true;
-      } else {
-        route.navigate(['']);
+  const canActivate = (): boolean => {
+    const token = storageService.getToken();
+
+    if (token && !jwt.isTokenExpired(token)) {
+      try {
+        const decodedToken = jwt.decodeToken(token);
+        const adminId = storageService.getAdminId();
+        const studentCode = storageService.getCode();
+
+        if (decodedToken.sub === adminId) {
+          // El usuario es un administrador, puede continuar
+          return true;
+        } else {
+          redirectToLogin();
+          return false;
+        }
+      } catch (error) {
+        console.error(error);
+        redirectToLogin();
         return false;
       }
-    } catch (error) {
-      console.error(error);
-      route.navigate(['']);
+    } else {
+      // No se encontró un token, redirigir al inicio de sesión
+      redirectToLogin();
       return false;
     }
-  } else {
-    // No se encontró un token, redirigir al inicio de sesión
+  };
+
+  const redirectToLogin = (): void => {
     route.navigate(['']);
-    return false;
-  }
+  };
+
+  return canActivate();
 };
