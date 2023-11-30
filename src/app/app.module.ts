@@ -28,6 +28,10 @@ import { LoadCandidatesComponent } from './load-candidates/load-candidates.compo
 import {HttpClientModule }  from '@angular/common/http';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './interceptor.service';
+
+
 
 
 @NgModule({
@@ -69,8 +73,14 @@ import { JwtModule } from '@auth0/angular-jwt';
     HttpClientModule,
     JwtModule
   ],
+  
   exports:[RouterModule],
-  providers: [BsModalService],
+  providers: [BsModalService,
+             {
+              provide: HTTP_INTERCEPTORS,
+              useClass: AuthInterceptorService,
+              multi: true
+             }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

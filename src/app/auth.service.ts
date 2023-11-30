@@ -13,6 +13,11 @@ import { BrowserStorageService } from './storage.service';
 export class AuthService {
   private URL = 'http://localhost:3000/api';
 
+  private createAuthorizationHeader() {
+    const token = this.ls.getToken();
+    return { Authorization: `Bearer ${token}` };
+  }
+
   constructor(private http: HttpClient, private ls: BrowserStorageService) {}
 
   emailCode(id: string): Observable<string> {
@@ -33,39 +38,26 @@ export class AuthService {
   }
 
   loadElection(election: Election) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.post(`${this.URL}/elections/`, election, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
+
   loadList(list: List) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+    return this.http.post(`${this.URL}/lists/`, list, {
+      headers: this.createAuthorizationHeader(),
     });
-    return this.http.post(`${this.URL}/lists/`, list, { headers: header });
   }
 
   loadDelegation(electionId: string) {
     const body = {
       electionId: electionId,
     };
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.post(`${this.URL}/delegations`, body, { headers: header });
+    return this.http.post(`${this.URL}/delegations`, body, { headers: this.createAuthorizationHeader() });
   }
 
   loadStudent(student: Student) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.post(`${this.URL}/users/`, student, { headers: header });
+    return this.http.post(`${this.URL}/users/`, student, { headers: this.createAuthorizationHeader() });
   }
 
   loadListRoles(
@@ -80,178 +72,105 @@ export class AuthService {
       roleId,
       candidateId,
     };
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.post<any>(`${this.URL}/listroles`, body, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   loadCandidates(candidate: Candidate) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.post<any>(`${this.URL}/candidates`, candidate, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   loadElectionUser(id: string) {
     const body = {};
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.post(`${this.URL}/electionusers/${id}/generate`, body, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
   loadVote(vote: any) {
     const body = vote;
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.put(
-      `${this.URL}/electionusers/${this.ls.getUserId()}/vote`,
-      body,
-      { headers: header }
+      `${this.URL}/electionusers/${this.ls.getUserId()}/vote`,body,{ headers: this.createAuthorizationHeader() }
     );
   }
   getAdmin() {
-    return this.http.get(`${this.URL}/admin`);
+    return this.http.get(`${this.URL}/admin`, {
+      headers: this.createAuthorizationHeader(),
+    });
   }
 
   getStudent(): Observable<Student[]> {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    return this.http.get<Student[]>(`${this.URL}/users`, { headers: header });
+  return this.http.get<Student[]>(`${this.URL}/users`, { headers: this.createAuthorizationHeader() });
   }
   getOneStudent(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+    return this.http.get<any>(`${this.URL}/users/${id}`, {
+          headers: this.createAuthorizationHeader(),
+         });}
 
-    return this.http.get<any>(`${this.URL}/users/${id}`, { headers: header });
-  }
   getOneList(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>(`${this.URL}/lists/${id}`, { headers: header });
+    return this.http.get<any>(`${this.URL}/lists/${id}`, { headers: this.createAuthorizationHeader() });
   }
   getOneElection(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.get<any>(`${this.URL}/elections/${id}`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
   getNotVotedYet(userId: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.get<any>(
       `${this.URL}/electionusers/${userId}/notvotedyet`,
-      { headers: header }
+      { headers: this.createAuthorizationHeader() }
     );
   }
 
   getElections() {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
+    return this.http.get<any>(`${this.URL}/elections`, {
+      headers: this.createAuthorizationHeader(),
     });
-    return this.http.get<any>(`${this.URL}/elections`, { headers: header });
   }
 
   getListbyElection(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.get<any>(`${this.URL}/elections/${id}/lists`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
   getElectionByStudent(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.get<any>(`${this.URL}/electionusers/${id}`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   getList() {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>(`${this.URL}/lists`, { headers: header });
+    return this.http.get<any>(`${this.URL}/lists`, { headers: this.createAuthorizationHeader() });
   }
 
   getElectionDelegation(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.get<any>(`${this.URL}/elections/${id}/delegation`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   finalizated(id: string) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.put(
-      `${this.URL}/elections/${id}/finalize`,
-      {},
-      { headers: header }
+      `${this.URL}/elections/${id}/finalize`,{},{ headers: this.createAuthorizationHeader() }
     );
   }
   deleteStudents(id: string | null) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
     return this.http.delete<any>(`${this.URL}/users/${id}`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   deleteList(id: string | null) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.delete<any>(`${this.URL}/lists/${id}`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 
   deleteElections(id: string | null) {
-    const token = this.ls.getToken();
-    const header = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
     return this.http.delete<any>(`${this.URL}/elections/${id}`, {
-      headers: header,
+      headers: this.createAuthorizationHeader(),
     });
   }
 }
