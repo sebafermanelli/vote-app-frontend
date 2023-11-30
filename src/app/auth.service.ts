@@ -150,6 +150,9 @@ export class AuthService {
       headers: this.createAuthorizationHeader(),
     });
   }
+  getCode(){
+    return this.ls.getCode();
+  }
 
   finalizated(id: string) {
     return this.http.put(
