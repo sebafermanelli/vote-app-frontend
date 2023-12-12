@@ -30,6 +30,7 @@ import { SelectionElectionUserComponent } from './selection-election-user/select
 import { JwtModule } from '@auth0/angular-jwt';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './interceptor.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -71,7 +72,8 @@ import { AuthInterceptorService } from './interceptor.service';
     CollapseModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    JwtModule
+    JwtModule,
+    CommonModule,
   ],
   
   exports:[RouterModule],

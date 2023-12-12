@@ -10,12 +10,14 @@ import { BrowserStorageService } from '../storage.service';
 })
 export class AdminComponent implements OnInit {
   Admin: any;
+  id:string;
   constructor(
     private router: Router,
     private authService: AuthService,
     private ls: BrowserStorageService
   ) {
     this.Admin = this.authService.getAdmin();
+    this.id=this.Admin.id
   }
 
   ngOnInit() {}

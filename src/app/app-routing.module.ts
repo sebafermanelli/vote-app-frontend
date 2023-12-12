@@ -23,20 +23,20 @@ import { studentauthGuard } from './guards/studentauth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }, 
-  { path: 'user/:id', component: UserComponent,canActivate:[studentauthGuard] }, 
-  { path: 'admin', component: AdminComponent, canActivate:[authGuard]}, 
+  { path: 'user/:id', component: UserComponent }, 
+  { path: 'admin', component: AdminComponent}, 
   { path: 'login-admin',component:LoginAdminComponent}, 
-  { path: 'message',component:MessageModalComponent,canActivate:[studentauthGuard]}, 
+  { path: 'message',component:MessageModalComponent}, 
   { path: 'validation',component:ValidationMailComponent}, 
-  { path: 'load-list',component:LoadListComponent,canActivate:[authGuard]}, 
-  { path: 'manage-voting', component:ManageVotingComponent,canActivate:[authGuard]},
-  { path: 'load-student', component:LoadStudentComponent,canActivate:[authGuard]}, 
-  { path: 'create-voting', component:CreateVotingComponent,canActivate:[authGuard]}, 
-  { path: 'voting-interface/:id', component:VotingInterfaceComponent,canActivate:[authGuard]}, 
-  { path: 'list-students', component:ListStudentsComponent,canActivate:[authGuard]}, 
-  { path: 'listas-admin/:id',component:ListasAdminComponent,canActivate:[authGuard]}, 
-  { path: 'load-candidates',component:LoadCandidatesComponent,canActivate:[authGuard]}, 
-  { path: 'selection-election',component:SelectionElectionUserComponent,canActivate:[studentauthGuard]}, 
+  { path: 'load-list',component:LoadListComponent}, 
+  { path: 'manage-voting', component:ManageVotingComponent},
+  { path: 'load-student', component:LoadStudentComponent}, 
+  { path: 'create-voting', component:CreateVotingComponent}, 
+  { path: 'voting-interface/:id', component:VotingInterfaceComponent}, 
+  { path: 'list-students', component:ListStudentsComponent}, 
+  { path: 'listas-admin/:id',component:ListasAdminComponent}, 
+  { path: 'load-candidates',component:LoadCandidatesComponent}, 
+  { path: 'selection-election',component:SelectionElectionUserComponent}, 
 
 ];
 

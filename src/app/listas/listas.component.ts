@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   selector: 'app-listas',
   templateUrl: './listas.component.html',

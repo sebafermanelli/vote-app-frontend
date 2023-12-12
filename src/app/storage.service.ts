@@ -30,13 +30,15 @@ export class BrowserStorageService {
   }
 
   setUser(token: string, userId: string) {
-    this.storage.setItem(token, userId);
+    this.storage.setItem('token',token);
+    this.storage.setItem('userId',userId);
   }
   setCode(code: string): void {
     this.storage.setItem('code', code);
   }
   setAdmin(token: string, adminId: string) {
-    this.storage.setItem(token, adminId);
+    this.storage.setItem( 'token',token);
+    this.storage.setItem( 'adminId',adminId);
   }
 
   setElectionId(electionId: string): void {
