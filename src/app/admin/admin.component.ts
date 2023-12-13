@@ -16,8 +16,7 @@ export class AdminComponent implements OnInit {
     private authService: AuthService,
     private ls: BrowserStorageService
   ) {
-    this.Admin = this.authService.getAdmin();
-    this.id=this.Admin.id
+    this.Admin = this.ls.getAdminId()
   }
 
   ngOnInit() {}

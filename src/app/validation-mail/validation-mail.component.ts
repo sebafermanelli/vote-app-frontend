@@ -52,7 +52,7 @@ export class ValidationMailComponent {
     const student: Student = {
       id: this.ls.getUserId(),
       loginCode: userValidationCode,
-    };console.log(student)
+    };
     this.authService.loginUser(student).subscribe(
       (response: any) => {
         
@@ -61,7 +61,6 @@ export class ValidationMailComponent {
           this.ls.setCode(userValidationCode);
           this.route.navigate(['selection-election']);
         } else {
-          console.log(response)
           this.showAlert = true;
           this.openModal(this.template);
         }
