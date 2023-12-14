@@ -38,7 +38,6 @@ export class AuthService {
   }
 
   loadElection(election: Election) {
-    console.log(this.createAuthorizationHeader())
     return this.http.post(`${this.URL}/elections/`, election, {
       headers: this.createAuthorizationHeader(),
 
