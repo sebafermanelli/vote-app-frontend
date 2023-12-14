@@ -10,38 +10,95 @@ import { LoadListComponent } from './load-list/load-list.component';
 import { ManageVotingComponent } from './manage-voting/manage-voting.component';
 import { LoadStudentComponent } from './load-student/load-student.component';
 import { CreateVotingComponent } from './create-voting/create-voting.component';
-import {VotingInterfaceComponent} from './voting-interface/voting-interface.component';
+import { VotingInterfaceComponent } from './voting-interface/voting-interface.component';
 import { ListStudentsComponent } from './list-students/list-students.component';
 import { ListasAdminComponent } from './listas-admin/listas-admin.component';
 import { LoadCandidatesComponent } from './load-candidates/load-candidates.component';
 import { SelectionElectionUserComponent } from './selection-election-user/selection-election-user.component';
 import { authGuard } from './guards/auth.guard';
-import { studentauthGuard } from './guards/studentauth.guard';
-
-
-
-
 const routes: Routes = [
-  { path: '', component: LoginComponent }, 
-  { path: 'user/:id', component: UserComponent }, 
-  { path: 'admin', component: AdminComponent}, 
-  { path: 'login-admin',component:LoginAdminComponent}, 
-  { path: 'message',component:MessageModalComponent}, 
-  { path: 'validation',component:ValidationMailComponent}, 
-  { path: 'load-list',component:LoadListComponent}, 
-  { path: 'manage-voting', component:ManageVotingComponent},
-  { path: 'load-student', component:LoadStudentComponent}, 
-  { path: 'create-voting', component:CreateVotingComponent}, 
-  { path: 'voting-interface/:id', component:VotingInterfaceComponent}, 
-  { path: 'list-students', component:ListStudentsComponent}, 
-  { path: 'listas-admin/:id',component:ListasAdminComponent}, 
-  { path: 'load-candidates',component:LoadCandidatesComponent}, 
-  { path: 'selection-election',component:SelectionElectionUserComponent}, 
-
+  { path: '', component: LoginComponent },
+  {
+    path: 'user/:id',
+    component: UserComponent,
+    canActivate: [authGuard],
+    data: { userType: 'student' },
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'login-admin',
+    component: LoginAdminComponent,
+  },
+  {
+    path: 'message',
+    component: MessageModalComponent,
+    canActivate: [authGuard],
+    data: { userType: 'student' },
+  },
+  { path: 'validation', component: ValidationMailComponent },
+  {
+    path: 'load-list',
+    component: LoadListComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'manage-voting',
+    component: ManageVotingComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'load-student',
+    component: LoadStudentComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'create-voting',
+    component: CreateVotingComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'voting-interface/:id',
+    component: VotingInterfaceComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'list-students',
+    component: ListStudentsComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'listas-admin/:id',
+    component: ListasAdminComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'load-candidates',
+    component: LoadCandidatesComponent,
+    canActivate: [authGuard],
+    data: { userType: 'admin' },
+  },
+  {
+    path: 'selection-election',
+    component: SelectionElectionUserComponent,
+    canActivate: [authGuard],
+    data: { userType: 'student' },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

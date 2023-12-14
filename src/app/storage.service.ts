@@ -30,23 +30,19 @@ export class BrowserStorageService {
   }
 
   setUser(token: string, userId: string) {
-    this.storage.setItem('token',token);
-    this.storage.setItem('userId',userId);
+    this.storage.setItem('token', token);
+    this.storage.setItem('userId', userId);
   }
   setCode(code: string): void {
     this.storage.setItem('code', code);
   }
   setAdmin(token: string, adminId: string) {
-    this.storage.setItem( 'token',token);
-    this.storage.setItem( 'adminId',adminId);
+    this.storage.setItem('token', token);
+    this.storage.setItem('adminId', adminId);
   }
 
   setElectionId(electionId: string): void {
     this.storage.setItem('electionId', electionId);
-  }
-
-  remove(key: string) {
-    this.storage.removeItem(key);
   }
 
   clear() {

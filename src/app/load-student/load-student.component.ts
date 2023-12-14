@@ -33,7 +33,8 @@ export class LoadStudentComponent {
       studentLastname: ['', Validators.required],
       studentID: ['', Validators.required],
       studentAddress: ['', Validators.required],
-      studentEmail: ['',
+      studentEmail: [
+        '',
         [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)],
       ],
       studentPhone: ['', Validators.required],
@@ -55,7 +56,7 @@ export class LoadStudentComponent {
         (response: any) => {
           if (response) {
             this.exit();
-          } 
+          }
         },
         (error) => {
           console.error(error);
@@ -65,27 +66,52 @@ export class LoadStudentComponent {
   }
 
   name() {
-    return this.loadStudent.get('studentName')?.touched && this.loadStudent.get('studentName')?.hasError('required');
+    return (
+      this.loadStudent.get('studentName')?.touched &&
+      this.loadStudent.get('studentName')?.hasError('required')
+    );
   }
-  lastName(){
-    return this.loadStudent.get('studentLastname')?.touched && this.loadStudent.get('studentLastname')?.errors?.['required']
-  }  
-  id(){
-    return this.loadStudent.get('studentID')?.touched && this.loadStudent.get('studentID')?.errors?.['required']
+  lastName() {
+    return (
+      this.loadStudent.get('studentLastname')?.touched &&
+      this.loadStudent.get('studentLastname')?.errors?.['required']
+    );
   }
-  mail1(){
-    return this.loadStudent.get('studentEmail')?.touched && this. loadStudent.get('studentEmail')?.invalid}
-  mail2(){
-    return this.loadStudent.get('studentEmail')?.touched && this.loadStudent.get('studentEmail')?.valid
+  id() {
+    return (
+      this.loadStudent.get('studentID')?.touched &&
+      this.loadStudent.get('studentID')?.errors?.['required']
+    );
   }
-  mail3(){
-    return this.loadStudent.get('studentEmail')?.touched && this.loadStudent.get('studentEmail')?.hasError('pattern')
+  mail1() {
+    return (
+      this.loadStudent.get('studentEmail')?.touched &&
+      this.loadStudent.get('studentEmail')?.invalid
+    );
   }
-  address(){
-    return this.loadStudent.get('studentAddress')?.touched && this.loadStudent.get('studentAddress')?.errors?.['required']
+  mail2() {
+    return (
+      this.loadStudent.get('studentEmail')?.touched &&
+      this.loadStudent.get('studentEmail')?.valid
+    );
   }
-  phone(){
-    return this.loadStudent.get('studentPhone')?.touched && this.loadStudent.get('studentPhone')?.errors?.['required']
+  mail3() {
+    return (
+      this.loadStudent.get('studentEmail')?.touched &&
+      this.loadStudent.get('studentEmail')?.hasError('pattern')
+    );
+  }
+  address() {
+    return (
+      this.loadStudent.get('studentAddress')?.touched &&
+      this.loadStudent.get('studentAddress')?.errors?.['required']
+    );
+  }
+  phone() {
+    return (
+      this.loadStudent.get('studentPhone')?.touched &&
+      this.loadStudent.get('studentPhone')?.errors?.['required']
+    );
   }
 
   exit() {
