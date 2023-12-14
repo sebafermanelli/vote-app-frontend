@@ -17,7 +17,7 @@
                               <div class="card-body" [id]="member.id" (click)="selectMembers(member)">
                                 <ul class="list-unstyled">
                                   <li>{{ member.id }}</li>
-                                  <li>{{ member.description}}</li>
+                                  <li class="name">{{ member.description}}</li>
                                   <li>{{nombresPersonasListas[i].nombre1}}</li>
                                   <li>{{nombresPersonasListas[i].nombre2}}</li>
                                   <li>{{nombresPersonasListas[i].nombre3}}</li>
@@ -45,8 +45,8 @@
         <ng-template #template>
             <div class="modal-body text-center">
                 <p>¿Está seguro de lo que seleccionó?</p>
-                <button type="button" class="btn btn-default" (click)="confirm()">Si</button>
-                <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+                <button type="button" class="btn btn-primary" (click)="confirm()">Si</button>
+                <button type="button" class="btn btn-secondary" (click)="decline()">No</button>
             </div>
         </ng-template>
     </div>
